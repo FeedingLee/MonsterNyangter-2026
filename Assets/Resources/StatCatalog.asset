@@ -1,0 +1,305 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30e768819bc32d74b9f51942b7877cf9, type: 3}
+  m_Name: StatCatalog
+  m_EditorClassIdentifier: 
+  stats:
+  - stat: 0
+    name: "\uACF5\uACA9\uB825"
+    category: 0
+    unit: 0
+    direction: 0
+    icon: {fileID: -1805960976, guid: 05a2f9ee103281240994c12999635081, type: 3}
+  - stat: 1
+    name: "\uACF5\uACA9\uC18D\uB3C4"
+    category: 0
+    unit: 0
+    direction: 0
+    icon: {fileID: 311346222, guid: 05a2f9ee103281240994c12999635081, type: 3}
+  - stat: 2
+    name: "\uACF5\uACA9 \uCFE8\uD0C0\uC784"
+    category: 0
+    unit: 0
+    direction: 1
+    icon: {fileID: -1227176158, guid: 05a2f9ee103281240994c12999635081, type: 3}
+  - stat: 28
+    name: "\uBB34\uAE30 \uC2A4\uD0AC \uD53C\uD574"
+    category: 0
+    unit: 0
+    direction: 0
+    icon: {fileID: 1860480367, guid: 05a2f9ee103281240994c12999635081, type: 3}
+  - stat: 27
+    name: "\uBB34\uAE30 \uC2A4\uD0AC \uCFE8\uD0C0\uC784"
+    category: 0
+    unit: 0
+    direction: 1
+    icon: {fileID: 2093650426, guid: 05a2f9ee103281240994c12999635081, type: 3}
+  - stat: 29
+    name: "\uBCF4\uC870\uBB34\uAE30 \uD53C\uD574"
+    category: 0
+    unit: 0
+    direction: 0
+    icon: {fileID: -293903188, guid: 05a2f9ee103281240994c12999635081, type: 3}
+  - stat: 32
+    name: "\uCD5C\uB300 \uCCB4\uB825"
+    category: 1
+    unit: 1
+    direction: 2
+    icon: {fileID: -1201372400, guid: 05a2f9ee103281240994c12999635081, type: 3}
+  - stat: 30
+    name: "\uBC1B\uB294 \uD53C\uD574"
+    category: 1
+    unit: 0
+    direction: 1
+    icon: {fileID: -2077046025, guid: 05a2f9ee103281240994c12999635081, type: 3}
+  - stat: 5
+    name: "\uAD6C\uB974\uAE30 \uCFE8\uD0C0\uC784"
+    category: 1
+    unit: 0
+    direction: 1
+    icon: {fileID: -21337516, guid: 05a2f9ee103281240994c12999635081, type: 3}
+  - stat: 3
+    name: "\uC774\uB3D9\uC18D\uB3C4"
+    category: 1
+    unit: 0
+    direction: 0
+    icon: {fileID: 1510738389, guid: 05a2f9ee103281240994c12999635081, type: 3}
+  - stat: 6
+    name: "\uACBD\uD5D8\uCE58 \uD68D\uB4DD\uB7C9"
+    category: 2
+    unit: 0
+    direction: 0
+    icon: {fileID: -435957425, guid: 05a2f9ee103281240994c12999635081, type: 3}
+  - stat: 15
+    name: "\uCF54\uC778 \uD68D\uB4DD\uB7C9"
+    category: 2
+    unit: 0
+    direction: 0
+    icon: {fileID: 2091170883, guid: 05a2f9ee103281240994c12999635081, type: 3}
+  - stat: 22
+    name: "\uB9AC\uB864 \uD69F\uC218"
+    category: 2
+    unit: 2
+    direction: 2
+    icon: {fileID: 422291717, guid: 05a2f9ee103281240994c12999635081, type: 3}
+  - stat: 31
+    name: "\uBB34\uAE30\xB7\uCD1D\uC54C \uD06C\uAE30"
+    category: 2
+    unit: 0
+    direction: 0
+    icon: {fileID: 1291123909, guid: 05a2f9ee103281240994c12999635081, type: 3}
+  - stat: 10
+    name: "\uD544\uC0B4\uAE30 \uC704\uB825"
+    category: 2
+    unit: 0
+    direction: 0
+    icon: {fileID: 0}
+  - stat: 33
+    name: "\uC2DC\uC791 \uB0E5\uB0E5\uCF54\uC778"
+    category: 2
+    unit: 2
+    direction: 2
+    icon: {fileID: 0}
+  - stat: 34
+    name: "\uBCF4\uB108\uC2A4 \uC120\uD0DD"
+    category: 2
+    unit: 2
+    direction: 2
+    icon: {fileID: 0}
+  attackCdFloor: 0.4
+  skillCdFloor: 0.5
+  coinGainCap: 0.4
+  minimumScale: 0.05
+  shopBasePrice: 30
+  shopPriceStep: 3
+  shopPriceMax: 60
+  gradeRates: {x: 60, y: 30, z: 10}
+  goldSpecialRate: 0.3
+  shopCardCount: 3
+  shopStats:
+  - stat: 0
+    bronze: 0.02
+    silver: 0.04
+    gold: 0.07
+  - stat: 1
+    bronze: 0.02
+    silver: 0.04
+    gold: 0.07
+  - stat: 2
+    bronze: -0.02
+    silver: -0.04
+    gold: -0.07
+  - stat: 28
+    bronze: 0.04
+    silver: 0.08
+    gold: 0.14
+  - stat: 27
+    bronze: -0.03
+    silver: -0.06
+    gold: -0.1
+  - stat: 29
+    bronze: 0.04
+    silver: 0.08
+    gold: 0.14
+  - stat: 32
+    bronze: 5
+    silver: 10
+    gold: 18
+  - stat: 30
+    bronze: -0.02
+    silver: -0.04
+    gold: -0.07
+  - stat: 5
+    bronze: -0.03
+    silver: -0.06
+    gold: -0.1
+  - stat: 3
+    bronze: 0.02
+    silver: 0.04
+    gold: 0.07
+  - stat: 6
+    bronze: 0.03
+    silver: 0.06
+    gold: 0.1
+  - stat: 15
+    bronze: 0.04
+    silver: 0.08
+    gold: 0.14
+  - stat: 22
+    bronze: 1
+    silver: 1
+    gold: 2
+  - stat: 31
+    bronze: 0.04
+    silver: 0.08
+    gold: 0.14
+  specials:
+  - name: "\uC720\uB9AC \uB300\uD3EC"
+    icon: {fileID: 836113406, guid: dc5d5dcccd2dcea42bbdcee6e3205580, type: 3}
+    gainStat: 0
+    gain: 0.14
+    costStat: 32
+    cost: -8
+  - name: "\uBB34\uAC70\uC6B4 \uBC1C\uD1B1"
+    icon: {fileID: -1357872517, guid: dc5d5dcccd2dcea42bbdcee6e3205580, type: 3}
+    gainStat: 0
+    gain: 0.14
+    costStat: 1
+    cost: -0.04
+  - name: "\uB0A0\uB835\uD55C \uC190"
+    icon: {fileID: 207340662, guid: dc5d5dcccd2dcea42bbdcee6e3205580, type: 3}
+    gainStat: 2
+    gain: -0.14
+    costStat: 0
+    cost: -0.04
+  - name: "\uAD11\uC804\uC0AC"
+    icon: {fileID: -1260999852, guid: dc5d5dcccd2dcea42bbdcee6e3205580, type: 3}
+    gainStat: 1
+    gain: 0.14
+    costStat: 30
+    cost: 0.04
+  - name: "\uD55C \uBC29 \uC2B9\uBD80"
+    icon: {fileID: -291117804, guid: dc5d5dcccd2dcea42bbdcee6e3205580, type: 3}
+    gainStat: 28
+    gain: 0.28
+    costStat: 27
+    cost: 0.06
+  - name: "\uBCF4\uC870\uBB34\uAE30 \uD2B9\uD654"
+    icon: {fileID: -1675670553, guid: dc5d5dcccd2dcea42bbdcee6e3205580, type: 3}
+    gainStat: 29
+    gain: 0.28
+    costStat: 28
+    cost: -0.08
+  - name: "\uCCA0\uAC11"
+    icon: {fileID: -760413723, guid: dc5d5dcccd2dcea42bbdcee6e3205580, type: 3}
+    gainStat: 30
+    gain: -0.14
+    costStat: 3
+    cost: -0.04
+  - name: "\uC9C8\uC8FC \uBCF8\uB2A5"
+    icon: {fileID: -864071042, guid: dc5d5dcccd2dcea42bbdcee6e3205580, type: 3}
+    gainStat: 3
+    gain: 0.14
+    costStat: 5
+    cost: 0.08
+  - name: "\uC0AC\uB0E5\uAFBC\uC758 \uC9C1\uAC10"
+    icon: {fileID: -1566949628, guid: dc5d5dcccd2dcea42bbdcee6e3205580, type: 3}
+    gainStat: 6
+    gain: 0.2
+    costStat: 15
+    cost: -0.1
+  shopPanel: {fileID: 1769864245, guid: 6fc5669a5f1a7144e96e98181ea92c40, type: 3}
+  cardBronze: {fileID: 9504570, guid: 6fc5669a5f1a7144e96e98181ea92c40, type: 3}
+  cardSilver: {fileID: 1821174053, guid: 6fc5669a5f1a7144e96e98181ea92c40, type: 3}
+  cardGold: {fileID: -1407185969, guid: 6fc5669a5f1a7144e96e98181ea92c40, type: 3}
+  catIdle: {fileID: -595009691, guid: 6fc5669a5f1a7144e96e98181ea92c40, type: 3}
+  catSurprise: {fileID: 1103485075, guid: 6fc5669a5f1a7144e96e98181ea92c40, type: 3}
+  catWave: {fileID: 1210728837, guid: 6fc5669a5f1a7144e96e98181ea92c40, type: 3}
+  lantern: {fileID: -756570695, guid: 6fc5669a5f1a7144e96e98181ea92c40, type: 3}
+  coinBar: {fileID: 1236038026, guid: 6fc5669a5f1a7144e96e98181ea92c40, type: 3}
+  coinIcon: {fileID: -729035622, guid: 55db89b978772694eb700a709ce23487, type: 3}
+  buttonBrown: {fileID: 1758870008, guid: 6fc5669a5f1a7144e96e98181ea92c40, type: 3}
+  buttonGreen: {fileID: 1943327575, guid: 6fc5669a5f1a7144e96e98181ea92c40, type: 3}
+  divider: {fileID: -608098567, guid: 6fc5669a5f1a7144e96e98181ea92c40, type: 3}
+  paw: {fileID: -558959896, guid: 6fc5669a5f1a7144e96e98181ea92c40, type: 3}
+  specialTag: {fileID: -1861669234, guid: e4ba266698031664399c916dd223e2c4, type: 3}
+  titlePlate: {fileID: 1087064438, guid: 6fc5669a5f1a7144e96e98181ea92c40, type: 3}
+  iconExit: {fileID: -1790434673, guid: 2e3814c906e8f574fbee1cd492b2037a, type: 3}
+  iconSelect: {fileID: -52281638, guid: 2e3814c906e8f574fbee1cd492b2037a, type: 3}
+  specialIcons:
+  - {fileID: 836113406, guid: dc5d5dcccd2dcea42bbdcee6e3205580, type: 3}
+  - {fileID: -1357872517, guid: dc5d5dcccd2dcea42bbdcee6e3205580, type: 3}
+  - {fileID: 207340662, guid: dc5d5dcccd2dcea42bbdcee6e3205580, type: 3}
+  - {fileID: -1260999852, guid: dc5d5dcccd2dcea42bbdcee6e3205580, type: 3}
+  - {fileID: -291117804, guid: dc5d5dcccd2dcea42bbdcee6e3205580, type: 3}
+  - {fileID: -1675670553, guid: dc5d5dcccd2dcea42bbdcee6e3205580, type: 3}
+  - {fileID: -760413723, guid: dc5d5dcccd2dcea42bbdcee6e3205580, type: 3}
+  - {fileID: -864071042, guid: dc5d5dcccd2dcea42bbdcee6e3205580, type: 3}
+  - {fileID: -1566949628, guid: dc5d5dcccd2dcea42bbdcee6e3205580, type: 3}
+  panelPosition: {x: 0, y: -40}
+  panelHeight: 600
+  titlePlateAnchor: {x: 0.539, y: 0.075}
+  titlePlateSize: {x: 410, y: 88}
+  titleFontSize: 40
+  subtitleY: 192
+  subtitleFontSize: 24
+  catPosition: {x: -285, y: 284}
+  catHeight: 140
+  lanternPosition: {x: -405, y: 262}
+  lanternHeight: 160
+  coinBarPosition: {x: 320, y: 292}
+  coinBarSize: {x: 300, y: 54}
+  coinFontSize: 26
+  cardY: 0
+  cardHeight: 320
+  cardSpacing: 285
+  gradeLabelFromTop: {x: 28, y: 28, z: 36}
+  specialTagPosition: {x: -0.13, y: -0.2}
+  specialTagSize: {x: 38, y: 44}
+  cardHoverScale: 1.03
+  cardSelectedScale: 1.07
+  cardDimColor: {r: 0.78, g: 0.75, b: 0.72, a: 1}
+  buttonSize: {x: 240, y: 62}
+  buttonY: -214
+  buttonX: 285
+  buttonFontSize: 28
+  dealTime: 0.35
+  dealStagger: 0.09
+  dealOffset: -70
+  pickOutTime: 0.3
+  catReactTime: 0.9
+  gradeTextColor: {r: 1, g: 1, b: 1, a: 1}
+  cardTextColor: {r: 0.27, g: 0.15, b: 0.07, a: 1}
+  goodColor: {r: 0.2, g: 0.55, b: 0.12, a: 1}
+  badColor: {r: 0.78, g: 0.18, b: 0.12, a: 1}
+  mutedColor: {r: 0.45, g: 0.36, b: 0.28, a: 1}
+  valueBandColor: {r: 0.55, g: 0.38, b: 0.22, a: 0.14}

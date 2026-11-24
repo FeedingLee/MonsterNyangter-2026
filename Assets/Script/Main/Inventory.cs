@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -6,36 +6,45 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    public Text textLevel;                                  // ÅØ½ºÆ®¸¦ ¹Ş¾Æ¿Ã º¯¼ö
-    public Image WeaponImg;                                 // ¹«±â ÀÌ¹ÌÁö¸¦ º¯°æÇÒ Image
-    public Sprite ChangeImg;                                // ¹Ù²Ü ÀÌ¹ÌÁö ÀúÀå
+    public Text textLevel;                                  // í…ìŠ¤íŠ¸ë¥¼ ë°›ì•„ì˜¬ ë³€ìˆ˜
+    public Image WeaponImg;                                 // ë¬´ê¸° ì´ë¯¸ì§€ë¥¼ ë³€ê²½í•  Image
+    public Sprite ChangeImg;                                // ë°”ê¿€ ì´ë¯¸ì§€ ì €ì¥
 
-    public Object weapon_data;                              // ¹«±âÀÇ »óÅÂ¸¦ °¡Áö°í ÀÖ´Â, Weapon ¿ÀºêÁ§Æ® ¹Ş¾Æ¿À±â
-    public int level;                                       // ·¹º§À» ÀúÀå
+    public Object weapon_data;                              // ë¬´ê¸°ì˜ ìƒíƒœë¥¼ ê°€ì§€ê³  ìˆëŠ”, Weapon ì˜¤ë¸Œì íŠ¸ ë°›ì•„ì˜¤ê¸°
+    public int level;                                       // ë ˆë²¨ì„ ì €ì¥
+    private bool maxDecorated;
 
     private void Start()                                            
     {
-        // Ã¹ ¹øÂ° ÀÚ½Ä ¿ÀºêÁ§Æ®ÀÇ Image ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿À±â
+        // ì²« ë²ˆì§¸ ìì‹ ì˜¤ë¸Œì íŠ¸ì˜ Image ì»´í¬ë„ŒíŠ¸ë¥¼ ê°€ì ¸ì˜¤ê¸°
         WeaponImg = transform.GetChild(0).GetComponent<Image>();
 
-        // ¸ğµç ÀÚ½Ä Text ÄÄÆ÷³ÍÆ®¸¦ ¹è¿­·Î °¡Á®¿À±â
+        // ëª¨ë“  ìì‹ Text ì»´í¬ë„ŒíŠ¸ë¥¼ ë°°ì—´ë¡œ ê°€ì ¸ì˜¤ê¸°
         Text[] text = GetComponentsInChildren<Text>();
-        textLevel = text[0];                                // Ã¹ ¹øÂ° Text ÄÄÆ÷³ÍÆ®¸¦ Level ÅØ½ºÆ®·Î ÇÒ´ç
+        textLevel = text[0];                                // ì²« ë²ˆì§¸ Text ì»´í¬ë„ŒíŠ¸ë¥¼ Level í…ìŠ¤íŠ¸ë¡œ í• ë‹¹
     }
 
     private void Update()
     {
-        // µ¥ÀÌÅÍ ¿ÀºêÁ§Æ®ÀÇ ·¹º§ÀÌ ÇöÀç ·¹º§°ú ´Ù¸£¸é ¾÷µ¥ÀÌÆ®
+        // ë°ì´í„° ì˜¤ë¸Œì íŠ¸ì˜ ë ˆë²¨ì´ í˜„ì¬ ë ˆë²¨ê³¼ ë‹¤ë¥´ë©´ ì—…ë°ì´íŠ¸
         if (level != weapon_data.GetComponent<Item>().level)
         {
-            level = weapon_data.GetComponent<Item>().level; // ÇöÀç Level ¾÷µ¥ÀÌÆ®
-            textLevel.text = "Lv." + level;                 // ·¹º§ ÅØ½ºÆ® ¾÷µ¥ÀÌÆ®
+            level = weapon_data.GetComponent<Item>().level; // í˜„ì¬ Level ì—…ë°ì´íŠ¸
+            textLevel.text = "Lv." + level;                 // ë ˆë²¨ í…ìŠ¤íŠ¸ ì—…ë°ì´íŠ¸
         }
 
-        // ¸¸·¾ÀÏ ½Ã Ã¹ ¹øÂ° ÀÚ½ÄÀÇ Image¸¦ º¯°æ
+        // ë§Œë ™ì¼ ì‹œ ì²« ë²ˆì§¸ ìì‹ì˜ Imageë¥¼ ë³€ê²½
         if (level == 5)
         {
-            WeaponImg.sprite = ChangeImg;                  // ¸¸·¾ÀÏ ½Ã ¹«±â ¾ÆÀÌÄÜ º¯°æ
+            WeaponImg.sprite = ChangeImg;                  // ë§Œë ™ì¼ ì‹œ ë¬´ê¸° ì•„ì´ì½˜ ë³€ê²½
+            if (!maxDecorated)
+            {
+                maxDecorated = true;
+                // ë§Œë ™ ê¾¸ë°ˆ: ì¹¸ í…Œë‘ë¦¬ë¥¼ ê¸ˆë¹›ìœ¼ë¡œ + ì•„ì´ì½˜ ìœ„ë¡œ ë°˜ì§ì„ì´ ì²œì²œíˆ ë°˜ë³µ
+                Image frame = GetComponent<Image>();
+                if (frame != null) frame.color = new Color(1f, 0.85f, 0.45f, 1f);
+                UiFxLoop.Attach((RectTransform)transform, ((RectTransform)transform.GetChild(0)).anchoredPosition, 90f);
+            }
         }
     }
 }

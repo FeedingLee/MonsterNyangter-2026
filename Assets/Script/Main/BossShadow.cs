@@ -1,13 +1,13 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BossShadow : MonoBehaviour
 {
-    public bool IsTraceTarget;          // ÇÃ·¹ÀÌ¾î ÃßÀû Çã¿ë
-    public Rigidbody2D targetRigid;     // ÇÃ·¹ÀÌ¾î Rigidbody2D
-    public float speed;                 // ±×¸²ÀÚ ÀÌµ¿ ¼Óµµ
-    Rigidbody2D rig;                    // ±×¸²ÀÚ Rigidbody2D
+    public bool IsTraceTarget;          // í”Œë ˆì´ì–´ ì¶”ì  í—ˆìš©
+    public Rigidbody2D targetRigid;     // í”Œë ˆì´ì–´ Rigidbody2D
+    public float speed;                 // ê·¸ë¦¼ì ì´ë™ ì†ë„
+    Rigidbody2D rig;                    // ê·¸ë¦¼ì Rigidbody2D
 
     private void Awake()
     {
@@ -22,11 +22,11 @@ public class BossShadow : MonoBehaviour
         if (!GameManager.instance.isLive)
             return;
 
-        // ÇÃ·¹ÀÌ¾î ÃßÀû Çã¿ë »óÅÂÀÏ ¶§
+        // í”Œë ˆì´ì–´ ì¶”ì  í—ˆìš© ìƒíƒœì¼ ë•Œ
         if (IsTraceTarget)
         {
-            // ±×¸²ÀÚ ÀÌµ¿ ·ÎÁ÷
-            Vector2 dirVec = targetRigid.position - rig.position;
+            // ê·¸ë¦¼ì ì´ë™ ë¡œì§
+            Vector2 dirVec = Decoy.GetBossTarget(targetRigid.position) - rig.position;
             Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
             rig.MovePosition(rig.position + nextVec);
         }

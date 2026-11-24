@@ -204,7 +204,7 @@ MonoBehaviour:
   isBossLive: 0
   isBossTired: 0
   isBossAttacking: 0
-  MaxDamage: 160
+  MaxDamage: 500
 --- !u!114 &-6791970273465413145
 MonoBehaviour:
   m_ObjectHideFlags: 0

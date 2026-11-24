@@ -1,16 +1,16 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class EasterEggSound : MonoBehaviour
 {
     private void Start()
     {
-        // Å¬¸¯µÉ ¶§ ¼Ò¸®°¡ ³ªµµ·Ï OnClick ¸Ş¼­µå¸¦ È£Ãâ
+        // í´ë¦­ë  ë•Œ ì†Œë¦¬ê°€ ë‚˜ë„ë¡ OnClick ë©”ì„œë“œë¥¼ í˜¸ì¶œ
         GetComponent<UnityEngine.UI.Button>().onClick.AddListener(PlayClickSound);
     }
 
     private void PlayClickSound()
     {
-        // AudioManager¸¦ ÅëÇØ È¿°úÀ½ Àç»ı
+        // AudioManagerë¥¼ í†µí•´ íš¨ê³¼ìŒ ì¬ìƒ
         AudioManager.instance.PlaySfx(AudioManager.Sfx.NyanEaster);
     }
 }

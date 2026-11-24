@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 
 public class AudioSettings : MonoBehaviour
@@ -8,34 +8,35 @@ public class AudioSettings : MonoBehaviour
 
     private void Start()
     {
-        // ±âº»°ªÀ» ¼³Á¤ÇÏ°í, ÀúÀåµÈ °ªÀÌ ÀÖ´Ù¸é ºÒ·¯¿È
-        bgmSlider.value = PlayerPrefs.GetFloat("BgmVolume", 0.2f);
-        sfxSlider.value = PlayerPrefs.GetFloat("SfxVolume", 0.5f);
+        // ê¸°ë³¸ê°’ì„ ì„¤ì •í•˜ê³ , ì €ì¥ëœ ê°’ì´ ìˆë‹¤ë©´ ë¶ˆëŸ¬ì˜´
+        bgmSlider.value = MenuCatalog.SavedBgmVolume;   // ì €ì¥ ê°’ì´ ì—†ìœ¼ë©´ MenuCatalogì˜ ê¸°ë³¸ ë³¼ë¥¨ (íƒ€ì´í‹€ ì„¤ì •ì˜ ê¸°ë³¸ê°’ê³¼ ê°™ìŒ)
+        sfxSlider.value = MenuCatalog.SavedSfxVolume;
 
-        // ½½¶óÀÌ´õ °ªÀÌ º¯°æµÉ ¶§¸¶´Ù È£ÃâµÉ ¸Ş¼­µå ¿¬°á
+        // ìŠ¬ë¼ì´ë” ê°’ì´ ë³€ê²½ë  ë•Œë§ˆë‹¤ í˜¸ì¶œë  ë©”ì„œë“œ ì—°ê²°
         bgmSlider.onValueChanged.AddListener(SetBgmVolume);
         sfxSlider.onValueChanged.AddListener(SetSfxVolume);
 
-        // ÃÊ±â º¼·ı ¼³Á¤
+        // ì´ˆê¸° ë³¼ë¥¨ ì„¤ì •
         SetBgmVolume(bgmSlider.value);
         SetSfxVolume(sfxSlider.value);
     }
 
-    // BGM º¼·ı ¼³Á¤ ¹× ÀúÀå
+    // BGM ë³¼ë¥¨ ì„¤ì • ë° ì €ì¥
     public void SetBgmVolume(float volume)
     {
-        AudioManager.instance.bgmVolume = volume;
-        AudioManager.instance.bgmPlayer.volume = volume;
-        AudioManager.instance.WaitingbgmPlayer.volume = volume;
+        float output = volume * MenuCatalog.Instance.bgmOutputScale;   // ì €ì¥ì€ ì„¤ì •ê°’, ì‹¤ì œ ì†Œë¦¬ëŠ” ë°°ìœ¨ì„ ê³±í•œ ê°’
+        AudioManager.instance.bgmVolume = output;
+        AudioManager.instance.bgmPlayer.volume = output;
+        AudioManager.instance.WaitingbgmPlayer.volume = output;
         PlayerPrefs.SetFloat("BgmVolume", volume);
     }
 
-    // SFX º¼·ı ¼³Á¤ ¹× ÀúÀå
+    // SFX ë³¼ë¥¨ ì„¤ì • ë° ì €ì¥
     public void SetSfxVolume(float volume)
     {
         AudioManager.instance.sfxVolume = volume;
 
-        // ¸ğµç SFX Ã¤³ÎÀÇ º¼·ıÀ» ¾÷µ¥ÀÌÆ®
+        // ëª¨ë“  SFX ì±„ë„ì˜ ë³¼ë¥¨ì„ ì—…ë°ì´íŠ¸
         foreach (AudioSource sfxPlayer in AudioManager.instance.sfxPlayers)
         {
             sfxPlayer.volume = volume;

@@ -27,7 +27,7 @@ MonoBehaviour:
   - 0.5
   - 1.3
   - 2
-  - 3
+  - 3.3
   W_Speeds:
   - 0
   - 0
@@ -43,3 +43,4 @@ MonoBehaviour:
   counts: c8000000c8000000c8000000c8000000c8000000
   projectile: {fileID: 3358505908942346658, guid: 9a201c24213c85d468952987b2c5ec6f, type: 3}
   weaponimage: []
+  maxLevelIcon: {fileID: 22417660, guid: 2535030baf54b254a8c1fa4fa521ca87, type: 3}

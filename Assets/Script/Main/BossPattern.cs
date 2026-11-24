@@ -1,43 +1,54 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 
 public class BossPattern : MonoBehaviour
 {
-    Rigidbody2D BossRigid;                   // ¹ß»ç ¿ÀºêÁ§Æ®(Boss) ÀÇ Rigidbody2D
+    Rigidbody2D BossRigid;                   // ë°œì‚¬ ì˜¤ë¸Œì íŠ¸(Boss) ì˜ Rigidbody2D
     Animator anim;
     SpriteRenderer spriter;
     Collider2D coll;
 
-    public Rigidbody2D targetRigid;          // ÇÃ·¹ÀÌ¾î ÃßÀû
-    public Spawner spawner;                  // º¸½º½ºÆùÀ» À§ÇØ ¼±¾ğ
+    public Rigidbody2D targetRigid;          // í”Œë ˆì´ì–´ ì¶”ì 
+    public Spawner spawner;                  // ë³´ìŠ¤ìŠ¤í°ì„ ìœ„í•´ ì„ ì–¸
 
-    [Header("# Multi-Directional Firing")]   // Àü¹æÇâ ¹ß»ç °ü·Ã º¯¼ö
-    public int MBulletCount;                 // ¹ß»ç °¹¼ö
-    public float MBossBulletDamage;          // ¹ß»ç µ¥¹ÌÁö
-    public float MFireSpeed;                 // ¹ß»ç ¼Óµµ
+    [Header("# Multi-Directional Firing")]   // ì „ë°©í–¥ ë°œì‚¬ ê´€ë ¨ ë³€ìˆ˜
+    public int MBulletCount;                 // ë°œì‚¬ ê°¯ìˆ˜
+    public float MBossBulletDamage;          // ë°œì‚¬ ë°ë¯¸ì§€
+    public float MFireSpeed;                 // ë°œì‚¬ ì†ë„
 
-    [Header("# One-Directional Firing")]     // ´ÜÀÏ¹æÇâ ¹ß»ç °ü·Ã º¯¼ö
-    public int OBulletCount;                 // ¹ß»ç °¹¼ö
-    public float OBossBulletDamage;          // ¹ß»ç µ¥¹ÌÁö
-    public float OFireSpeed;                 // ¹ß»ç ¼Óµµ
+    [Header("# One-Directional Firing")]     // ë‹¨ì¼ë°©í–¥ ë°œì‚¬ ê´€ë ¨ ë³€ìˆ˜
+    public int OBulletCount;                 // ë°œì‚¬ ê°¯ìˆ˜
+    public float OBossBulletDamage;          // ë°œì‚¬ ë°ë¯¸ì§€
+    public float OFireSpeed;                 // ë°œì‚¬ ì†ë„
 
     [Header("# BossDash")]
-    public float DashSpeed;                  // µ¹Áø ¼Óµµ
-    public bool IsBossDashing;               // º¸½º µ¹Áø »óÅÂ Ã¼Å©
-    public float BossDashDamage;             // º¸½º µ¹Áø µ¥¹ÌÁö
-    public float BossDashDelay;              // º¸½º µ¹Áø ´ë±â ½Ã°£
+    public float DashSpeed;                  // ëŒì§„ ì†ë„
+    public bool IsBossDashing;               // ë³´ìŠ¤ ëŒì§„ ìƒíƒœ ì²´í¬
+    public float BossDashDamage;             // ë³´ìŠ¤ ëŒì§„ ë°ë¯¸ì§€
+    public float BossDashDelay;              // ë³´ìŠ¤ ëŒì§„ ëŒ€ê¸° ì‹œê°„
 
     [Header("# BossState")]
-    public float interval;                   // ´ÙÀ½ ÆĞÅÏ±îÁöÀÇ ÄğÅ¸ÀÓ
-    public float BossSpeed;                  // º¸½º ÀÌµ¿ ¼Óµµ
-    public float currentHp;                  // º¸½º ÇöÀç Ã¼·Â
-    public float maxHp;                      // º¸½º ÃÖ´ë Ã¼·Â
-    public bool isBossLive;                  // º¸½º »ıÁ¸ È®ÀÎ
-    public bool isBossTired;                 // º¸½º ÁöÄ§ »óÅÂ È®ÀÎ
-    public bool isBossAttacking;             // º¸½º °ø°İ »óÅÂ È®ÀÎ
-    public float MaxDamage;                  // º¸½º°¡ ÇÑ¹ø¿¡ ÀÔÀ» ¼ö ÀÖ´Â ÃÖ´ë ÇÇÇØ·®
+    public float interval;                   // ë‹¤ìŒ íŒ¨í„´ê¹Œì§€ì˜ ì¿¨íƒ€ì„
+    public float BossSpeed;                  // ë³´ìŠ¤ ì´ë™ ì†ë„
+    public float currentHp;                  // ë³´ìŠ¤ í˜„ì¬ ì²´ë ¥
+    public float maxHp;                      // ë³´ìŠ¤ ìµœëŒ€ ì²´ë ¥
+    public bool isBossLive;                  // ë³´ìŠ¤ ìƒì¡´ í™•ì¸
+    public bool isBossTired;                 // ë³´ìŠ¤ ì§€ì¹¨ ìƒíƒœ í™•ì¸
+    public bool isBossAttacking;             // ë³´ìŠ¤ ê³µê²© ìƒíƒœ í™•ì¸
+    public float MaxDamage;                  // ë³´ìŠ¤ê°€ í•œë²ˆì— ì…ì„ ìˆ˜ ìˆëŠ” ìµœëŒ€ í”¼í•´ëŸ‰
 
-    public Coroutine repeatActionCoroutine;  // ½ÇÇà ÁßÀÎ ÄÚ·çÆ¾À» ÀúÀåÇÒ º¯¼ö
+    public Coroutine repeatActionCoroutine;  // ì‹¤í–‰ ì¤‘ì¸ ì½”ë£¨í‹´ì„ ì €ì¥í•  ë³€ìˆ˜
+
+    [Header("# Hit Flash")]
+    [Min(0f)] public float hitFlashTime = 0.12f; // í”¼ê²© ì‹œ ë¶‰ê²Œ í‘œì‹œë˜ëŠ” ì‹œê°„(ì´ˆ)
+
+    public static BossPattern Current { get; private set; } // í˜„ì¬ í™œì„±í™”ëœ ë³´ìŠ¤
+
+    // ë³´ìŠ¤ê°€ í–¥í•  ìœ„ì¹˜ (ë¯¸ë¼ì˜ ë³´ìŠ¤ ì ìš© ì‹œê°„ ë™ì•ˆì€ ë¯¸ë¼ ìœ„ì¹˜)
+    public Vector2 TargetPosition => Decoy.GetBossTarget(targetRigid.position);
+
+    private Coroutine hitColorCoroutine;         // ì§„í–‰ ì¤‘ì¸ í”¼ê²© ìƒ‰ìƒ ë³µêµ¬ ì½”ë£¨í‹´
+    private RigidbodyConstraints2D defaultConstraints; // ëŒì§„ ëŒ€ê¸° ì „ Rigidbody ì œì•½
 
     private void Awake()
     {
@@ -46,22 +57,60 @@ public class BossPattern : MonoBehaviour
         spriter = GetComponent<SpriteRenderer>();
         BossRigid = GetComponent<Rigidbody2D>();
         targetRigid = GameManager.instance.player.GetComponent<Rigidbody2D>();
+        defaultConstraints = BossRigid.constraints;
+        baseMaxHp = maxHp;
+    }
+
+    private float baseMaxHp;                     // ì¸ìŠ¤í™í„°ì— ì„¤ì •í•œ ì›ë˜ ìµœëŒ€ ì²´ë ¥ (ë§¹ìˆ˜ì˜ ë¶„ë…¸ ë°°ìœ¨ ì ìš© ì „)
+    private float stunEndTime;                   // ë§ˆë¹„ ë‘êº¼ë¹„ë¡œ ì´ë™ì´ ë©ˆì¶˜ ì‹œê°ê¹Œì§€
+
+    // secondsì´ˆ ë™ì•ˆ ì´ë™ë§Œ ë©ˆì¶¤ (ëŒì§„ ë“± íŒ¨í„´ì€ ê·¸ëŒ€ë¡œ)
+    public void Stun(float seconds)
+    {
+        if (isBossLive && seconds > 0f)
+        {
+            stunEndTime = Mathf.Max(stunEndTime, Time.time + seconds);
+        }
     }
 
     private void OnEnable()
     {
         IsBossDashing = false;
+        maxHp = baseMaxHp * RunStats.Get(RunStat.BossHp);   // ë§¹ìˆ˜ì˜ ë¶„ë…¸: ë³´ìŠ¤ ì²´ë ¥ ì¦ê°€ (ë°¤ ê°•í™”ëŠ” ì ìš© ì•ˆ ë¨)
         currentHp = maxHp;
         isBossLive = true;
         isBossTired = false;
         isBossAttacking = false;
         coll.enabled = true;
         BossRigid.simulated = true;
+        BossRigid.constraints = defaultConstraints;
+        spriter.color = Color.white;
         spriter.sortingOrder = 2;
         anim.SetBool("Dead", false);
         anim.SetBool("isBossDash", false);
         anim.SetBool("isBossDashReady", false);
         anim.SetBool("isBossTired", false);
+
+        // ì´ë¯¸ ë‚˜ì™€ ìˆëŠ” ì¡ëª¹ê³¼ ì¶©ëŒí•˜ì§€ ì•Šë„ë¡ ì„¤ì • (ì´í›„ ìŠ¤í°ë˜ëŠ” ì¡ëª¹ì€ Enemy.OnEnableì—ì„œ ì²˜ë¦¬)
+        Current = this;
+        foreach (Enemy enemy in FindObjectsOfType<Enemy>())
+        {
+            IgnoreCollisionWith(enemy.GetComponent<Collider2D>());
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (Current == this)
+        {
+            Current = null;
+        }
+    }
+
+    // ë³´ìŠ¤ì™€ ì§€ì •í•œ ì½œë¼ì´ë”ì˜ ì¶©ëŒì„ ë¬´ì‹œ
+    public void IgnoreCollisionWith(Collider2D other)
+    {
+        Physics2D.IgnoreCollision(coll, other, true);
     }
 
     private void FixedUpdate()
@@ -69,13 +118,17 @@ public class BossPattern : MonoBehaviour
         if (!GameManager.instance.isLive)
             return;
 
-        // º¸½º°¡ µ¹Áø ÆĞÅÏ½Ã or º¸½º »ç¸Á½Ã ÀÌµ¿ ¸·À½
+        // ë³´ìŠ¤ê°€ ëŒì§„ íŒ¨í„´ì‹œ or ë³´ìŠ¤ ì‚¬ë§ì‹œ ì´ë™ ë§‰ìŒ
         if (IsBossDashing || !isBossLive ||
             !transform.GetComponent<BossReposition>().isBossMove)
             return;
 
-        // º¸½º ÀÌµ¿ ·ÎÁ÷
-        Vector2 dirVec = targetRigid.position - BossRigid.position;
+        // ë§ˆë¹„ ë‘êº¼ë¹„: ì´ë™ë§Œ ë©ˆì¶¤ (ì›ê±°ë¦¬ íŒ¨í„´ì€ ê³„ì†)
+        if (Time.time < stunEndTime)
+            return;
+
+        // ë³´ìŠ¤ ì´ë™ ë¡œì§
+        Vector2 dirVec = TargetPosition - BossRigid.position;   // í° ëª¬ìŠ¤í„°ë¼ í…íŠ¸ ìš¸íƒ€ë¦¬ëŠ” ê·¸ëƒ¥ ì§€ë‚˜ê° (CampZoneì´ ì¶©ëŒì„ êº¼ ì¤Œ)
         Vector2 nextVec = dirVec.normalized * BossSpeed * Time.fixedDeltaTime;
         BossRigid.MovePosition(BossRigid.position + nextVec);
     }
@@ -84,69 +137,74 @@ public class BossPattern : MonoBehaviour
     {
         while (isBossLive)
         {
-            // ¼ÒÈ¯µÇÀÚ¸¶ÀÚ ¹ß»çÇÏ´Â°ÍÀ» ¸·À½, º¸½ºÆĞÅÏ ´ë±â½Ã°£ / 2 ÃÊ ´ë±â
-            yield return new WaitForSeconds(interval);
+            // ì†Œí™˜ë˜ìë§ˆì ë°œì‚¬í•˜ëŠ”ê²ƒì„ ë§‰ìŒ, ë³´ìŠ¤íŒ¨í„´ ëŒ€ê¸°ì‹œê°„ / 2 ì´ˆ ëŒ€ê¸°
+            yield return new WaitForSeconds(interval * RunStats.Get(RunStat.BossInterval));   // ë§¹ìˆ˜ì˜ ë¶„ë…¸: íŒ¨í„´ ê°„ê²© ê°ì†Œ
 
-            // ÆĞÅÏÀ» ·£´ıÀ¸·Î ¼±ÅÃ @@ Å×½ºÆ® 0~1
+            // íŒ¨í„´ì„ ëœë¤ìœ¼ë¡œ ì„ íƒ @@ í…ŒìŠ¤íŠ¸ 0~1
             int number = Random.Range(0, 3);
             if (number == 2)
             {
-                // µ¹ÁøÀÇ ºóµµ´Â È­¿°º¸´Ù Àû°Ô
+                // ëŒì§„ì˜ ë¹ˆë„ëŠ” í™”ì—¼ë³´ë‹¤ ì ê²Œ
                 number = Random.Range(0, 3);
             }
 
             if (gameObject.GetComponent<BossReposition>().IsBossFalling)
             {
-                // º¸½º°¡ ÅÚÆ÷ÁßÀÏ ¶§ °ø°İ±â´É ¸·À½
+                // ë³´ìŠ¤ê°€ í…”í¬ì¤‘ì¼ ë•Œ ê³µê²©ê¸°ëŠ¥ ë§‰ìŒ
                 StopCoroutine(repeatActionCoroutine);
             }
 
-            // Å×½ºÆ®¿ë ÆĞÅÏ ¹İº¹ º¯¼ö
+            // í…ŒìŠ¤íŠ¸ìš© íŒ¨í„´ ë°˜ë³µ ë³€ìˆ˜
             //number = 2;
 
-            // ¹İº¹ÇÒ µ¿ÀÛ
+            // ë°˜ë³µí•  ë™ì‘
             switch (number)
             {
                 case 0:
                     isBossAttacking = true;
-                    // »ç¹æÀ¸·Î ¹ß»ç
+                    // ì‚¬ë°©ìœ¼ë¡œ ë°œì‚¬
                     Fire();
                     isBossAttacking = false;
                     break;
                 case 1:
                     isBossAttacking = true;
-                    // ÀÏÁ÷¼±À¸·Î ¿¬¼Ó ¹ß»ç
+                    // ì¼ì§ì„ ìœ¼ë¡œ ì—°ì† ë°œì‚¬
                     for (int i = 0; i < OBulletCount; i++)
                     {
-                        // 0.1ÃÊ(¹ë·±½º¿¡ µû¶ó Á¶Àı) ¾È¿¡ ÀÏÁ¤ °£°İÀ¸·Î ¹ß»çÈ½¼ö¸¸Å­ ¹ß»ç
+                        // 0.1ì´ˆ(ë°¸ëŸ°ìŠ¤ì— ë”°ë¼ ì¡°ì ˆ) ì•ˆì— ì¼ì • ê°„ê²©ìœ¼ë¡œ ë°œì‚¬íšŸìˆ˜ë§Œí¼ ë°œì‚¬
                         yield return new WaitForSeconds(1.0f / OBulletCount);
                         Fires();
                     }
                     isBossAttacking = false;
                     break;
                 case 2:
-                    // µ¹Áø´ë±âÁß¿¡´Â Ãæµ¹ ÆÇÁ¤À» ÁÙÀÓ
+                    // ëŒì§„ëŒ€ê¸°ì¤‘ì—ëŠ” ì¶©ëŒ íŒì •ì„ ì¤„ì„
                     gameObject.GetComponent<CapsuleCollider2D>().size = new Vector2(2.0f, 4.0f);
 
-                    // µ¹Áø ´ë±â nÃÊ
+                    // ëŒì§„ ëŒ€ê¸° nì´ˆ
+                    // ëŒì§„ ëŒ€ê¸° ì¤‘ì—ëŠ” í”Œë ˆì´ì–´ë‚˜ ë‹¤ë¥¸ ë¬¼ì²´ì— ë°€ë¦¬ì§€ ì•Šë„ë¡ ìœ„ì¹˜ ê³ ì •
+                    BossRigid.velocity = Vector2.zero;
+                    BossRigid.constraints = RigidbodyConstraints2D.FreezeAll;
+
                     IsBossDashing = true;
                     isBossAttacking = true;
 
-                    // º¸½º µ¹Áø ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
+                    // ë³´ìŠ¤ ëŒì§„ ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ
                     anim.SetBool("isBossDashReady", true);
 
-                    // º¸½º µ¹Áø´ë±â Æ÷È¿ »ç¿îµå Àç»ı
+                    // ë³´ìŠ¤ ëŒì§„ëŒ€ê¸° í¬íš¨ ì‚¬ìš´ë“œ ì¬ìƒ
                     AudioManager.instance.PlaySfx(AudioManager.Sfx.Anj_DashYelling);
+                    SpriteFx.BossWarning(transform, BossDashDelay);                 // ë¨¸ë¦¬ ìœ„ "!!" ëŒì§„ ì˜ˆê³ 
 
-                    // BossDashDelay ¸¸Å­ ½Ã°£ÀÌ Áö³­ÈÄ Setbool false
+                    // BossDashDelay ë§Œí¼ ì‹œê°„ì´ ì§€ë‚œí›„ Setbool false
                     yield return new WaitForSeconds(BossDashDelay);
 
                     BossDash();
 
-                    // 2ÃÊµ¿¾È ÇÃ·¹ÀÌ¾î¿Í Ãæµ¹ÇÏÁö ¾ÊÀ¸¸é ¸ØÃã
+                    // 2ì´ˆë™ì•ˆ í”Œë ˆì´ì–´ì™€ ì¶©ëŒí•˜ì§€ ì•Šìœ¼ë©´ ë©ˆì¶¤
                     yield return new WaitForSeconds(3.0f);
 
-                    // º¸½º°¡ 2ÃÊ°¡ Áö³ª±â Àü¿¡ ÇÃ·¹ÀÌ¾î¿Í Ãæµ¹ÇÏ¸é ¾Æ·¡ ÄÚµå¸¦ ½ºÅµ
+                    // ë³´ìŠ¤ê°€ 2ì´ˆê°€ ì§€ë‚˜ê¸° ì „ì— í”Œë ˆì´ì–´ì™€ ì¶©ëŒí•˜ë©´ ì•„ë˜ ì½”ë“œë¥¼ ìŠ¤í‚µ
                     if (IsBossDashing)
                     {
                         BossStop();
@@ -159,7 +217,7 @@ public class BossPattern : MonoBehaviour
 
     public void StartAttack()
     {
-        if (repeatActionCoroutine == null) // ÀÌ¹Ì ½ÇÇà ÁßÀÎ °æ¿ì Áßº¹ ½ÇÇà ¹æÁö
+        if (repeatActionCoroutine == null) // ì´ë¯¸ ì‹¤í–‰ ì¤‘ì¸ ê²½ìš° ì¤‘ë³µ ì‹¤í–‰ ë°©ì§€
         {
             repeatActionCoroutine = StartCoroutine(RepeatAction());
         }
@@ -167,14 +225,14 @@ public class BossPattern : MonoBehaviour
 
     public void StopAttack()
     {
-        if (repeatActionCoroutine != null) // ½ÇÇà ÁßÀÎ ÄÚ·çÆ¾ÀÌ ÀÖ´Â °æ¿ì¿¡¸¸ Á¾·á
+        if (repeatActionCoroutine != null) // ì‹¤í–‰ ì¤‘ì¸ ì½”ë£¨í‹´ì´ ìˆëŠ” ê²½ìš°ì—ë§Œ ì¢…ë£Œ
         {
             StopCoroutine(repeatActionCoroutine);
             repeatActionCoroutine = null;
         }
     }
 
-    // º¸½º »ç¸Á ¸ğ¼Ç ÈÄ nÃÊµ¿¾È ´ë±â, ÀÌÈÄ º¸½º ¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­
+    // ë³´ìŠ¤ ì‚¬ë§ ëª¨ì…˜ í›„ nì´ˆë™ì•ˆ ëŒ€ê¸°, ì´í›„ ë³´ìŠ¤ ì˜¤ë¸Œì íŠ¸ ë¹„í™œì„±í™”
     private IEnumerator BossDeadsec(float time)
     {
         yield return new WaitForSeconds(time);
@@ -187,44 +245,47 @@ public class BossPattern : MonoBehaviour
         spriter.color = Color.white;
     }
 
-    // ¹ß»çÃ¼ »ı¼º ÇÔ¼ö
+    // ë°œì‚¬ì²´ ìƒì„± í•¨ìˆ˜
     public void Fire()
     {
-        // ÇÇ°İÆÇÁ¤ º¹±¸
+        // í”¼ê²©íŒì • ë³µêµ¬
         gameObject.GetComponent<CapsuleCollider2D>().size = new Vector2(6.5f, 10.0f);
 
-        // º¸½º È­¿° »ç¿îµå Àç»ı
+        // ë³´ìŠ¤ í™”ì—¼ ì‚¬ìš´ë“œ ì¬ìƒ
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Anj_FireShoot);
+        SpriteFx.BossFire(transform.position + new Vector3(0f, -2.5f, 0f));    // ë°œì‚¬ ì§€ì  ë¶ˆê½ƒ
+        CameraShake.Play(0.08f, 0.12f);                                        // í™”ì—¼ ë°œì‚¬: ì•½í•˜ê²Œ
 
         anim.SetTrigger("BossFire");
 
-        // »ç¹æÀ¸·Î ¹ß»çÇÏ´Â ÆĞÅÏ
-        float angleStep = 360f / MBulletCount;  // °¢ ¹ß»çÃ¼ »çÀÌÀÇ °¢µµ Â÷ÀÌ
+        // ì‚¬ë°©ìœ¼ë¡œ ë°œì‚¬í•˜ëŠ” íŒ¨í„´
+        float angleStep = 360f / MBulletCount;  // ê° ë°œì‚¬ì²´ ì‚¬ì´ì˜ ê°ë„ ì°¨ì´
 
         for (int i = 0; i < MBulletCount; i++)
         {
-            float angle = i * angleStep;        // °¢ ¹ß»çÃ¼ÀÇ °¢µµ
-            float rad = angle * Mathf.Deg2Rad;  // °¢µµ¸¦ ¶óµğ¾ÈÀ¸·Î º¯È¯
+            float angle = i * angleStep;        // ê° ë°œì‚¬ì²´ì˜ ê°ë„
+            float rad = angle * Mathf.Deg2Rad;  // ê°ë„ë¥¼ ë¼ë””ì•ˆìœ¼ë¡œ ë³€í™˜
 
-            // ¹æÇâ º¤ÅÍ °è»ê
+            // ë°©í–¥ ë²¡í„° ê³„ì‚°
             Vector3 dir = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0).normalized;
 
-            // ¹ß»çÃ¼ »ı¼º ¹× ÃÊ±âÈ­          
+            // ë°œì‚¬ì²´ ìƒì„± ë° ì´ˆê¸°í™”          
             SpawnFireActor(MBossBulletDamage, 3, new Vector3(0, -2.5f, 0), dir, MFireSpeed, true);
         }
     }
 
     public void Fires()
     {
-        // º¸½º Ä®³¯ »ç¿îµå Àç»ı
+        // ë³´ìŠ¤ ì¹¼ë‚  ì‚¬ìš´ë“œ ì¬ìƒ
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Anj_Blade);
 
         anim.SetTrigger("BossFire");
 
-        // ¹ß»çÃ¼ ¹ß»ç ¹æÇâ °è»ê
-        Vector2 dir = (targetRigid.position - BossRigid.position).normalized;
+        // ë°œì‚¬ì²´ ë°œì‚¬ ë°©í–¥ ê³„ì‚°
+        Vector2 dir = (TargetPosition - BossRigid.position).normalized;
+        SpriteFx.BossSlash(transform.position + new Vector3(0f, -2.5f, 0f) + (Vector3)(dir * 1.2f), dir);   // ì¹¼ë‚  ê¶¤ì 
 
-        // ¹ß»çÃ¼ »ı¼º ¹× ÃÊ±âÈ­
+        // ë°œì‚¬ì²´ ìƒì„± ë° ì´ˆê¸°í™”
         SpawnFireActor(OBossBulletDamage, 2, new Vector3(0, -2.5f, 0), dir, OFireSpeed, false);
     }
 
@@ -232,59 +293,61 @@ public class BossPattern : MonoBehaviour
         float bulletDamage, int index, Vector3 spawnPosition, Vector3 dir, float addspeed, bool isFlip)
     {
         /* 
-         * ¸Å°³º¯¼ö ¼³¸í
-         * bulletDamage : ÅºÈ¯ µ¥¹ÌÁö
-         * spawnmPosition : ÅºÈ¯ ½ºÆù À§Ä¡ Á¶Àı°ª
-         * dir : ÅºÈ¯ÀÇ ¹ß»ç ¹æÇâ
-         * addSpeed : ÅºÈ¯ ¼Óµµ Á¶Àı°ª
-         * isFlip: ÅºÈ¯ È¸Àü(0µµ or 180µµ) Á¶Àı°ª
+         * ë§¤ê°œë³€ìˆ˜ ì„¤ëª…
+         * bulletDamage : íƒ„í™˜ ë°ë¯¸ì§€
+         * spawnmPosition : íƒ„í™˜ ìŠ¤í° ìœ„ì¹˜ ì¡°ì ˆê°’
+         * dir : íƒ„í™˜ì˜ ë°œì‚¬ ë°©í–¥
+         * addSpeed : íƒ„í™˜ ì†ë„ ì¡°ì ˆê°’
+         * isFlip: íƒ„í™˜ íšŒì „(0ë„ or 180ë„) ì¡°ì ˆê°’
          */
-        // ¹ß»çÃ¼ »ı¼º ¹× ÃÊ±âÈ­          
+        // ë°œì‚¬ì²´ ìƒì„± ë° ì´ˆê¸°í™”          
         Transform bullet = GameManager.instance.pool.GetEnemy(2).transform;
-        bullet.position = transform.position + spawnPosition;  // ÃÑ¾ËÀÇ ½ÃÀÛ À§Ä¡
+        bullet.position = transform.position + spawnPosition;  // ì´ì•Œì˜ ì‹œì‘ ìœ„ì¹˜
         if (!isFlip)
         {
-            bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir); // È¸Àü ¼³Á¤
+            bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir); // íšŒì „ ì„¤ì •
         }
         else
         {
-            bullet.rotation = Quaternion.FromToRotation(Vector3.up, -dir); // È¸Àü ¼³Á¤
+            bullet.rotation = Quaternion.FromToRotation(Vector3.up, -dir); // íšŒì „ ì„¤ì •
         }
-        bullet.GetComponent<BossBullet>().Init(bulletDamage, dir * addspeed, index);   // ÃÑ¾Ë ÃÊ±âÈ­
+        bullet.GetComponent<BossBullet>().Init(bulletDamage, dir * addspeed, index);   // ì´ì•Œ ì´ˆê¸°í™”
     }
 
     private void BossDash()
     {
-        // ´ë½¬Áß¿¡´Â ÆÇÁ¤ »ìÂ¦ ÁÙÀÌ±â
+        // ëŒ€ì‰¬ì¤‘ì—ëŠ” íŒì • ì‚´ì§ ì¤„ì´ê¸°
         gameObject.GetComponent<CapsuleCollider2D>().size = new Vector2(4.5f, 8.0f);
 
-        // º¸½º ´ë½¬Áß »ç¿îµå Àç»ı
+        // ë³´ìŠ¤ ëŒ€ì‰¬ì¤‘ ì‚¬ìš´ë“œ ì¬ìƒ
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Anj_Dash);
-
-        // µ¹Áø ½ÃÀÛ½Ã ÇÃ·¹ÀÌ¾î ¿Ü ´Ù¸¥ ¿ÀºêÁ§Æ®¿ÍÀÇ Ãæµ¹À» ¸·±âÀ§ÇØ isTrigger È°¼ºÈ­
+        SpriteFx.GroundBurst(transform.position + new Vector3(0f, -2.5f, 0f), 7f);   // ì¶œë°œ ì§€ì  ë•… íŠ€ê¹€ (í¬ê²Œ)
+        CameraShake.Play(0.15f, 0.25f);                                              // ëŒì§„ ì¶œë°œ: ì¤‘ê°„
+        // ëŒì§„ ì‹œì‘ì‹œ í”Œë ˆì´ì–´ ì™¸ ë‹¤ë¥¸ ì˜¤ë¸Œì íŠ¸ì™€ì˜ ì¶©ëŒì„ ë§‰ê¸°ìœ„í•´ isTrigger í™œì„±í™”
         gameObject.GetComponent<CapsuleCollider2D>().isTrigger = true;
 
-        // º¸½º µ¹Áø ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
+        // ë³´ìŠ¤ ëŒì§„ ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ
         anim.SetBool("isBossDashReady", false);
         anim.SetBool("isBossDash", true);
 
-        // º¸½º µ¹Áø ÆĞÅÏ
+        // ë³´ìŠ¤ ëŒì§„ íŒ¨í„´
         IsBossDashing = true;
 
-        // ¹ß»çÃ¼ ¹ß»ç ¹æÇâ °è»ê
-        Vector2 dirVec = targetRigid.position - BossRigid.position;
+        // ë°œì‚¬ì²´ ë°œì‚¬ ë°©í–¥ ê³„ì‚°
+        Vector2 dirVec = TargetPosition - BossRigid.position;
         Vector2 nextVec = dirVec.normalized;
 
-        // µ¹Áø
+        // ëŒì§„
+        BossRigid.constraints = defaultConstraints;
         BossRigid.velocity = nextVec * DashSpeed;
     }
 
     public void BossStop()
     {
-        // Player Ãæµ¹ ºÎºĞ¿¡¼­ ¼±¾ğÇÏ±âÀ§ÇØ publicÀ¸·Î ¼³Á¤
+        // Player ì¶©ëŒ ë¶€ë¶„ì—ì„œ ì„ ì–¸í•˜ê¸°ìœ„í•´ publicìœ¼ë¡œ ì„¤ì •
         if (IsBossDashing)
         {
-            // µ¹ÁøÀÌ Á¾·áµÇ¾úÀ» ¶§ isTrigger ºñÈ°¼ºÈ­
+            // ëŒì§„ì´ ì¢…ë£Œë˜ì—ˆì„ ë•Œ isTrigger ë¹„í™œì„±í™”
             gameObject.GetComponent<CapsuleCollider2D>().isTrigger = false;
 
             BossRigid.velocity = Vector3.zero;
@@ -297,50 +360,73 @@ public class BossPattern : MonoBehaviour
 
     private void Dead()
     {
-        // º¸½º »ç¸Á ½Ã ºñÈ°¼ºÈ­
+        // ë³´ìŠ¤ ì‚¬ë§ ì‹œ ë¹„í™œì„±í™”
         //gameObject.SetActive(false);
 
-        // ½Â¸® ÀÌº¥Æ® ½ÃÀÛ
+        // ìŠ¹ë¦¬ ì´ë²¤íŠ¸ ì‹œì‘
         GameManager.instance.GameVictory();
     }
 
     private void HitColorChange()
     {
-        // ÇÇ°İ»ö»ó(»¡°£»ö)À¸·Î º¯°æ
+        // í”¼ê²©ìƒ‰ìƒ(ë¹¨ê°„ìƒ‰)ìœ¼ë¡œ ë³€ê²½
         spriter.color = new Color(1f, 0.54f, 0.54f, 1f);
 
-        // 0.4ÃÊ ÈÄ ¿ø·¡»ö»óÀ¸·Î º¯°æ
-        StartCoroutine(WaitHitChange(0.4f));
+        // ì´ì „ ë³µêµ¬ ì˜ˆì•½ì„ ì·¨ì†Œí•´ ì—°ì† í”¼ê²© ì‹œ ì•ì„  íƒ€ê²©ì˜ íƒ€ì´ë¨¸ê°€ ìƒ‰ìƒì„ ë¨¼ì € ë˜ëŒë¦¬ì§€ ì•Šë„ë¡ í•¨
+        if (hitColorCoroutine != null)
+        {
+            StopCoroutine(hitColorCoroutine);
+        }
+        hitColorCoroutine = StartCoroutine(WaitHitChange(hitFlashTime));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Á¢ÃËÇÑ ¿ÀºêÁ§Æ®°¡ bulletÀÏ °æ¿ì
-        if (collision.CompareTag("Bullet"))
+        // ì ‘ì´‰í•œ ì˜¤ë¸Œì íŠ¸ê°€ bulletì¼ ê²½ìš°
+        if (collision.CompareTag("Bullet") && !collision.GetComponent<Bullet>().IsHarmless)
         {
-            float damage = collision.GetComponent<Bullet>().damage;
+            Bullet bullet = collision.GetComponent<Bullet>();
+            if (!bullet.TryHitTarget(gameObject))
+                return;                                      // ê°™ì€ ì  ì¬íƒ€ê²© ê°„ê²© ì•ˆ
+            float damage = GimmickCards.ModifyHit(bullet.HitDamage * bullet.VolleyScale(gameObject), !bullet.SubWeapon, GimmickCards.TargetKind.Boss, bullet);   // ì „íˆ¬ ê¸°ë¯¹ (1íšŒ ìƒí•œì€ TakeDamageì—ì„œ ê·¸ëŒ€ë¡œ)
+            TakeDamage(damage);
+            GimmickCards.AfterHit(transform.position, damage, false);
+            bullet.RegisterHit(gameObject);                  // ê´€í†µ íšŸìˆ˜ ì†Œëª¨ (ë°œì‚¬ì²´ ìª½ ì´ë²¤íŠ¸ì™€ ì¤‘ë³µë˜ì§€ ì•ŠìŒ)
+            bullet.NotifyHit(gameObject);
+        }
+    }
 
-            // ÇÃ·¹ÀÌ¾îÀÇ ¹«±â µ¥¹ÌÁö°¡ ÃÖ´ë µ¥¹ÌÁöº¸´Ù ³ôÀ»°æ¿ì ÃÖ´ë µ¥¹ÌÁö±îÁö¸¸ ÇÇÇØ¸¦ ÀÔÀ½
-            if (damage >= MaxDamage)
+    // í”¼í•´ ì²˜ë¦¬ (ë°œì‚¬ì²´ ì¶©ëŒ, í™”ì‚´ë¹„ì²˜ëŸ¼ ë²”ìœ„ ì•ˆì— ìˆëŠ” ë™ì•ˆ ë°˜ë³µí•´ì„œ ì£¼ëŠ” í”¼í•´ ê³µìš©)
+    // ignoreCap: 1íšŒ í”¼í•´ ìƒí•œ(MaxDamage)ì„ ë¬´ì‹œ (í­íƒ„ í†µ)
+    public void TakeDamage(float damage, bool ignoreCap = false)
+    {
+        if (!isBossLive)
+            return;
+
+        {
+            // í”Œë ˆì´ì–´ì˜ ë¬´ê¸° ë°ë¯¸ì§€ê°€ ìµœëŒ€ ë°ë¯¸ì§€ë³´ë‹¤ ë†’ì„ê²½ìš° ìµœëŒ€ ë°ë¯¸ì§€ê¹Œì§€ë§Œ í”¼í•´ë¥¼ ì…ìŒ
+            if (!ignoreCap && damage >= MaxDamage)
             {
                 damage = MaxDamage;
             }
 
             currentHp -= damage;
+            DamageNumber.Add(spriter, damage);
+            SpriteFx.HitSpark(transform.position + (Vector3)(Random.insideUnitCircle * 2f), 3f);   // ë³´ìŠ¤ê°€ ì»¤ì„œ ë³„ë„ í¬ê²Œ
             HitColorChange();
 
             if (currentHp > 0)
             {
                 if (!isBossTired && currentHp <= maxHp / 2)
                 {
-                    // º¸½º ÁöÄ§»óÅÂ·Î ÀüÈ¯
+                    // ë³´ìŠ¤ ì§€ì¹¨ìƒíƒœë¡œ ì „í™˜
                     isBossTired = true;
                     anim.SetBool("isBossTired", true);
 
-                    // ÀÌµ¿¼Óµµ ¹İÀ¸·Î °¨¼Ò
-                    BossSpeed /= BossSpeed;
+                    // ì´ë™ì†ë„ ë°˜ìœ¼ë¡œ ê°ì†Œ
+                    BossSpeed /= 2f;
 
-                    // ±¤ÆøÈ­
+                    // ê´‘í­í™”
                     gameObject.GetComponent<BossBerserkMode>().Init();
                 }
             }
@@ -348,6 +434,10 @@ public class BossPattern : MonoBehaviour
             {
                 StopAttack();
                 isBossLive = false;
+
+                // í´ë¦¬ì–´ê°€ í™•ì •ë˜ì—ˆìœ¼ë¯€ë¡œ ì´í›„ ë°ë¯¸ì§€ ìˆ«ìëŠ” í‘œì‹œí•˜ì§€ ì•ŠìŒ
+                DamageNumber.HideAll();
+                DamageNumber.Suppressed = true;
                 coll.enabled = false;
                 BossRigid.simulated = false;
                 spriter.sortingOrder = 1;

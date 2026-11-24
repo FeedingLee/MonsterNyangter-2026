@@ -15,8 +15,9 @@ MonoBehaviour:
   itemType: 11
   itemId: 11
   itemName: "\uD3EC\uD68D\uC6A9 \uADF8\uBB3C"
-  itemDesc: "\uACBD\uD5D8\uCE58 \n\uD68D\uB4DD \uBC94\uC704\uAC00\n\uC18C\uD3ED \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  itemDesc: "\uACBD\uD5D8\uCE58\n\uD68D\uB4DD \uBC94\uC704\uAC00\n\uC18C\uD3ED \uC99D\uAC00\uD569\uB2C8\uB2E4."
   itemIcon: {fileID: 1455898271, guid: 2535030baf54b254a8c1fa4fa521ca87, type: 3}
+  maxLevelIcon: {fileID: 0}
   baseDamage: 0
   baseSpeed: 0
   baseRate: 0

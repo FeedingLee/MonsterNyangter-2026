@@ -1,21 +1,21 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BossBullet : MonoBehaviour
 {
     
-    public float launchForce;                       // ¹ß»çÇÒ ÈûÀÇ Å©±â
-    public float damage;                            // ¹ß»çÃ¼ µ¥¹ÌÁö
-    public RuntimeAnimatorController[] animCon;     // ¾Ö´Ï¸ŞÀÌÅÍ ¹è¿­
+    public float launchForce;                       // ë°œì‚¬í•  í˜ì˜ í¬ê¸°
+    public float damage;                            // ë°œì‚¬ì²´ ë°ë¯¸ì§€
+    public RuntimeAnimatorController[] animCon;     // ì• ë‹ˆë©”ì´í„° ë°°ì—´
 
-    Rigidbody2D rb;                                 // Rigidbody ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿À±â À§ÇÑ º¯¼ö
-    Animator anim;                                  // ¹ß»çÃ¼ÀÇ ¾Ö´Ï¸ŞÀÌÅÍ
+    Rigidbody2D rb;                                 // Rigidbody ì»´í¬ë„ŒíŠ¸ë¥¼ ê°€ì ¸ì˜¤ê¸° ìœ„í•œ ë³€ìˆ˜
+    Animator anim;                                  // ë°œì‚¬ì²´ì˜ ì• ë‹ˆë©”ì´í„°
 
-    // ¿ÀºêÁ§Æ®°¡ »ı¼ºµÇ¸é ÀÚµ¿À¸·Î ½ÇÇàµÇ´Â ¸Ş¼­µå
+    // ì˜¤ë¸Œì íŠ¸ê°€ ìƒì„±ë˜ë©´ ìë™ìœ¼ë¡œ ì‹¤í–‰ë˜ëŠ” ë©”ì„œë“œ
     private void Awake()
     {
-        // Rigidbody ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿È
+        // Rigidbody ì»´í¬ë„ŒíŠ¸ë¥¼ ê°€ì ¸ì˜´
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -25,7 +25,7 @@ public class BossBullet : MonoBehaviour
         StartCoroutine(ResetBullet());
     }
 
-    // ¹ß»çÃ¼ ÃÊ±âÈ­ ÇÔ¼ö
+    // ë°œì‚¬ì²´ ì´ˆê¸°í™” í•¨ìˆ˜
     public void Init(float damage, Vector3 dir, int index)
     {
         this.damage = damage;
@@ -34,33 +34,60 @@ public class BossBullet : MonoBehaviour
         anim.runtimeAnimatorController = animCon[index];
     }
 
-    // º®ÀÌ³ª ±âÅ¸ ¿ÀºêÁ§Æ®¿¡ ºÎµúÈú °æ¿ì ÆÄ±«µÇ´Â ÄÚµå
+    // ë²½ì´ë‚˜ ê¸°íƒ€ ì˜¤ë¸Œì íŠ¸ì— ë¶€ë”ªí ê²½ìš° íŒŒê´´ë˜ëŠ” ì½”ë“œ
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            // ¹ß»çÃ¼°¡ ÇÃ·¹ÀÌ¾î¿Í Á¢ÃË ½Ã µ¥¹ÌÁö ÀÔÀ½
-            GameManager.instance.health -= damage;
+            // ì´ë¯¸ ì“°ëŸ¬ì¡Œìœ¼ë©´ í”¼ê²© ëª¨ì…˜ì„ ë‹¤ì‹œ ì¬ìƒí•˜ì§€ ì•ŠìŒ
+            if (GameManager.instance.health <= 0f)
+            {
+                gameObject.SetActive(false);
+                return;
+            }
 
-            // ÇÃ·¹ÀÌ¾î µ¥¹ÌÁö, »ç¸Á ¾Ö´Ï¸ŞÀÌ¼Ç Á¶Á¤
+            // íšŒí”¼ ë¬´ì  ì¤‘ì—ëŠ” ë°œì‚¬ì²´ë§Œ ì‚¬ë¼ì§€ê³  ë°ë¯¸ì§€ì™€ í”¼ê²© ëª¨ì…˜ ì—†ìŒ
+            if (GameManager.instance.player.IsInvincible)
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+
+            // ëœìŠ¤ ë°©ì–´ ì¤‘ì´ë©´ íŒ¨ë§ (í”¼í•´ ë¬´íš¨)
+            if (GameManager.instance.player.TryBlockHit(true))
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+
+            // ë§ì€ ìë¦¬ ì‘ì€ í­ë°œ
+            SpriteFx.Explosion(transform.position, 0.9f);
+
+            // ë°œì‚¬ì²´ê°€ í”Œë ˆì´ì–´ì™€ ì ‘ì´‰ ì‹œ ë°ë¯¸ì§€ ì…ìŒ
+            GameManager.instance.health -= damage * MainWeaponController.DamageTakenScale;
+
+            // í”Œë ˆì´ì–´ ë°ë¯¸ì§€, ì‚¬ë§ ì• ë‹ˆë©”ì´ì…˜ ì¡°ì •
             Animator anim = collision.gameObject.GetComponent<Animator>();
 
-            // ¹ß»çÃ¼ ºñÈ°¼ºÈ­
+            // ë°œì‚¬ì²´ ë¹„í™œì„±í™”
             gameObject.SetActive(false);
             
-            // ÇÇ°İ ¸ğ¼Ç
+            // í”¼ê²©ìŒ ì¬ìƒ
+            GameManager.instance.player.PlayHitSound();
+
+            // í”¼ê²© ëª¨ì…˜
             anim.SetTrigger("Damage");
         } 
         else if (collision.CompareTag("Wall"))
         {
-            // ¹ß»çÃ¼°¡ ¿ïÅ¸¸®¿Í Á¢ÃË ½Ã ºñÈ°¼ºÈ­
+            // ë°œì‚¬ì²´ê°€ ìš¸íƒ€ë¦¬ì™€ ì ‘ì´‰ ì‹œ ë¹„í™œì„±í™”
             gameObject.SetActive(false);
         }
     }
 
     private IEnumerator ResetBullet()
     {
-        // º¸½º ¹ß»çÃ¼°¡ ÇÊµå¿¡ ³²¾ÆÀÖÀ»°æ¿ì ºñÈ°¼ºÈ­
+        // ë³´ìŠ¤ ë°œì‚¬ì²´ê°€ í•„ë“œì— ë‚¨ì•„ìˆì„ê²½ìš° ë¹„í™œì„±í™”
         yield return new WaitForSeconds(10.0f);
         gameObject.SetActive(false);
     }

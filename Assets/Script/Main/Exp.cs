@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Exp : MonoBehaviour
 {
-    public Sprite[] expSprites = new Sprite[3];         // exp ½ºÇÁ¶óÀÌÆ® ¹è¿­
-    SpriteRenderer sprite;                              // exp ¿ÀºêÁ§Æ®ÀÇ ½ºÇÁ¶óÀÌÆ®¸¦ º¯°æÇÏ±â À§ÇØ ¼±¾ğ
+    public Sprite[] expSprites = new Sprite[3];         // exp ìŠ¤í”„ë¼ì´íŠ¸ ë°°ì—´
+    SpriteRenderer sprite;                              // exp ì˜¤ë¸Œì íŠ¸ì˜ ìŠ¤í”„ë¼ì´íŠ¸ë¥¼ ë³€ê²½í•˜ê¸° ìœ„í•´ ì„ ì–¸
 
     public void Awake()
     {
@@ -26,24 +26,24 @@ public class Exp : MonoBehaviour
 
     public void OnEnable()
     {
-        // exp°¡ È°¼ºÈ­ µÉ ¶§¸¶´Ù ½ºÇÁ¶óÀÌÆ® º¯°æ
+        // expê°€ í™œì„±í™” ë  ë•Œë§ˆë‹¤ ìŠ¤í”„ë¼ì´íŠ¸ ë³€ê²½
         int x = Random.Range(0, expSprites.Length - 1);
         sprite.sprite = expSprites[x];
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        // Ãæµ¹ÇÑ ¿ÀºêÁ§Æ®ÀÇ ÀÌ¸§ÀÌ Player ÀÎ °æ¿ì
+        // ì¶©ëŒí•œ ì˜¤ë¸Œì íŠ¸ì˜ ì´ë¦„ì´ Player ì¸ ê²½ìš°
         if (collision.gameObject.name == "Player")
         {
             AudioManager.instance.PlaySfx(AudioManager.Sfx.Exe_Get);
-            // Player ÀÇ °æÇèÄ¡ Áõ°¡
+            // Player ì˜ ê²½í—˜ì¹˜ ì¦ê°€
             GameManager.instance.GetExp();
             if (Item.Exp_Bonus == 1)
             {
                 GameManager.instance.GetExp();
             }
-            // ¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­
+            // ì˜¤ë¸Œì íŠ¸ ë¹„í™œì„±í™”
             gameObject.SetActive(false);
         }
     }

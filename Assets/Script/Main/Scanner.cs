@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
@@ -10,39 +10,58 @@ public class Scanner : MonoBehaviour
     public LayerMask targetLayer;
     public RaycastHit2D[] targets;
     public Transform nearestTarget;
+    [Min(0.1f)] public float subBowRangeScale = 1.5f;   // ë³´ì¡° í™œ ì¸ì‹ ë²”ìœ„ ë°°ìœ¨ (scanRange ê¸°ì¤€)
 
     [Header("# ExpScan")]
-    public float expScanRange;          // Exp ±¸½½ Èí¼ö ¹üÀ§
-    public RaycastHit2D[] expTargets;   // Exp ±¸½½ ÀúÀå ¹è¿­
-    public LayerMask expTargetLayer;    // Exp ·¹ÀÌ¾î
+    public float expScanRange;          // Exp êµ¬ìŠ¬ í¡ìˆ˜ ë²”ìœ„
+    public RaycastHit2D[] expTargets;   // Exp êµ¬ìŠ¬ ì €ì¥ ë°°ì—´
+    public LayerMask expTargetLayer;    // Exp ë ˆì´ì–´
 
 
     private void FixedUpdate()
     {
-        // ¿øÇü¹üÀ§·Î ¸ğµç °´Ã¼ °Ë»öÇÏ±â
+        // ì›í˜•ë²”ìœ„ë¡œ ëª¨ë“  ê°ì²´ ê²€ìƒ‰í•˜ê¸°
         targets = Physics2D.CircleCastAll(transform.position, scanRange, Vector2.zero, 0, targetLayer);
         nearestTarget = GetNearest();
 
-        // °ÔÀÓ ÁøÇàÀÌ ¸ØÃâ ½Ã °æÇèÄ¡ ±¸½½ ²ø¾î´ç±è Áß´Ü
+        // ê²Œì„ ì§„í–‰ì´ ë©ˆì¶œ ì‹œ ê²½í—˜ì¹˜ êµ¬ìŠ¬ ëŒì–´ë‹¹ê¹€ ì¤‘ë‹¨
         if (!GameManager.instance.isLive)
             return;
 
-        // ¿øÇü ¹üÀ§·Î Exp ±¸½½ °´Ã¼ °Ë»ö
+        // ì›í˜• ë²”ìœ„ë¡œ Exp êµ¬ìŠ¬ ê°ì²´ ê²€ìƒ‰
         if (Item.Super_Magnet == 1)
         {
-            // ½´ÆÛ ±×¹°¸Á È°¼ºÈ­ ½Ã
+            // ìŠˆí¼ ê·¸ë¬¼ë§ í™œì„±í™” ì‹œ
             expTargets = Physics2D.CircleCastAll(transform.position, 100, Vector2.zero, 0, expTargetLayer);
             EatExp();
         }
         else
         {
-            // ±× ¿ÜÀÇ °æ¿ì
-            expTargets = Physics2D.CircleCastAll(transform.position, expScanRange, Vector2.zero, 0, expTargetLayer);
+            // ê·¸ ì™¸ì˜ ê²½ìš°
+            // ê²½í—˜ì¹˜ íšë“ ë²”ìœ„ ë°°ìœ¨ (ìƒì  ê°•í™”, ì½”ë í‚í‚)
+            expTargets = Physics2D.CircleCastAll(transform.position, expScanRange * RunStats.Get(RunStat.ExpRange), Vector2.zero, 0, expTargetLayer);
             EatExp();
         }
     }
 
-    // °¡±î¿î Ç¥Àû °Ë»ö
+    // range ì•ˆì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ í‘œì  (ë³´ì¡° í™œì²˜ëŸ¼ ì¸ì‹ ë²”ìœ„ê°€ ë‹¤ë¥¸ ë¬´ê¸°ìš©)
+    public Transform NearestInRange(float range)
+    {
+        Transform result = null;
+        float best = float.MaxValue;
+        foreach (Collider2D col in Physics2D.OverlapCircleAll(transform.position, range, targetLayer))
+        {
+            float d = Vector2.Distance(transform.position, col.transform.position);
+            if (d < best)
+            {
+                best = d;
+                result = col.transform;
+            }
+        }
+        return result;
+    }
+
+    // ê°€ê¹Œìš´ í‘œì  ê²€ìƒ‰
     Transform GetNearest()
     {
         Transform result = null;
@@ -50,7 +69,7 @@ public class Scanner : MonoBehaviour
 
         foreach (RaycastHit2D target in targets)
         {
-            // Å¸°Ù°ú ÇÃ·¹ÀÌ¾îÀÇ °Å¸® °è»ê
+            // íƒ€ê²Ÿê³¼ í”Œë ˆì´ì–´ì˜ ê±°ë¦¬ ê³„ì‚°
             Vector3 myPos = transform.position;
             Vector3 targetPos = target.transform.position;
             float curDiff = Vector3.Distance(myPos, targetPos);
@@ -65,12 +84,12 @@ public class Scanner : MonoBehaviour
         return result;
     }
 
-    // ¹üÀ§¿¡ µé¾î¿Â Exp ±¸½½µéÀ» ÇÃ·¹ÀÌ¾î ¹æÇâÀ¸·Î ÀÌµ¿½ÃÅ´
+    // ë²”ìœ„ì— ë“¤ì–´ì˜¨ Exp êµ¬ìŠ¬ë“¤ì„ í”Œë ˆì´ì–´ ë°©í–¥ìœ¼ë¡œ ì´ë™ì‹œí‚´
     private void EatExp()
     {
         foreach (RaycastHit2D target in expTargets)
         {
-            // Å¸°Ù°ú ÇÃ·¹ÀÌ¾îÀÇ °Å¸® °è»ê
+            // íƒ€ê²Ÿê³¼ í”Œë ˆì´ì–´ì˜ ê±°ë¦¬ ê³„ì‚°
             Vector2 myPos = transform.position;
             Vector2 targetPos = target.transform.position;
             Rigidbody2D rigid = target.rigidbody;

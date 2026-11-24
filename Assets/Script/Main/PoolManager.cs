@@ -1,17 +1,17 @@
-
+ï»¿
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
-    // .. ÇÁ¸®ÆéµéÀ» º¸°üÇÒ º¯¼ö
+    // .. í”„ë¦¬í©ë“¤ì„ ë³´ê´€í•  ë³€ìˆ˜
     public GameObject[] prefabs;
-    // .. º¸½º°ü·Ã ÇÁ¸®ÆéµéÀ» º¸°üÇÒ º¯¼ö
+    // .. ë³´ìŠ¤ê´€ë ¨ í”„ë¦¬í©ë“¤ì„ ë³´ê´€í•  ë³€ìˆ˜
     public GameObject[] enemyPrefabs;
-    // .. Ç® ´ã´çÀ» ÇÏ´Â ¸®½ºÆ®µé
+    // .. í’€ ë‹´ë‹¹ì„ í•˜ëŠ” ë¦¬ìŠ¤íŠ¸ë“¤
     List<GameObject>[] pools;
-    // .. º¸½º °ü·Ã Ç® ´ã´çÀ» ÇÏ´Â ¸®½ºÆ®µé
+    // .. ë³´ìŠ¤ ê´€ë ¨ í’€ ë‹´ë‹¹ì„ í•˜ëŠ” ë¦¬ìŠ¤íŠ¸ë“¤
     List<GameObject>[] enemies;
 
     private void Awake()
@@ -35,18 +35,18 @@ public class PoolManager : MonoBehaviour
     {
         GameObject select = null;
 
-        // ... ¼±ÅÃÇÑ Ç®ÀÇ ºñÈ°¼ºÈ­ µÈ °ÔÀÓ¿ÀºêÁ§Æ® Á¢±Ù 
+        // ... ì„ íƒí•œ í’€ì˜ ë¹„í™œì„±í™” ëœ ê²Œì„ì˜¤ë¸Œì íŠ¸ ì ‘ê·¼ 
         foreach (GameObject item in pools[index])
         {
             if (!item.activeSelf)
             {
-                // ... ±× °ÔÀÓ ¿ÀºêÁ§Æ®¸¦ ¹ß°ßÇÏ¸é, select º¯¼ö¿¡ ÇÒ´çÇÔ
+                // ... ê·¸ ê²Œì„ ì˜¤ë¸Œì íŠ¸ë¥¼ ë°œê²¬í•˜ë©´, select ë³€ìˆ˜ì— í• ë‹¹í•¨
                 select = item;
                 select.SetActive(true);
                 break;
             }
         }
-        // ... ¸ğµÎ »ç¿ëµÇ°í ÀÖ´Ù¸é, »õ·Ó°Ô »ı¼ºÇÏ¿©, Select º¯¼ö¿¡ ÇÒ´ç
+        // ... ëª¨ë‘ ì‚¬ìš©ë˜ê³  ìˆë‹¤ë©´, ìƒˆë¡­ê²Œ ìƒì„±í•˜ì—¬, Select ë³€ìˆ˜ì— í• ë‹¹
         if (!select)
         {
             select = Instantiate(prefabs[index], transform);
@@ -59,18 +59,18 @@ public class PoolManager : MonoBehaviour
     {
         GameObject select = null;
 
-        // ... ¼±ÅÃÇÑ Ç®ÀÇ ºñÈ°¼ºÈ­ µÈ °ÔÀÓ¿ÀºêÁ§Æ® Á¢±Ù 
+        // ... ì„ íƒí•œ í’€ì˜ ë¹„í™œì„±í™” ëœ ê²Œì„ì˜¤ë¸Œì íŠ¸ ì ‘ê·¼ 
         foreach (GameObject item in enemies[index])
         {
             if (!item.activeSelf)
             {
-                // ... ±× °ÔÀÓ ¿ÀºêÁ§Æ®¸¦ ¹ß°ßÇÏ¸é, select º¯¼ö¿¡ ÇÒ´çÇÔ
+                // ... ê·¸ ê²Œì„ ì˜¤ë¸Œì íŠ¸ë¥¼ ë°œê²¬í•˜ë©´, select ë³€ìˆ˜ì— í• ë‹¹í•¨
                 select = item;
                 select.SetActive(true);
                 break;
             }
         }
-        // ... ¸ğµÎ »ç¿ëµÇ°í ÀÖ´Ù¸é, »õ·Ó°Ô »ı¼ºÇÏ¿©, Select º¯¼ö¿¡ ÇÒ´ç
+        // ... ëª¨ë‘ ì‚¬ìš©ë˜ê³  ìˆë‹¤ë©´, ìƒˆë¡­ê²Œ ìƒì„±í•˜ì—¬, Select ë³€ìˆ˜ì— í• ë‹¹
         if (!select)
         {
             select = Instantiate(enemyPrefabs[index], transform);

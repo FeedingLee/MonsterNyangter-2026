@@ -1,31 +1,31 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BossBerserkMode : MonoBehaviour
 {
-    [Header("# Multi-Directional Firing")]   // Àü¹æÇâ ¹ß»ç °ü·Ã º¯¼ö
-    public int MBulletCount;                 // ¹ß»ç °¹¼ö
-    public float MBossBulletDamage;          // ¹ß»ç µ¥¹ÌÁö
-    public float MFireSpeed;                 // ¹ß»ç ¼Óµµ
+    [Header("# Multi-Directional Firing")]   // ì „ë°©í–¥ ë°œì‚¬ ê´€ë ¨ ë³€ìˆ˜
+    public int MBulletCount;                 // ë°œì‚¬ ê°¯ìˆ˜
+    public float MBossBulletDamage;          // ë°œì‚¬ ë°ë¯¸ì§€
+    public float MFireSpeed;                 // ë°œì‚¬ ì†ë„
 
-    [Header("# One-Directional Firing")]     // ´ÜÀÏ¹æÇâ ¹ß»ç °ü·Ã º¯¼ö
-    public int OBulletCount;                 // ¹ß»ç °¹¼ö
-    public float OBossBulletDamage;          // ¹ß»ç µ¥¹ÌÁö
-    public float OFireSpeed;                 // ¹ß»ç ¼Óµµ
+    [Header("# One-Directional Firing")]     // ë‹¨ì¼ë°©í–¥ ë°œì‚¬ ê´€ë ¨ ë³€ìˆ˜
+    public int OBulletCount;                 // ë°œì‚¬ ê°¯ìˆ˜
+    public float OBossBulletDamage;          // ë°œì‚¬ ë°ë¯¸ì§€
+    public float OFireSpeed;                 // ë°œì‚¬ ì†ë„
 
     [Header("# BossDash")]
-    public float DashSpeed;                  // µ¹Áø ¼Óµµ
-    public float BossDashDamage;             // º¸½º µ¹Áø µ¥¹ÌÁö
-    public float BossDashDelay;              // º¸½º µ¹Áø ´ë±â ½Ã°£ 
+    public float DashSpeed;                  // ëŒì§„ ì†ë„
+    public float BossDashDamage;             // ë³´ìŠ¤ ëŒì§„ ë°ë¯¸ì§€
+    public float BossDashDelay;              // ë³´ìŠ¤ ëŒì§„ ëŒ€ê¸° ì‹œê°„ 
 
     [Header("# BossState")]
-    public float interval;                   // ´ÙÀ½ ÆĞÅÏ±îÁöÀÇ ÄğÅ¸ÀÓ
+    public float interval;                   // ë‹¤ìŒ íŒ¨í„´ê¹Œì§€ì˜ ì¿¨íƒ€ì„
 
-    [Header("# Landing Firing")]             // ÂøÁö Àü¹æÇâ ¹ß»ç °ü·Ã º¯¼ö
-    public int LBulletCount;                 // ¹ß»ç °¹¼ö 20
-    public float LBossBulletDamage;          // ¹ß»ç µ¥¹ÌÁö
-    public float LFireSpeed;                 // ¹ß»ç ¼Óµµ 0.5
+    [Header("# Landing Firing")]             // ì°©ì§€ ì „ë°©í–¥ ë°œì‚¬ ê´€ë ¨ ë³€ìˆ˜
+    public int LBulletCount;                 // ë°œì‚¬ ê°¯ìˆ˜ 20
+    public float LBossBulletDamage;          // ë°œì‚¬ ë°ë¯¸ì§€
+    public float LFireSpeed;                 // ë°œì‚¬ ì†ë„ 0.5
 
     BossPattern bossPatten;
     BossReposition bossReposition;
@@ -38,28 +38,28 @@ public class BossBerserkMode : MonoBehaviour
 
     public void Init()
     {
-        // ±¤ÆøÈ­ ¸ğµå°¡ È°¼ºÈ­ µÇ¾úÀ»¶§ È£ÃâµÉ ÇÔ¼ö
+        // ê´‘í­í™” ëª¨ë“œê°€ í™œì„±í™” ë˜ì—ˆì„ë•Œ í˜¸ì¶œë  í•¨ìˆ˜
         if (bossPatten != null && bossReposition != null)
         {
-            // Àü¹æÇâ ¹ß»ç °è¼ö ¼öÁ¤
+            // ì „ë°©í–¥ ë°œì‚¬ ê³„ìˆ˜ ìˆ˜ì •
             bossPatten.MBulletCount = MBulletCount;
             bossPatten.MBossBulletDamage = MBossBulletDamage;
             bossPatten.MFireSpeed = MFireSpeed;
 
-            // ´ÜÀÏ¹æÇâ ¹ß»ç °è¼ö ¼öÁ¤
+            // ë‹¨ì¼ë°©í–¥ ë°œì‚¬ ê³„ìˆ˜ ìˆ˜ì •
             bossPatten.OBulletCount = OBulletCount;             
             bossPatten.OBossBulletDamage = OBossBulletDamage;   
             bossPatten.OFireSpeed = OFireSpeed;
 
-            // µ¹Áø °è¼ö ¼öÁ¤
+            // ëŒì§„ ê³„ìˆ˜ ìˆ˜ì •
             bossPatten.DashSpeed = DashSpeed;           
             bossPatten.BossDashDamage = BossDashDamage;         
             bossPatten.BossDashDelay = BossDashDelay;        
             
-            // ÆĞÅÏ ÄğÅ¸ÀÓ ¼öÁ¤
+            // íŒ¨í„´ ì¿¨íƒ€ì„ ìˆ˜ì •
             bossPatten.interval = interval;
 
-            // ÂøÁö ¹ß»ç °è¼ö ¼öÁ¤
+            // ì°©ì§€ ë°œì‚¬ ê³„ìˆ˜ ìˆ˜ì •
             bossReposition.LBulletCount = LBulletCount;            
             bossReposition.LBossBulletDamage = LBossBulletDamage;  
             bossReposition.LFireSpeed = LFireSpeed;                

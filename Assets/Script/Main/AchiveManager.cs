@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -56,20 +56,20 @@ public class AchiveManager : MonoBehaviour
             CheckAchive(achive);
         }
     }
-    // Ä³¸¯ÅÍ ÇØ±İ Á¶°Ç
+    // ìºë¦­í„° í•´ê¸ˆ ì¡°ê±´
     private void CheckAchive(Achive achive)
     {
         bool isAchive = false;
 
         switch (achive)
         {
-            case Achive.UnlockGaza:     // 0. °¡ÀğºÎ = 800Å³ ´Ş¼º
+            case Achive.UnlockGaza:     // 0. ê°€ìŸˆë¶€ = 800í‚¬ ë‹¬ì„±
                 isAchive = GameManager.instance.kill >= 800;    
                 break;
-            case Achive.UnlockBowa:     // 1. º¸¿Íº¸¿Í = »ıÁ¸ ½Ã 
+            case Achive.UnlockBowa:     // 1. ë³´ì™€ë³´ì™€ = ìƒì¡´ ì‹œ 
                 isAchive = GameManager.instance.wincheck == 1;
                 break;
-            case Achive.UnlockWigller:   // 2. ÈçµéÈçµé = 29·¹º§ ´Ş¼º½Ã
+            case Achive.UnlockWigller:   // 2. í”ë“¤í”ë“¤ = 29ë ˆë²¨ ë‹¬ì„±ì‹œ
                 isAchive = GameManager.instance.level >= 29;                
                 break;
         }

@@ -1,0 +1,297 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff1a26eebc547f545a62b23e58cab10e, type: 3}
+  m_Name: MenuCatalog
+  m_EditorClassIdentifier: 
+  characters:
+  - key: Player_Palico
+    playerId: 0
+    displayName: "\uBBF8\uCF00\uB8E8"
+    quote: "\"\uC8FC\uC778\uB2D8\uC740 \uBC14\uC058\uB2E4\uB0E5\""
+    quoteSmallItalic: 0
+    description: "\uBAA8\uC790\uB78C \uC5C6\uB294 \uB4E0\uB4E0\uD55C \uD30C\uD2B8\uB108\uC785\uB2C8\uB2E4."
+    attack: 3
+    cooldown: 3
+    stamina: 3
+    speed: 3
+    ultimateName: "\uCE58\uC720 \uAFC0\uBC8C \uC18C\uD658"
+    ultimateDescription: "\uCCB4\uB825\uC744 \uC18C\uD3ED \uD68C\uBCF5\uC2DC\uCF1C
+      \uC8FC\uB294 \uCE58\uC720 \uAFC0\uBC8C\uC744 \uC8FC\uC704\uC5D0 \uC18C\uD658\uD569\uB2C8\uB2E4."
+    ultimateIcon: {fileID: 652791601, guid: 2535030baf54b254a8c1fa4fa521ca87, type: 3}
+    idleFrames:
+    - {fileID: -1561516970, guid: 6fdaf7e6dcbfd1642b6cfcb05e6dd061, type: 3}
+    - {fileID: -1561199791, guid: 6fdaf7e6dcbfd1642b6cfcb05e6dd061, type: 3}
+    - {fileID: -1951886192, guid: 6fdaf7e6dcbfd1642b6cfcb05e6dd061, type: 3}
+    unlockKey: 
+    unlockCondition: 
+  - key: Player_Gazabu
+    playerId: 1
+    displayName: "\uCE58\uCE74\uBD80"
+    quote: "\"\u25A3\u25B3\u25CE\u25CB?!\""
+    quoteSmallItalic: 0
+    description: "\uB204\uAD6C\uBCF4\uB2E4 \uB0A0\uB835\uD55C \uC885\uC871\uC73C\uB85C,
+      \uC274 \uC0C8 \uC5C6\uC774 \uC801\uC744 \uBAB0\uC544\uBD99\uC785\uB2C8\uB2E4."
+    attack: 1
+    cooldown: 4
+    stamina: 4
+    speed: 4
+    ultimateName: "\uBD80\uC871\uC758 \uAD11\uB780"
+    ultimateDescription: "\uC77C\uC815 \uC2DC\uAC04 \uB3D9\uC548 \uCFE8\uD0C0\uC784
+      \uAC10\uC18C, \uACF5\uACA9 \uC18D\uB3C4, \uC774\uB3D9\uC18D\uB3C4\uAC00 \uB300\uD3ED
+      \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+    ultimateIcon: {fileID: 1940989185, guid: 55db89b978772694eb700a709ce23487, type: 3}
+    idleFrames:
+    - {fileID: -605636818, guid: 83297b97e8b93e3478bb9e52888c0de1, type: 3}
+    - {fileID: 729733127, guid: 83297b97e8b93e3478bb9e52888c0de1, type: 3}
+    - {fileID: -1523866634, guid: 83297b97e8b93e3478bb9e52888c0de1, type: 3}
+    unlockKey: UnlockGaza
+    unlockCondition: "\uD55C \uBC88\uC758 \uC218\uB835 \uC911\uC5D0 \uBAAC\uC2A4\uD130
+      800\uB9C8\uB9AC \uCC98\uCE58"
+  - key: Player_BowaBowa
+    playerId: 2
+    displayName: "\uB3C4\uC2A4\uB3C4\uC2A4"
+    quote: '"......"'
+    quoteSmallItalic: 0
+    description: "\uADF8\uB4E4\uC758 \uD798\uC740 \uD0C0\uC758 \uCD94\uC885\uC744
+      \uBD88\uD5C8\uD569\uB2C8\uB2E4."
+    attack: 5
+    cooldown: 3
+    stamina: 3
+    speed: 2
+    ultimateName: "\uD2B9\uC81C \uACE0\uAE30 \uBBF8\uB07C"
+    ultimateDescription: "\uC77C\uC815 \uC2DC\uAC04 \uB3D9\uC548 \uC8FC\uBCC0 \uC801\uB4E4\uC758
+      \uC2DC\uC120\uC744 \uB04C\uC5B4\uBAA8\uC73C\uB294 \uBBF8\uB07C\uB97C \uC124\uCE58\uD569\uB2C8\uB2E4."
+    ultimateIcon: {fileID: 78289702, guid: 2535030baf54b254a8c1fa4fa521ca87, type: 3}
+    idleFrames:
+    - {fileID: 1544979180, guid: 955e1d65a07b0ec40afeb334d45e5b98, type: 3}
+    - {fileID: -634465939, guid: 955e1d65a07b0ec40afeb334d45e5b98, type: 3}
+    - {fileID: -947358676, guid: 955e1d65a07b0ec40afeb334d45e5b98, type: 3}
+    unlockKey: UnlockBowa
+    unlockCondition: "\uC218\uB835 1\uD68C \uD074\uB9AC\uC5B4"
+  - key: Player_Wiggler
+    playerId: 3
+    displayName: "\uD718\uCCAD\uD718\uCCAD"
+    quote: "\uC778\uD615\uD0C8\uC778 \uAC74.. \uC544\uB2C8\uACA0\uC8E0..?"
+    quoteSmallItalic: 1
+    description: "\uBAA8\uB4E0 \uB2A5\uB825\uC774 \uB4A4\uCC98\uC9C0\uC9C0\uB9CC,
+      \uB3C4\uB9DD\uCE58\uB294 \uC18D\uB3C4\uB9CC\uD07C\uC740 \uB204\uAD6C\uBCF4\uB2E4
+      \uBE60\uB985\uB2C8\uB2E4."
+    attack: 1
+    cooldown: 1
+    stamina: 1
+    speed: 5
+    ultimateName: "\uB545\uC18D \uD30C\uACE0\uB4E4\uAE30"
+    ultimateDescription: "\uC81C\uC790\uB9AC\uC5D0 \uBAB8\uC744 \uACE0\uC815\uD574
+      \uC774\uB3D9\uD560 \uC218 \uC5C6\uB294 \uB300\uC2E0, \uC804\uD22C \uB2A5\uB825\uC774
+      \uD06C\uAC8C \uC99D\uD3ED\uB429\uB2C8\uB2E4."
+    ultimateIcon: {fileID: -710074721, guid: 693a23d679bb2bc4c8476125d586f887, type: 3}
+    idleFrames:
+    - {fileID: -1283240205, guid: 693a23d679bb2bc4c8476125d586f887, type: 3}
+    - {fileID: 17118996, guid: 693a23d679bb2bc4c8476125d586f887, type: 3}
+    - {fileID: -1821350032, guid: 693a23d679bb2bc4c8476125d586f887, type: 3}
+    unlockKey: UnlockWigller
+    unlockCondition: "\uD5CC\uD130\uB7AD\uD06C 29 \uB2EC\uC131"
+  statLabels:
+  - "\uACF5\uACA9\uB825"
+  - "\uCFE8\uD0C0\uC784 \uAC10\uC18C"
+  - "\uC2A4\uD0DC\uBBF8\uB098"
+  - "\uC774\uB3D9\uC18D\uB3C4"
+  statMax: 5
+  unlockConditionFallback: "\uBBF8\uC124\uC815"
+  stages:
+  - displayName: "\uAE4A\uC740 \uC232 \uCEA0\uD504\uAC70\uC810"
+    playable: 1
+    sceneName: Main
+    image: {fileID: 21300000, guid: d2f3c54229f894f4db70d155961ef1bf, type: 3}
+    description: 
+    recommendedLevel: 
+    monsterIcons: []
+    rewardIcons: []
+    rewardText: 
+  - displayName: 
+    playable: 0
+    sceneName: Main
+    image: {fileID: 0}
+    description: 
+    recommendedLevel: 
+    monsterIcons: []
+    rewardIcons: []
+    rewardText: 
+  - displayName: 
+    playable: 0
+    sceneName: Main
+    image: {fileID: 0}
+    description: 
+    recommendedLevel: 
+    monsterIcons: []
+    rewardIcons: []
+    rewardText: 
+  - displayName: 
+    playable: 0
+    sceneName: Main
+    image: {fileID: 0}
+    description: 
+    recommendedLevel: 
+    monsterIcons: []
+    rewardIcons: []
+    rewardText: 
+  settingTabs:
+  - "\uAC8C\uC784"
+  - "\uADF8\uB798\uD53D"
+  - "\uC0AC\uC6B4\uB4DC"
+  - "\uC870\uC791"
+  - "\uAE30\uD0C0"
+  soundTabIndex: 2
+  startTabIndex: 2
+  defaultBgmVolume: 0.5
+  bgmOutputScale: 1.4
+  titleBgmOutputScale: 1.26
+  defaultSfxVolume: 0.5
+  clickSound: {fileID: 8300000, guid: 4b294d59d2399014daa718b35c9de73b, type: 3}
+  clickVolumeScale: 0.4
+  hiddenTitleObjects: []
+  titleBackgroundName: Title BG
+  parallaxAmount: 0.12
+  parallaxVertical: 0.08
+  parallaxZoom: 1.03
+  parallaxSmooth: 4
+  startButtonPath: Canvas/GameStart/Character Group/Character {0}
+  oldSelectPanelPath: Canvas/GameStart
+  titleSceneName: Title
+  referenceResolution: {x: 1920, y: 1080}
+  matchWidthOrHeight: 0.5
+  sortingOrder: 10
+  pixelScale: 1
+  frameScale: 1
+  panelFadeTime: 0.22
+  panelSlide: 24
+  launchFadeTime: 0.9
+  mainFadeInTime: 0.7
+  cardPunchTime: 0.18
+  cardPunchScale: 1.06
+  idleFps: 6
+  toastTime: 1.4
+  hoverScale: 1.04
+  pressScale: 0.95
+  scaleSpeed: 18
+  buttonNormalTint: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+  buttonHoverTint: {r: 1, g: 1, b: 1, a: 1}
+  buttonPressedTint: {r: 0.68, g: 0.64, b: 0.58, a: 1}
+  buttonDisabledTint: {r: 0.38, g: 0.36, b: 0.34, a: 1}
+  backdropColor: {r: 0.07, g: 0.045, b: 0.03, a: 0.97}
+  screenFrameTint: {r: 1, g: 1, b: 1, a: 1}
+  goldColor: {r: 0.98, g: 0.8, b: 0.36, a: 1}
+  goldFrameColor: {r: 0.78, g: 0.58, b: 0.2, a: 1}
+  goldFrameHoverColor: {r: 1, g: 0.86, b: 0.42, a: 1}
+  goldFrameWidth: 2
+  lightTextColor: {r: 0.97, g: 0.91, b: 0.79, a: 1}
+  darkTextColor: {r: 0.27, g: 0.15, b: 0.07, a: 1}
+  headerTextColor: {r: 0.55, g: 0.24, b: 0.11, a: 1}
+  mutedTextColor: {r: 0.55, g: 0.48, b: 0.42, a: 1}
+  sideCardTint: {r: 0.42, g: 0.38, b: 0.36, a: 1}
+  lockedTint: {r: 0.3, g: 0.3, b: 0.32, a: 1}
+  silhouetteColor: {r: 0, g: 0, b: 0, a: 1}
+  emptyAreaColor: {r: 0.16, g: 0.11, b: 0.08, a: 1}
+  sliderFillColor: {r: 0.55, g: 0.82, b: 0.38, a: 1}
+  logo: {fileID: 1694419602, guid: 94a8fa29388d83541920c962189e3062, type: 3}
+  screenFrame: {fileID: 1523248019, guid: ed9764d3ff8ee7d488194bc939b9fe15, type: 3}
+  parchment: {fileID: 87161813, guid: e4ba266698031664399c916dd223e2c4, type: 3}
+  ornatePanel: {fileID: -252481224, guid: e4ba266698031664399c916dd223e2c4, type: 3}
+  headerPlate: {fileID: 396615253, guid: 7f5a34e96531b4e44a9cee0f30948818, type: 3}
+  noticeBanner: {fileID: 1893997553, guid: e4ba266698031664399c916dd223e2c4, type: 3}
+  paw: {fileID: 1224704376, guid: e4ba266698031664399c916dd223e2c4, type: 3}
+  buttonGreen: {fileID: 976305531, guid: 1c683a2fb6ebb1046a02f1cfc0645408, type: 3}
+  buttonBrown: {fileID: -667956841, guid: 1c683a2fb6ebb1046a02f1cfc0645408, type: 3}
+  cardSelected: {fileID: -1122881303, guid: bd921eb373b4c5049bf1b441654e23e7, type: 3}
+  cardNormal: {fileID: 1255848742, guid: e4ba266698031664399c916dd223e2c4, type: 3}
+  cardLocked: {fileID: 1255848742, guid: e4ba266698031664399c916dd223e2c4, type: 3}
+  arrowLeft: {fileID: 1276239080, guid: e4ba266698031664399c916dd223e2c4, type: 3}
+  arrowRight: {fileID: 282478720, guid: e4ba266698031664399c916dd223e2c4, type: 3}
+  statFilled: {fileID: -1382831867, guid: 2e3814c906e8f574fbee1cd492b2037a, type: 3}
+  statEmpty: {fileID: 1679276298, guid: 2e3814c906e8f574fbee1cd492b2037a, type: 3}
+  slot: {fileID: -1866612527, guid: e4ba266698031664399c916dd223e2c4, type: 3}
+  divider: {fileID: -2145388060, guid: 6bf3ebce382d8444482a7f9cc702ee7d, type: 3}
+  rowNormal: {fileID: 84424345, guid: 03b3bd267cc5a4e4cab7dd031ee14abc, type: 3}
+  rowSelected: {fileID: -1748419201, guid: 03b3bd267cc5a4e4cab7dd031ee14abc, type: 3}
+  rowLocked: {fileID: -1018018374, guid: e4ba266698031664399c916dd223e2c4, type: 3}
+  sliderBar: {fileID: 1207175746, guid: e4ba266698031664399c916dd223e2c4, type: 3}
+  sliderFill: {fileID: -1210286383, guid: e4ba266698031664399c916dd223e2c4, type: 3}
+  sliderHandle: {fileID: 1424741282, guid: e4ba266698031664399c916dd223e2c4, type: 3}
+  bgmIcon: {fileID: -1897478660, guid: 6bf3ebce382d8444482a7f9cc702ee7d, type: 3}
+  sfxIcon: {fileID: -1118514711, guid: 6bf3ebce382d8444482a7f9cc702ee7d, type: 3}
+  lockIcon: {fileID: 618859762, guid: 2e3814c906e8f574fbee1cd492b2037a, type: 3}
+  iconBack: {fileID: -1790434673, guid: 2e3814c906e8f574fbee1cd492b2037a, type: 3}
+  iconConfirm: {fileID: -52281638, guid: 2e3814c906e8f574fbee1cd492b2037a, type: 3}
+  iconPlay: {fileID: -540086081, guid: 2e3814c906e8f574fbee1cd492b2037a, type: 3}
+  iconReset: {fileID: -565250709, guid: 2e3814c906e8f574fbee1cd492b2037a, type: 3}
+  settingTabIcons:
+  - {fileID: -68763226, guid: 2e3814c906e8f574fbee1cd492b2037a, type: 3}
+  - {fileID: 374209498, guid: 2e3814c906e8f574fbee1cd492b2037a, type: 3}
+  - {fileID: -877361395, guid: 2e3814c906e8f574fbee1cd492b2037a, type: 3}
+  - {fileID: 1919281852, guid: 2e3814c906e8f574fbee1cd492b2037a, type: 3}
+  - {fileID: 148868833, guid: 2e3814c906e8f574fbee1cd492b2037a, type: 3}
+  objectPanelBorder: {x: 12, y: 12, z: 12, w: 12}
+  headerTop: 82
+  headerSize: {x: 560, y: 120}
+  headerFontSize: 44
+  headerTextOffset: {x: 0, y: -9}
+  bottomButtonSize: {x: 300, y: 84}
+  buttonIconSize: 0.5
+  bottomButtonMargin: {x: 240, y: 82}
+  bottomButtonFontSize: 36
+  screenFrameInset: 0
+  logoPosition: {x: 0, y: 250}
+  logoSize: {x: 574, y: 203}
+  menuButtonSize: {x: 440, y: 92}
+  menuFirstButtonPosition: {x: 600, y: 0}
+  menuButtonSpacing: 106
+  menuFontSize: 44
+  noticeText: "\uBAAC\uC2A4\uD130\uB0E5\uD130\uB294 \uBE44\uACF5\uC2DD \uD32C \uAC8C\uC784\uC73C\uB85C,
+    CAPCOM\uACFC \uBB34\uAD00\uD569\uB2C8\uB2E4."
+  noticePosition: {x: 0, y: 74}
+  noticeSize: {x: 1140, y: 76}
+  noticeFontSize: 28
+  carouselCenter: {x: -300, y: 20}
+  centerCardSize: {x: 400, y: 540}
+  sideCardSize: {x: 250, y: 350}
+  sideCardOffset: 360
+  arrowOffset: 545
+  arrowSize: {x: 48, y: 78}
+  pageDotsY: -330
+  infoCardPosition: {x: 600, y: 10}
+  infoCardSize: {x: 640, y: 790}
+  cardNameFontSize: 44
+  cardQuoteFontSize: 24
+  infoNameFontSize: 40
+  infoBodyFontSize: 24
+  infoHeaderFontSize: 28
+  statCellSize: {x: 30, y: 30}
+  statCellGap: 6
+  stageListPosition: {x: -560, y: -10}
+  stageListSize: {x: 600, y: 720}
+  stageRowSize: {x: 540, y: 132}
+  stageRowGap: 14
+  stageDetailPosition: {x: 400, y: -10}
+  stageDetailSize: {x: 860, y: 720}
+  stageImageSize: {x: 720, y: 240}
+  stageNameFontSize: 40
+  stageBodyFontSize: 26
+  stageIconSize: {x: 56, y: 56}
+  tabButtonSize: {x: 300, y: 88}
+  tabFirstPosition: {x: -640, y: 230}
+  tabSpacing: 108
+  settingsPanelPosition: {x: 190, y: -10}
+  settingsPanelSize: {x: 1180, y: 640}
+  settingRowHeight: 110
+  sliderSize: {x: 520, y: 34}
+  sliderHandleSize: {x: 30, y: 52}
+  settingFontSize: 32

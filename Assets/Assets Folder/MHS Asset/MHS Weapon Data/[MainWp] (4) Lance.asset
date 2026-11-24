@@ -46,3 +46,4 @@ MonoBehaviour:
   - {fileID: 909941104, guid: 2535030baf54b254a8c1fa4fa521ca87, type: 3}
   - {fileID: -397397001, guid: 2535030baf54b254a8c1fa4fa521ca87, type: 3}
   - {fileID: -2006180225, guid: 2535030baf54b254a8c1fa4fa521ca87, type: 3}
+  maxLevelIcon: {fileID: -1425460191, guid: 2535030baf54b254a8c1fa4fa521ca87, type: 3}

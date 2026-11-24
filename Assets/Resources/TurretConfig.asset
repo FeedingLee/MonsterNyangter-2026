@@ -1,0 +1,187 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b2b665a5ea33d4bb9b4a9feb7684e8, type: 3}
+  m_Name: TurretConfig
+  m_EditorClassIdentifier: 
+  crossbow:
+    name: "\uC11D\uAD81"
+    rotates: 1
+    range: 6
+    damageMul: 0.5
+    interval: 0.4
+    scale: 1
+    headOffset: {x: 0, y: 1.62}
+    footOffset: 0
+    spriteFacesRight: 1
+    muzzleDistance: 0.6
+    projectileSpeed: 16
+    flightTime: 0.6
+    projectileSize: 0.85
+    fxSize: 0.8
+    fireSound: {fileID: 8300000, guid: e34e5de4fb6f0405987dc922e27778b9, type: 3}
+    baseSprite: {fileID: -5550823471617852697, guid: 75187e3ea4f025544b6db13fe3c9c81c, type: 3}
+    idle:
+    - {fileID: 4112262950800088189, guid: 75187e3ea4f025544b6db13fe3c9c81c, type: 3}
+    - {fileID: 4112262950800088189, guid: 75187e3ea4f025544b6db13fe3c9c81c, type: 3}
+    attack:
+    - {fileID: 4112262950800088189, guid: 75187e3ea4f025544b6db13fe3c9c81c, type: 3}
+    - {fileID: 6422033302690275909, guid: 75187e3ea4f025544b6db13fe3c9c81c, type: 3}
+    - {fileID: 4439386363192371029, guid: 75187e3ea4f025544b6db13fe3c9c81c, type: 3}
+    sleep: {fileID: 538426706503881336, guid: 75187e3ea4f025544b6db13fe3c9c81c, type: 3}
+    projectile:
+    - {fileID: 6418623223783847152, guid: 75187e3ea4f025544b6db13fe3c9c81c, type: 3}
+    hitFx:
+    - {fileID: -2065905224579662373, guid: 75187e3ea4f025544b6db13fe3c9c81c, type: 3}
+    - {fileID: 5987801557949957582, guid: 75187e3ea4f025544b6db13fe3c9c81c, type: 3}
+    groundFx: []
+  sticky:
+    name: "\uB048\uC801\uC774 \uD22C\uCC99\uAE30"
+    rotates: 0
+    range: 6
+    damageMul: 0.2
+    interval: 3
+    scale: 0.95
+    headOffset: {x: 0, y: 0}
+    footOffset: 0
+    spriteFacesRight: 1
+    muzzleDistance: 0.6
+    projectileSpeed: 14
+    flightTime: 0.7
+    projectileSize: 0.75
+    fxSize: 1.2
+    fireSound: {fileID: 8300000, guid: 902828a83676948b2a085a2c006596fd, type: 3}
+    baseSprite: {fileID: 0}
+    idle:
+    - {fileID: 5173134976381757272, guid: 8a6d7b3b6c7cc164b93b55d4a8ce6831, type: 3}
+    - {fileID: -5755057752733562690, guid: 8a6d7b3b6c7cc164b93b55d4a8ce6831, type: 3}
+    attack:
+    - {fileID: -4999592998825770415, guid: 8a6d7b3b6c7cc164b93b55d4a8ce6831, type: 3}
+    - {fileID: 923002203197887522, guid: 8a6d7b3b6c7cc164b93b55d4a8ce6831, type: 3}
+    - {fileID: -1069235550816904183, guid: 8a6d7b3b6c7cc164b93b55d4a8ce6831, type: 3}
+    - {fileID: 4186174061023730813, guid: 8a6d7b3b6c7cc164b93b55d4a8ce6831, type: 3}
+    sleep: {fileID: -2519052730597991044, guid: 8a6d7b3b6c7cc164b93b55d4a8ce6831, type: 3}
+    projectile:
+    - {fileID: -4249762366904880365, guid: 8a6d7b3b6c7cc164b93b55d4a8ce6831, type: 3}
+    - {fileID: -860341160891313843, guid: 8a6d7b3b6c7cc164b93b55d4a8ce6831, type: 3}
+    hitFx:
+    - {fileID: 4028421813689462236, guid: 8a6d7b3b6c7cc164b93b55d4a8ce6831, type: 3}
+    - {fileID: 6438693121522087032, guid: 8a6d7b3b6c7cc164b93b55d4a8ce6831, type: 3}
+    groundFx:
+    - {fileID: -8195793024011827910, guid: 8a6d7b3b6c7cc164b93b55d4a8ce6831, type: 3}
+    - {fileID: 7065494721451498036, guid: 8a6d7b3b6c7cc164b93b55d4a8ce6831, type: 3}
+    - {fileID: -6134133261910419508, guid: 8a6d7b3b6c7cc164b93b55d4a8ce6831, type: 3}
+  ballista:
+    name: "\uAD00\uD1B5 \uBC1C\uB9AC\uC2A4\uD0C0"
+    rotates: 1
+    range: 9
+    damageMul: 3
+    interval: 2.5
+    scale: 0.74
+    headOffset: {x: 0, y: 1.77}
+    footOffset: 0
+    spriteFacesRight: 1
+    muzzleDistance: 0.6
+    projectileSpeed: 20
+    flightTime: 0.6
+    projectileSize: 1.8
+    fxSize: 1.1
+    fireSound: {fileID: 8300000, guid: 654f1e621e8af4a2ca7a6811c2d75c54, type: 3}
+    baseSprite: {fileID: -6617422884606833020, guid: 010a8eaf1ec25af41991941447612c61, type: 3}
+    idle:
+    - {fileID: 5766507412595766674, guid: 010a8eaf1ec25af41991941447612c61, type: 3}
+    - {fileID: 5689426504717173667, guid: 010a8eaf1ec25af41991941447612c61, type: 3}
+    attack:
+    - {fileID: -5279626234761147101, guid: 010a8eaf1ec25af41991941447612c61, type: 3}
+    - {fileID: -2521758479423642620, guid: 010a8eaf1ec25af41991941447612c61, type: 3}
+    - {fileID: 6222636302656105763, guid: 010a8eaf1ec25af41991941447612c61, type: 3}
+    - {fileID: 5721253714373416916, guid: 010a8eaf1ec25af41991941447612c61, type: 3}
+    sleep: {fileID: -6793295572175254177, guid: 010a8eaf1ec25af41991941447612c61, type: 3}
+    projectile:
+    - {fileID: 6186344528139282593, guid: 010a8eaf1ec25af41991941447612c61, type: 3}
+    - {fileID: 7805833361514861169, guid: 010a8eaf1ec25af41991941447612c61, type: 3}
+    hitFx:
+    - {fileID: 8933141000680962328, guid: 010a8eaf1ec25af41991941447612c61, type: 3}
+    - {fileID: -5087864783306134423, guid: 010a8eaf1ec25af41991941447612c61, type: 3}
+    groundFx: []
+  dragon:
+    name: "\uD654\uB8E1\uD3EC"
+    rotates: 1
+    range: 7
+    damageMul: 2
+    interval: 3
+    scale: 0.86
+    headOffset: {x: 0, y: 1.82}
+    footOffset: 0
+    spriteFacesRight: 1
+    muzzleDistance: 0.6
+    projectileSpeed: 14
+    flightTime: 0.55
+    projectileSize: 1.3
+    fxSize: 2.6
+    fireSound: {fileID: 8300000, guid: 7c1892dedf3abc5499ce92d92a02baca, type: 3}
+    baseSprite: {fileID: 3669448768874234838, guid: 45e0cffb2df476d43ad0af050b0cb36f, type: 3}
+    idle:
+    - {fileID: -1670638011658609085, guid: 45e0cffb2df476d43ad0af050b0cb36f, type: 3}
+    - {fileID: 8566352296050527617, guid: 45e0cffb2df476d43ad0af050b0cb36f, type: 3}
+    attack:
+    - {fileID: 8125381784685705265, guid: 45e0cffb2df476d43ad0af050b0cb36f, type: 3}
+    - {fileID: -972004644774188710, guid: 45e0cffb2df476d43ad0af050b0cb36f, type: 3}
+    - {fileID: -8965856976488090230, guid: 45e0cffb2df476d43ad0af050b0cb36f, type: 3}
+    - {fileID: -7200894511532360650, guid: 45e0cffb2df476d43ad0af050b0cb36f, type: 3}
+    sleep: {fileID: -7266556064703483877, guid: 45e0cffb2df476d43ad0af050b0cb36f, type: 3}
+    projectile:
+    - {fileID: 7469589732271472660, guid: 45e0cffb2df476d43ad0af050b0cb36f, type: 3}
+    - {fileID: 6327428748645746396, guid: 45e0cffb2df476d43ad0af050b0cb36f, type: 3}
+    - {fileID: -7427851176052015690, guid: 45e0cffb2df476d43ad0af050b0cb36f, type: 3}
+    hitFx:
+    - {fileID: 6185005910450683651, guid: 45e0cffb2df476d43ad0af050b0cb36f, type: 3}
+    - {fileID: 1592463422089467998, guid: 45e0cffb2df476d43ad0af050b0cb36f, type: 3}
+    - {fileID: -5734198330320084078, guid: 45e0cffb2df476d43ad0af050b0cb36f, type: 3}
+    - {fileID: 2357915527822424090, guid: 45e0cffb2df476d43ad0af050b0cb36f, type: 3}
+    groundFx:
+    - {fileID: -8465848997325409017, guid: 45e0cffb2df476d43ad0af050b0cb36f, type: 3}
+    - {fileID: 680103897305570650, guid: 45e0cffb2df476d43ad0af050b0cb36f, type: 3}
+    - {fileID: -918369721237464254, guid: 45e0cffb2df476d43ad0af050b0cb36f, type: 3}
+  padCenters:
+  - {x: -11, y: -5.9}
+  - {x: -3, y: -5.9}
+  - {x: -15, y: -11.9}
+  - {x: -7, y: -11.9}
+  - {x: 1, y: -11.9}
+  padKinds: 0000000001000000000000000300000002000000
+  padCosts: 3200000064000000320000002c010000c8000000
+  padHalfSize: 1
+  buildStayTime: 1.5
+  buildPopTime: 0.2
+  buildSound: {fileID: 8300000, guid: 8c9b2eff513f448d281430937d0ca326, type: 3}
+  priceColor: {r: 1, g: 0.9, b: 0.45, a: 1}
+  pricePoorColor: {r: 1, g: 0.35, b: 0.3, a: 1}
+  padOutlineColor: {r: 1, g: 0.85, b: 0.35, a: 0.55}
+  gaugeColor: {r: 1, g: 0.82, b: 0.15, a: 0.6}
+  gaugeSortingLayer: ForeGround
+  gaugeSortingOrder: 6
+  gaugeInset: 0.82
+  padSprite: {fileID: -6385723796518320803, guid: bd05d95f57ad55a42a4bf9e659d0b294, type: 3}
+  turretBaseDamage: 25
+  slowRate: 0.4
+  slowRadius: 1.5
+  slowTime: 3
+  explodeRadius: 2
+  burnDps: 0.3
+  burnTime: 3
+  flameTime: 3
+  explodeSound: {fileID: 8300000, guid: 09a1eb7114a464e0dbcbf5c73bcc3eb2, type: 3}
+  idleAnimate: 0
+  idleFps: 1.5
+  attackFps: 14
+  fxFps: 12
+  sortingLayer: Weapon

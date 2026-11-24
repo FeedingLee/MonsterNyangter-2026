@@ -1,0 +1,376 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180250d4f4e86354482c74e90e122e4e, type: 3}
+  m_Name: GemCatalog
+  m_EditorClassIdentifier: 
+  gems:
+  - name: "\uACF5\uACA9\uB825 \uC82C"
+    category: 0
+    stat: 0
+    value: 0.04
+    icon: {fileID: 772957775, guid: 3c87b65ffe76da446bb08aeaa347a47a, type: 3}
+    retired: 0
+  - name: "\uACF5\uACA9\uC18D\uB3C4 \uC82C"
+    category: 0
+    stat: 1
+    value: 0.04
+    icon: {fileID: -331372829, guid: 3c87b65ffe76da446bb08aeaa347a47a, type: 3}
+    retired: 0
+  - name: "\uACF5\uACA9 \uCFE8\uD0C0\uC784 \uC82C"
+    category: 0
+    stat: 2
+    value: -0.04
+    icon: {fileID: 265685433, guid: 3c87b65ffe76da446bb08aeaa347a47a, type: 3}
+    retired: 0
+  - name: "\uBB34\uAE30 \uC2A4\uD0AC \uD53C\uD574 \uC82C"
+    category: 0
+    stat: 28
+    value: 0.08
+    icon: {fileID: -640510149, guid: 3c87b65ffe76da446bb08aeaa347a47a, type: 3}
+    retired: 0
+  - name: "\uBB34\uAE30 \uC2A4\uD0AC \uCFE8\uD0C0\uC784 \uC82C"
+    category: 0
+    stat: 27
+    value: -0.05
+    icon: {fileID: -2019976856, guid: 3c87b65ffe76da446bb08aeaa347a47a, type: 3}
+    retired: 0
+  - name: "\uBCF4\uC870\uBB34\uAE30 \uD53C\uD574 \uC82C"
+    category: 0
+    stat: 29
+    value: 0.08
+    icon: {fileID: 1262715211, guid: 3c87b65ffe76da446bb08aeaa347a47a, type: 3}
+    retired: 0
+  - name: "\uCD5C\uB300 \uCCB4\uB825 \uC82C"
+    category: 1
+    stat: 32
+    value: 10
+    icon: {fileID: 25929567, guid: 3c87b65ffe76da446bb08aeaa347a47a, type: 3}
+    retired: 0
+  - name: "\uBC1B\uB294 \uD53C\uD574 \uC82C"
+    category: 1
+    stat: 30
+    value: -0.04
+    icon: {fileID: 594648069, guid: 3c87b65ffe76da446bb08aeaa347a47a, type: 3}
+    retired: 0
+  - name: "\uAD6C\uB974\uAE30 \uCFE8\uD0C0\uC784 \uC82C"
+    category: 1
+    stat: 5
+    value: -0.06
+    icon: {fileID: 761793672, guid: 3c87b65ffe76da446bb08aeaa347a47a, type: 3}
+    retired: 0
+  - name: "\uC774\uB3D9\uC18D\uB3C4 \uC82C"
+    category: 1
+    stat: 3
+    value: 0.04
+    icon: {fileID: -2095040259, guid: 3c87b65ffe76da446bb08aeaa347a47a, type: 3}
+    retired: 0
+  - name: "\uACBD\uD5D8\uCE58 \uD68D\uB4DD\uB7C9 \uC82C"
+    category: 2
+    stat: 6
+    value: 0.06
+    icon: {fileID: -1008360863, guid: 3c87b65ffe76da446bb08aeaa347a47a, type: 3}
+    retired: 0
+  - name: "\uB0E5\uB0E5\uCF54\uC778 \uD68D\uB4DD\uB7C9 \uC82C"
+    category: 2
+    stat: 15
+    value: 0.08
+    icon: {fileID: 1542196037, guid: 3c87b65ffe76da446bb08aeaa347a47a, type: 3}
+    retired: 0
+  - name: "\uC2DC\uC791 \uB9AC\uB864 \uC82C"
+    category: 2
+    stat: 22
+    value: 1
+    icon: {fileID: -550075753, guid: 3c87b65ffe76da446bb08aeaa347a47a, type: 3}
+    retired: 0
+  - name: "\uD544\uC0B4\uAE30 \uC704\uB825 \uC82C"
+    category: 2
+    stat: 10
+    value: 0.1
+    icon: {fileID: -1673181069, guid: 3c87b65ffe76da446bb08aeaa347a47a, type: 3}
+    retired: 1
+  - name: "\uBB34\uAE30\xB7\uCD1D\uC54C \uD06C\uAE30 \uC82C"
+    category: 2
+    stat: 31
+    value: 0.08
+    icon: {fileID: 1788831123, guid: 3c87b65ffe76da446bb08aeaa347a47a, type: 3}
+    retired: 0
+  - name: "\uC2DC\uC791 \uB0E5\uB0E5\uCF54\uC778 \uC82C"
+    category: 2
+    stat: 33
+    value: 20
+    icon: {fileID: 678768877, guid: 3c87b65ffe76da446bb08aeaa347a47a, type: 3}
+    retired: 0
+  - name: "\uBCF4\uB108\uC2A4 \uC120\uD0DD \uC82C"
+    category: 2
+    stat: 34
+    value: 1
+    icon: {fileID: -1673181069, guid: 3c87b65ffe76da446bb08aeaa347a47a, type: 3}
+    retired: 0
+  gemRewardClear: 4
+  failNightsPerGem: 3
+  failGemMax: 2
+  specialDropMinNights: 3
+  specialUpOptions:
+  - stat: 0
+    category: 0
+    from: 10
+    to: 18
+    scale: 0.01
+    retired: 0
+  - stat: 1
+    category: 0
+    from: 10
+    to: 18
+    scale: 0.01
+    retired: 0
+  - stat: 28
+    category: 0
+    from: 20
+    to: 35
+    scale: 0.01
+    retired: 0
+  - stat: 27
+    category: 0
+    from: -10
+    to: -18
+    scale: 0.01
+    retired: 0
+  - stat: 29
+    category: 0
+    from: 20
+    to: 30
+    scale: 0.01
+    retired: 0
+  - stat: 32
+    category: 1
+    from: 20
+    to: 35
+    scale: 1
+    retired: 0
+  - stat: 30
+    category: 1
+    from: -6
+    to: -12
+    scale: 0.01
+    retired: 0
+  - stat: 3
+    category: 1
+    from: 8
+    to: 14
+    scale: 0.01
+    retired: 0
+  - stat: 10
+    category: 2
+    from: 20
+    to: 35
+    scale: 0.01
+    retired: 1
+  - stat: 6
+    category: 2
+    from: 15
+    to: 25
+    scale: 0.01
+    retired: 0
+  - stat: 15
+    category: 2
+    from: 15
+    to: 25
+    scale: 0.01
+    retired: 0
+  - stat: 31
+    category: 2
+    from: 15
+    to: 25
+    scale: 0.01
+    retired: 0
+  specialDownOptions:
+  - stat: 0
+    category: 0
+    from: -4
+    to: -8
+    scale: 0.01
+    retired: 0
+  - stat: 1
+    category: 0
+    from: -4
+    to: -8
+    scale: 0.01
+    retired: 0
+  - stat: 28
+    category: 0
+    from: -15
+    to: -25
+    scale: 0.01
+    retired: 0
+  - stat: 27
+    category: 0
+    from: 8
+    to: 15
+    scale: 0.01
+    retired: 0
+  - stat: 29
+    category: 0
+    from: -15
+    to: -30
+    scale: 0.01
+    retired: 0
+  - stat: 32
+    category: 1
+    from: -8
+    to: -15
+    scale: 1
+    retired: 0
+  - stat: 3
+    category: 1
+    from: -4
+    to: -8
+    scale: 0.01
+    retired: 0
+  - stat: 5
+    category: 1
+    from: 10
+    to: 20
+    scale: 0.01
+    retired: 0
+  - stat: 30
+    category: 1
+    from: 4
+    to: 8
+    scale: 0.01
+    retired: 0
+  - stat: 6
+    category: 2
+    from: -8
+    to: -15
+    scale: 0.01
+    retired: 0
+  - stat: 15
+    category: 2
+    from: -10
+    to: -20
+    scale: 0.01
+    retired: 0
+  bonusPickPerGem: 1
+  specialCombineCount: 4
+  specialDropClear: 0.1
+  specialDropFail: 0.03
+  shardPerGem: 5
+  rerollCost: 10
+  lockCostMul: 2
+  specialSlotCount: 3
+  specialSlotsOpenAtStart: 1
+  specialSlotsPerClear: 1
+  specialAttack: {fileID: -71631262, guid: d86fc6176d4b51845af1de868ddafb9f, type: 3}
+  specialSurvival: {fileID: -118271316, guid: d86fc6176d4b51845af1de868ddafb9f, type: 3}
+  specialUtility: {fileID: 1720765359, guid: d86fc6176d4b51845af1de868ddafb9f, type: 3}
+  specialAttackPlain: {fileID: 1903522833, guid: 86017771229e2ac42b21cd9b08ef3148, type: 3}
+  specialSurvivalPlain: {fileID: -1625880763, guid: 86017771229e2ac42b21cd9b08ef3148, type: 3}
+  specialUtilityPlain: {fileID: -2001196992, guid: 86017771229e2ac42b21cd9b08ef3148, type: 3}
+  upColor: {r: 0.25, g: 0.58, b: 0.2, a: 1}
+  downColor: {r: 0.78, g: 0.2, b: 0.16, a: 1}
+  warningColor: {r: 0.78, g: 0.16, b: 0.12, a: 1}
+  warningFontScale: 0.78
+  warningGap: 18
+  slotsPerCategory: 3
+  slotsOpenAtStart: 1
+  slotsPerClear: 1
+  attackColor: {r: 0.78, g: 0.25, b: 0.2, a: 1}
+  survivalColor: {r: 0.36, g: 0.62, b: 0.25, a: 1}
+  utilityColor: {r: 0.25, g: 0.45, b: 0.8, a: 1}
+  specialColor: {r: 0.55, g: 0.32, b: 0.78, a: 1}
+  shard: {fileID: 1361860050, guid: e919181cac5ad4346af205c37dc6d1e7, type: 3}
+  lockBig: {fileID: 763284073, guid: e919181cac5ad4346af205c37dc6d1e7, type: 3}
+  equippedBadge: {fileID: 1149963259, guid: e919181cac5ad4346af205c37dc6d1e7, type: 3}
+  unknownAttack: {fileID: -1037579986, guid: e919181cac5ad4346af205c37dc6d1e7, type: 3}
+  unknownSurvival: {fileID: -1926075197, guid: e919181cac5ad4346af205c37dc6d1e7, type: 3}
+  unknownUtility: {fileID: 345758192, guid: e919181cac5ad4346af205c37dc6d1e7, type: 3}
+  unknownSpecial: {fileID: 1748468738, guid: e919181cac5ad4346af205c37dc6d1e7, type: 3}
+  unknownSpecialPlain: {fileID: 2114927886, guid: 6b090f32282b8f34f8c090e8658e21ae, type: 3}
+  specialGlow: {fileID: -1510823983, guid: 6b090f32282b8f34f8c090e8658e21ae, type: 3}
+  specialGlowSize: 230
+  specialGlowInTime: 0.25
+  specialGlowRestAlpha: 0.75
+  specialGlowPulse: 0.15
+  woodPanel: {fileID: 1189959003, guid: 7f5a34e96531b4e44a9cee0f30948818, type: 3}
+  paperPanel: {fileID: 1191161796, guid: 1b68d1dd86218ed4d941a888239ad559, type: 3}
+  plainPanel: {fileID: 181606596, guid: 1b68d1dd86218ed4d941a888239ad559, type: 3}
+  darkPanel: {fileID: 1929779145, guid: 03557f57cfd33ab49939e024060191ad, type: 3}
+  slotDark: {fileID: 827759085, guid: 03557f57cfd33ab49939e024060191ad, type: 3}
+  slotSpecial: {fileID: 728007416, guid: 03557f57cfd33ab49939e024060191ad, type: 3}
+  banner: {fileID: 1197264087, guid: 03557f57cfd33ab49939e024060191ad, type: 3}
+  tabAttack: {fileID: -1554120, guid: 03557f57cfd33ab49939e024060191ad, type: 3}
+  tabSurvival: {fileID: 691725293, guid: 03557f57cfd33ab49939e024060191ad, type: 3}
+  tabUtility: {fileID: -1537148523, guid: 03557f57cfd33ab49939e024060191ad, type: 3}
+  slotAttack: {fileID: -1751208755, guid: 03557f57cfd33ab49939e024060191ad, type: 3}
+  slotSurvival: {fileID: 1931112100, guid: 03557f57cfd33ab49939e024060191ad, type: 3}
+  slotUtility: {fileID: -1842213527, guid: 03557f57cfd33ab49939e024060191ad, type: 3}
+  slotSpecialFrame: {fileID: -220672553, guid: 03557f57cfd33ab49939e024060191ad, type: 3}
+  slotLocked: {fileID: -46008374, guid: 03557f57cfd33ab49939e024060191ad, type: 3}
+  slotPlus: {fileID: 184445076, guid: 03557f57cfd33ab49939e024060191ad, type: 3}
+  buttonGreen: {fileID: 976305531, guid: 1c683a2fb6ebb1046a02f1cfc0645408, type: 3}
+  buttonBrown: {fileID: -667956841, guid: 1c683a2fb6ebb1046a02f1cfc0645408, type: 3}
+  buttonBeige: {fileID: -1705073015, guid: 1c683a2fb6ebb1046a02f1cfc0645408, type: 3}
+  buttonGrey: {fileID: -1230041995, guid: 1c683a2fb6ebb1046a02f1cfc0645408, type: 3}
+  arrowRight: {fileID: -1656382990, guid: 03557f57cfd33ab49939e024060191ad, type: 3}
+  divider: {fileID: 912894159, guid: 03557f57cfd33ab49939e024060191ad, type: 3}
+  resultBar: {fileID: -474943436, guid: 6bf3ebce382d8444482a7f9cc702ee7d, type: 3}
+  questClear: {fileID: 282719160, guid: 94a8fa29388d83541920c962189e3062, type: 3}
+  questFailed: {fileID: -1552437647, guid: 94a8fa29388d83541920c962189e3062, type: 3}
+  resultDimAlpha: 0.55
+  resultIntroTime: 0.6
+  resultIconPosition: {x: 0, y: 110}
+  resultIconHeight: 380
+  resultBarPosition: {x: 0, y: -250}
+  resultBarSize: {x: 600, y: 110}
+  resultBarFontSize: 40
+  resultFailedIconHeight: 460
+  paperBandCenter: 35
+  bannerTextOffset: {x: 0, y: 0}
+  shopperFrames:
+  - {fileID: 2125879666, guid: 7fc10ad1d3045324d9bf9272bca55c39, type: 3}
+  - {fileID: -111608251, guid: 7fc10ad1d3045324d9bf9272bca55c39, type: 3}
+  - {fileID: 1750155652, guid: 7fc10ad1d3045324d9bf9272bca55c39, type: 3}
+  - {fileID: -1011659885, guid: 7fc10ad1d3045324d9bf9272bca55c39, type: 3}
+  - {fileID: 897261065, guid: 7fc10ad1d3045324d9bf9272bca55c39, type: 3}
+  - {fileID: 755257097, guid: 7fc10ad1d3045324d9bf9272bca55c39, type: 3}
+  - {fileID: -1046074893, guid: 7fc10ad1d3045324d9bf9272bca55c39, type: 3}
+  - {fileID: -536443408, guid: 7fc10ad1d3045324d9bf9272bca55c39, type: 3}
+  - {fileID: -286492106, guid: 7fc10ad1d3045324d9bf9272bca55c39, type: 3}
+  - {fileID: 1086246416, guid: 7fc10ad1d3045324d9bf9272bca55c39, type: 3}
+  - {fileID: -1209558342, guid: 7fc10ad1d3045324d9bf9272bca55c39, type: 3}
+  - {fileID: 1468318141, guid: 7fc10ad1d3045324d9bf9272bca55c39, type: 3}
+  - {fileID: 1165330827, guid: 7fc10ad1d3045324d9bf9272bca55c39, type: 3}
+  - {fileID: -2038062475, guid: 7fc10ad1d3045324d9bf9272bca55c39, type: 3}
+  - {fileID: -410100969, guid: 7fc10ad1d3045324d9bf9272bca55c39, type: 3}
+  - {fileID: 1184233624, guid: 7fc10ad1d3045324d9bf9272bca55c39, type: 3}
+  - {fileID: 569229849, guid: 7fc10ad1d3045324d9bf9272bca55c39, type: 3}
+  - {fileID: -460685752, guid: 7fc10ad1d3045324d9bf9272bca55c39, type: 3}
+  shopperIdleFrame: 0
+  shopperIdleTime: {x: 5, y: 9}
+  shopperBreathPixels: 1
+  shopperBreathPeriod: 2
+  shopperFps: 8
+  shopperActions:
+  - name: "\uC778\uC0AC"
+    frames: 060000000600000007000000070000000800000008000000070000000700000008000000080000000600000006000000
+  - name: "\uC82C \uC790\uB791"
+    frames: 09000000090000000a0000000a00000009000000090000000a0000000a0000000a0000000a000000
+  - name: "\uACE0\uBBFC"
+    frames: 0d0000000d0000000d0000000e0000000e0000000e0000000e0000000e0000000e0000000d0000000d000000
+  - name: "\uBC18\uC9DD"
+    frames: 0f0000000f00000010000000100000000f0000000f000000100000001000000010000000
+  shopperFaceRight: 1
+  shopperPosition: {x: 43, y: -20}
+  shopperSize: {x: 330, y: 220}
+  shopperTable: {fileID: 1679413419, guid: 0ca333d07a0f68947a4901d17e0bfa08, type: 3}
+  shopperTablePosition: {x: 0, y: -100}
+  shopperTableSize: {x: 300, y: 175}

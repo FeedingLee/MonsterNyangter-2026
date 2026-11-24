@@ -1,4 +1,4 @@
-using JetBrains.Annotations;
+ï»¿using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,11 +8,11 @@ public class Gear : MonoBehaviour
     public ItemData.ItemType type;
     public Weapon Weapon;
 
-    public float power;                 // ´É·ÂÄ¡ ·¹º§¾÷ ½Ã °¡Áú ´É·ÂÄ¡
-    public static float rate_stat;      // ¿¬»ç¼Óµµ ´É·ÂÄ¡
-    public static float damage_stat;    // µ¥¹ÌÁö ´É·ÂÄ¡
-    public static float stamina_stat;   // ½ºÅ×¹Ì³ª ´É·ÂÄ¡
-    public static int upgrade_stat;     // ¹«±â °­È­
+    public float power;                 // ëŠ¥ë ¥ì¹˜ ë ˆë²¨ì—… ì‹œ ê°€ì§ˆ ëŠ¥ë ¥ì¹˜
+    public static float rate_stat;      // ì—°ì‚¬ì†ë„ ëŠ¥ë ¥ì¹˜
+    public static float damage_stat;    // ë°ë¯¸ì§€ ëŠ¥ë ¥ì¹˜
+    public static float stamina_stat;   // ìŠ¤í…Œë¯¸ë‚˜ ëŠ¥ë ¥ì¹˜
+    public static int upgrade_stat;     // ë¬´ê¸° ê°•í™”
 
     public float RemDmg;
     public float RemSpeed;
@@ -20,7 +20,7 @@ public class Gear : MonoBehaviour
 
     public void Init(ItemData data)
     {
-        // ±âº»¼¼ÆÃ
+        // ê¸°ë³¸ì„¸íŒ…
         if (data.itemId == 5)
         {
             name = "Rate_Up [" + data.itemId + "]";
@@ -44,15 +44,18 @@ public class Gear : MonoBehaviour
         transform.parent = GameManager.instance.player.transform;
         transform.localPosition = Vector3.zero;
 
-        // °ª ¼¼ÆÃ
+        // ê°’ ì„¸íŒ…
         type = data.itemType;
         power = data.damages[0];
 
         ApplyGear();
     }
 
+    private float prevPower;                                    // ì§ì „ ë ˆë²¨ì— ì ìš©í–ˆë˜ ëˆ„ì ê°’ (ë ˆë²¨ì—… ë•Œ ê±·ì–´ ë‚´ê³  ìƒˆ ê°’ìœ¼ë¡œ)
+
     public void LevelUp(float rate)
     {
+        prevPower = this.power;
         this.power = rate;
         ApplyGear();
     }
@@ -62,38 +65,40 @@ public class Gear : MonoBehaviour
         switch (type)
         {
             case ItemData.ItemType.Rate_Up:
-                rate_stat = power;                // ¿¬»ç¼Óµµ ´É·ÂÄ¡¸¦, W_Rates µ¥¹ÌÁö ¸¸Å­ Àû¿ë
+                rate_stat = power;                // ì—°ì‚¬ì†ë„ ëŠ¥ë ¥ì¹˜ë¥¼, W_Rates ë°ë¯¸ì§€ ë§Œí¼ ì ìš©
                 RateUp();
                 break;
             case ItemData.ItemType.Speed_Up:
                 SpeedUp();
                 break;
             case ItemData.ItemType.Damage_Up:
-                damage_stat = power;              // µ¥¹ÌÁö ´É·ÂÄ¡¸¦, DamagesÀÇ µ¥¹ÌÁö ¸¸Å­ Àû¿ë
+                damage_stat = power;              // ë°ë¯¸ì§€ ëŠ¥ë ¥ì¹˜ë¥¼, Damagesì˜ ë°ë¯¸ì§€ ë§Œí¼ ì ìš©
                 DamageUp();
                 break;
             case ItemData.ItemType.Stamina_Up:
-                stamina_stat = power;             // ½ºÅ×¹Ì³ª ´É·ÂÄ¡¸¦, W_SpeedsÀÇ µ¥¹ÌÁö ¸¸Å­ Àû¿ë
+                stamina_stat = power;             // ìŠ¤í…Œë¯¸ë‚˜ ëŠ¥ë ¥ì¹˜ë¥¼, W_Speedsì˜ ë°ë¯¸ì§€ ë§Œí¼ ì ìš©
                 StaminaUp();
                 break;
             case ItemData.ItemType.Weapon_Upgrade:
-                upgrade_stat = (int)power;        // ¾÷±×·¹ÀÌµå ´É·ÂÄ¡¸¦, CountsÀÇ µ¥¹ÌÁö ¸¸Å­ Àû¿ë
+                upgrade_stat = (int)power;        // ì—…ê·¸ë ˆì´ë“œ ëŠ¥ë ¥ì¹˜ë¥¼, Countsì˜ ë°ë¯¸ì§€ ë§Œí¼ ì ìš©
                 WeaponUp();
                 break;
         }
     }
 
-    // ¿¬»ç¼Óµµ ½ºÅİ Áõ°¡ ·ÎÁ÷
+    // ì—°ì‚¬ì†ë„ ìŠ¤í…Ÿ ì¦ê°€ ë¡œì§
     private void RateUp()
     {
         Weapon[] weapons = transform.parent.GetComponentsInChildren<Weapon>();
 
         foreach (Weapon weapon in weapons)
         {
+            if (weapon.IsMain) continue;                     // ë©”ì¸ë¬´ê¸° ìˆ˜ì¹˜ëŠ” ë©”ì¸ë¬´ê¸° ë°ì´í„°ì—ì„œ (ì¹´ë“œ ë°°ìœ¨ì€ ì‹¤í–‰ ì‹œ ê³±í•¨)
             switch (weapon.id)
             {                                                                   
                 default:
-                    weapon.rate = weapon.rate * (1.0f - power);
+                    // ì¹´ë“œ ê°’ì€ ëˆ„ì ê°’: ì§ì „ ê°ì†Œë¥¼ ê±·ì–´ ë‚´ê³  ìƒˆ ê°’ìœ¼ë¡œ (ë ˆë²¨ë§ˆë‹¤ ê²¹ì³ ê³±í•´ì§€ì§€ ì•Šê²Œ)
+                    weapon.rate = weapon.rate / Mathf.Max(0.05f, 1.0f - prevPower) * (1.0f - power);
 
                     RemRate = weapon.rate;
                     weapon.Gear_RemRate = RemRate;
@@ -102,27 +107,30 @@ public class Gear : MonoBehaviour
         }
     }
 
-    // ÀÌµ¿¼Óµµ ½ºÅİ Áõ°¡ ·ÎÁ÷
+    // ì´ë™ì†ë„ ìŠ¤í…Ÿ ì¦ê°€ ë¡œì§
     private void SpeedUp()
     {
-        float speed = 3 * Character.Speed;                  // ¼ıÀÚ´Â ÇÃ·¹ÀÌ¾îÀÇ ±âº»¼Óµµ¸¦ ÀÇ¹ÌÇÔ
+        float speed = 3 * Character.Speed;                  // ìˆ«ìëŠ” í”Œë ˆì´ì–´ì˜ ê¸°ë³¸ì†ë„ë¥¼ ì˜ë¯¸í•¨
         GameManager.instance.player.speed = speed + (speed * power);
         GameManager.instance.player.memoryspeed = speed + (speed * power);
     }
 
-    // °ø°İ·Â ½ºÅİ Áõ°¡ ·ÎÁ÷
+    // ê³µê²©ë ¥ ìŠ¤í…Ÿ ì¦ê°€ ë¡œì§
     private void DamageUp()
     {
         Weapon[] weapons = transform.parent.GetComponentsInChildren<Weapon>();
 
         foreach (Weapon weapon in weapons)
         {
+            if (weapon.IsMain) continue;                     // ë©”ì¸ë¬´ê¸° ìˆ˜ì¹˜ëŠ” ë©”ì¸ë¬´ê¸° ë°ì´í„°ì—ì„œ (ì¹´ë“œ ë°°ìœ¨ì€ ì‹¤í–‰ ì‹œ ê³±í•¨)
             switch (weapon.id)
             {
                 default:
-                    weapon.damage = weapon.damage * (1.0f + power);                     // µ¥¹ÌÁö »ó½Â
-                    weapon.Critical_Damage = weapon.Critical_Damage * (1.0f + power);   // Å©¸®Æ¼ÄÃ µ¥¹ÌÁö »ó½Â
-                    weapon.memorydamage = weapon.memorydamage * (1.0f + power);         // memorydamage °ª »ó½Â
+                    // ì¹´ë“œ ê°’ì€ ëˆ„ì ê°’: ì§ì „ ì¦ê°€ë¥¼ ê±·ì–´ ë‚´ê³  ìƒˆ ê°’ìœ¼ë¡œ (ë ˆë²¨ë§ˆë‹¤ ê²¹ì³ ê³±í•´ì§€ì§€ ì•Šê²Œ)
+                    float k = (1.0f + power) / (1.0f + prevPower);
+                    weapon.damage = weapon.damage * k;                     // ë°ë¯¸ì§€ ìƒìŠ¹
+                    weapon.Critical_Damage = weapon.Critical_Damage * k;   // í¬ë¦¬í‹°ì»¬ ë°ë¯¸ì§€ ìƒìŠ¹
+                    weapon.memorydamage = weapon.memorydamage * k;         // memorydamage ê°’ ìƒìŠ¹
 
                     RemDmg = weapon.damage;
                     weapon.Gear_RemDmg = RemDmg;
@@ -131,17 +139,21 @@ public class Gear : MonoBehaviour
         }
     }
 
-    // ½ºÅ×¹Ì³ª ½ºÅİ Áõ°¡ ·ÎÁ÷
+    // ê³µê²© ì†ë„ ìŠ¤í…Ÿ ì¦ê°€ ë¡œì§ (ìŒê²€, ëŒ€ê²€ íšŒì „ ì†ë„ ì¦ê°€. ëœìŠ¤ ëŒì§„ ìœ ì§€ ì‹œê°„ì—ëŠ” ì˜í–¥ ì—†ìŒ)
     private void StaminaUp()
     {
         Weapon[] weapons = transform.parent.GetComponentsInChildren<Weapon>();
 
         foreach (Weapon weapon in weapons)
         {
+            if (weapon.IsMain) continue;                     // ë©”ì¸ë¬´ê¸° ìˆ˜ì¹˜ëŠ” ë©”ì¸ë¬´ê¸° ë°ì´í„°ì—ì„œ (ì¹´ë“œ ë°°ìœ¨ì€ ì‹¤í–‰ ì‹œ ê³±í•¨)
             switch (weapon.id)
             {
+                case 4:
+                    break;
                 default:
-                    weapon.speed = weapon.speed * (1.0f + power);
+                    // ì¹´ë“œ ê°’ì€ ëˆ„ì ê°’: ì§ì „ ì¦ê°€ë¥¼ ê±·ì–´ ë‚´ê³  ìƒˆ ê°’ìœ¼ë¡œ (ë ˆë²¨ë§ˆë‹¤ ê²¹ì³ ê³±í•´ì§€ì§€ ì•Šê²Œ)
+                    weapon.speed = weapon.speed / (1.0f + prevPower) * (1.0f + power);
 
                     RemSpeed = weapon.speed;
                     weapon.Gear_RemSpd = RemSpeed;
@@ -150,13 +162,14 @@ public class Gear : MonoBehaviour
         }
     }
 
-    // ¹«±â °íÀ¯ ´É·ÂÄ¡ (½Ö°Ë °¹¼ö, °üÅë·Â, Âü¸ğ¾Æ È½¼ö, µ¹Áø¸ğµå ÀÌµ¿¼Óµµ µî)
+    // ë¬´ê¸° ê³ ìœ  ëŠ¥ë ¥ì¹˜ (ìŒê²€ ê°¯ìˆ˜, ê´€í†µë ¥, ì°¸ëª¨ì•„ íšŸìˆ˜, ëŒì§„ëª¨ë“œ ì´ë™ì†ë„ ë“±)
     private void WeaponUp()
     {
         Weapon[] weapons = transform.parent.GetComponentsInChildren<Weapon>();
 
         foreach (Weapon weapon in weapons)
         {
+            if (weapon.IsMain) continue;                     // ë©”ì¸ë¬´ê¸° ìˆ˜ì¹˜ëŠ” ë©”ì¸ë¬´ê¸° ë°ì´í„°ì—ì„œ (ì¹´ë“œ ë°°ìœ¨ì€ ì‹¤í–‰ ì‹œ ê³±í•¨)
             weapon.count = weapon.count + (int)power;
             break;
         }

@@ -1,0 +1,249 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c053c0b4fdd0294285c318d9b0be96e, type: 3}
+  m_Name: MiniBossConfig
+  m_EditorClassIdentifier: 
+  stageTimes:
+  - 60
+  - 210
+  - 390
+  - 570
+  spawnFxTime: 1
+  announceTime: 2
+  animFps: 8
+  sizeBoost: 1
+  healthBoost: 2
+  speedBoost: 1.3
+  spawnMargin: 4.5
+  spawnMarginRandom: 4.5
+  bodyMaterial: {fileID: 2100000, guid: 77e23552a41c1214d8fc07ba105de0b6, type: 2}
+  patternShake: 0.08
+  patternShakeTime: 0.2
+  spawnAngleGap: 100
+  sortingLayer: Bottom Shadow
+  hitFlashColor: {r: 1, g: 0.55, b: 0.55, a: 1}
+  hitFlashTime: 0.1
+  knockbackTaken: 0.35
+  separationPush: 8
+  bodyRadiusRate: 0.4
+  stepDustInterval: 0.3
+  stepDustSize: 0.5
+  chargeDebrisInterval: 0.07
+  spawnSmokeColor: {r: 0.3, g: 0.1, b: 0.18, a: 0.5}
+  spawnEmberColor: {r: 1, g: 0.45, b: 0.15, a: 1}
+  spawnFxRadius: 2.5
+  spawnEmberCount: 40
+  announceEmberCount: 36
+  announceEmberColor: {r: 1, g: 0.55, b: 0.2, a: 1}
+  species:
+  - displayName: "\uAC70\uB300 \uBA67\uB3FC\uC9C0"
+    kind: 0
+    count: 5
+    healthMul: 6
+    attackMul: 1.2
+    speedMul: 1.1
+    knockbackResist: 0.3
+    size: 1.6
+    useSizeBoost: 1
+    facesRight: 1
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    crispBody: 1
+    rewardCoins: {x: 20, y: 30}
+    animSpeed: 0.5
+    portrait: {fileID: -1090960625, guid: d02c773d0471b76478e83bc310e53177, type: 3}
+    idle:
+    - {fileID: 174991637, guid: d02c773d0471b76478e83bc310e53177, type: 3}
+    move:
+    - {fileID: 174991637, guid: d02c773d0471b76478e83bc310e53177, type: 3}
+    - {fileID: -928076475, guid: d02c773d0471b76478e83bc310e53177, type: 3}
+    attack:
+    - {fileID: 313563864, guid: d02c773d0471b76478e83bc310e53177, type: 3}
+    alert:
+    - {fileID: 1064259667, guid: d02c773d0471b76478e83bc310e53177, type: 3}
+    hit: []
+    death:
+    - {fileID: 1624514927, guid: d02c773d0471b76478e83bc310e53177, type: 3}
+    - {fileID: -1410959839, guid: d02c773d0471b76478e83bc310e53177, type: 3}
+  - displayName: "\uCF00\uC2A4\uD0B9"
+    kind: 1
+    count: 3
+    healthMul: 12
+    attackMul: 2
+    speedMul: 1.1
+    knockbackResist: 0.5
+    size: 1.7
+    useSizeBoost: 1
+    facesRight: 1
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    crispBody: 1
+    rewardCoins: {x: 30, y: 45}
+    animSpeed: 0.45
+    portrait: {fileID: -1815537217, guid: 372f1e8cf948f8244822895bf102fdf1, type: 3}
+    idle:
+    - {fileID: -1815537217, guid: 372f1e8cf948f8244822895bf102fdf1, type: 3}
+    move:
+    - {fileID: -1815537217, guid: 372f1e8cf948f8244822895bf102fdf1, type: 3}
+    - {fileID: -450987631, guid: 372f1e8cf948f8244822895bf102fdf1, type: 3}
+    - {fileID: 63808896, guid: 372f1e8cf948f8244822895bf102fdf1, type: 3}
+    - {fileID: 262167442, guid: 372f1e8cf948f8244822895bf102fdf1, type: 3}
+    attack:
+    - {fileID: 662391283, guid: 372f1e8cf948f8244822895bf102fdf1, type: 3}
+    alert:
+    - {fileID: -1225891255, guid: 372f1e8cf948f8244822895bf102fdf1, type: 3}
+    hit: []
+    death:
+    - {fileID: 1507200195, guid: 372f1e8cf948f8244822895bf102fdf1, type: 3}
+    - {fileID: 75895356, guid: 372f1e8cf948f8244822895bf102fdf1, type: 3}
+  - displayName: "\uBE44\uB4DC\uB860"
+    kind: 2
+    count: 20
+    healthMul: 10
+    attackMul: 1.5
+    speedMul: 1
+    knockbackResist: 1
+    size: 1.5
+    useSizeBoost: 0
+    facesRight: 1
+    tint: {r: 0.75, g: 0.65, b: 1, a: 1}
+    crispBody: 0
+    rewardCoins: {x: 45, y: 60}
+    animSpeed: 1
+    portrait: {fileID: 44832053, guid: 17bdea7513949204ca04781e32a29350, type: 3}
+    idle:
+    - {fileID: 44832053, guid: 17bdea7513949204ca04781e32a29350, type: 3}
+    move:
+    - {fileID: 44832053, guid: 17bdea7513949204ca04781e32a29350, type: 3}
+    - {fileID: -1806608650, guid: 17bdea7513949204ca04781e32a29350, type: 3}
+    attack:
+    - {fileID: 44832053, guid: 17bdea7513949204ca04781e32a29350, type: 3}
+    alert:
+    - {fileID: 44832053, guid: 17bdea7513949204ca04781e32a29350, type: 3}
+    hit: []
+    death:
+    - {fileID: -2106396133, guid: 17bdea7513949204ca04781e32a29350, type: 3}
+    - {fileID: 108035268, guid: 17bdea7513949204ca04781e32a29350, type: 3}
+  - displayName: "\uAC11\uAC01\uAD70\uC8FC"
+    kind: 3
+    count: 1
+    healthMul: 60
+    attackMul: 3
+    speedMul: 0.6
+    knockbackResist: 0.8
+    size: 2
+    useSizeBoost: 1
+    facesRight: 1
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    crispBody: 1
+    rewardCoins: {x: 60, y: 80}
+    animSpeed: 0.5
+    portrait: {fileID: -1064093730, guid: 6b044e6b76f60cd4b93a9aacb5be4c64, type: 3}
+    idle:
+    - {fileID: 306801625, guid: 6b044e6b76f60cd4b93a9aacb5be4c64, type: 3}
+    move:
+    - {fileID: 306801625, guid: 6b044e6b76f60cd4b93a9aacb5be4c64, type: 3}
+    - {fileID: 1354600992, guid: 6b044e6b76f60cd4b93a9aacb5be4c64, type: 3}
+    attack:
+    - {fileID: 224887840, guid: 6b044e6b76f60cd4b93a9aacb5be4c64, type: 3}
+    alert:
+    - {fileID: -325980176, guid: 6b044e6b76f60cd4b93a9aacb5be4c64, type: 3}
+    hit: []
+    death:
+    - {fileID: 1409329264, guid: 6b044e6b76f60cd4b93a9aacb5be4c64, type: 3}
+    - {fileID: 63426547, guid: 6b044e6b76f60cd4b93a9aacb5be4c64, type: 3}
+  chargeInterval: 5
+  chargeWarnTime: 1.2
+  chargeSpeedMul: 10
+  chargeIgnoresMonsters: 1
+  chargeWarnFrames:
+  - {fileID: -894812194, guid: c5f77704bfea43d4dbf1f97820ee758c, type: 3}
+  - {fileID: 1613143157, guid: c5f77704bfea43d4dbf1f97820ee758c, type: 3}
+  - {fileID: -519859041, guid: c5f77704bfea43d4dbf1f97820ee758c, type: 3}
+  - {fileID: -810515405, guid: c5f77704bfea43d4dbf1f97820ee758c, type: 3}
+  - {fileID: 920236513, guid: c5f77704bfea43d4dbf1f97820ee758c, type: 3}
+  - {fileID: 265631237, guid: c5f77704bfea43d4dbf1f97820ee758c, type: 3}
+  chargeWarnWidth: 1.4
+  chargeWarnSpacing: 1.3
+  chargeWarnColor: {r: 1, g: 0.3, b: 0.2, a: 1}
+  chargeDistance: 11
+  chargeBlockedWait: 2.5
+  chargeLosMargin: 0.3
+  chargeCornerMargin: 1.5
+  chargeReaimOnRelease: 0
+  chargeChainWarnTime: 0.5
+  chargeWallRideDistanceMul: 1.6
+  waspStartRadius: 6
+  waspMinRadius: 0.8
+  waspChaseRadius: 2.5
+  waspShrinkSpeed: 0.3
+  waspHitInterval: 0.5
+  waspWallOverlap: 1.15
+  waspSpinSpeed: 0
+  waspCenterFollowSpeed: 0
+  rallyRadius: 5
+  rallyHpRate: 0.3
+  summonInterval: 8
+  summonCount: 8
+  summonMax: 24
+  summonHealthMul: 3
+  summonCastTime: 1
+  summonCircleFrames:
+  - {fileID: 502371540, guid: c5f77704bfea43d4dbf1f97820ee758c, type: 3}
+  - {fileID: 824487817, guid: c5f77704bfea43d4dbf1f97820ee758c, type: 3}
+  - {fileID: -1125553444, guid: c5f77704bfea43d4dbf1f97820ee758c, type: 3}
+  - {fileID: 1277565180, guid: c5f77704bfea43d4dbf1f97820ee758c, type: 3}
+  - {fileID: 1333013738, guid: c5f77704bfea43d4dbf1f97820ee758c, type: 3}
+  - {fileID: 1303650218, guid: c5f77704bfea43d4dbf1f97820ee758c, type: 3}
+  summonCircleSize: 2.2
+  warnMarkCutoff: 0.08
+  summonSpotSize: 1.6
+  summonCircleColor: {r: 1, g: 0.3, b: 0.15, a: 1}
+  contactDps: 50
+  boxIdle:
+  - {fileID: 1893429750465163494, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: -5033959557016933550, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: 5202527988857448915, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: 8824343997772468818, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: -519107074, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: -27387907, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: -1073991944, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: 1872240280, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  boxOpen:
+  - {fileID: 4033486654625094369, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: 4668286535792524548, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: 3510293093804600656, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: 8896203015056042461, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: 2039005701465584996, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: 6274102713649536781, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: 1522943941, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: -156275037, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  boxBurst:
+  - {fileID: -4688970150202983638, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: -3013974871779025401, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: 7758983118653215494, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: 2714717680414584469, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: 5685425742143694987, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: -6578276116069116973, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: -8539695208468335981, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  - {fileID: 73699795, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  boxSize: 2.3
+  coinScatterRadius: 2.2
+  indicatorIcon: {fileID: 716384727, guid: ff75335da9809d94a974a3996f1b7d5f, type: 3}
+  indicatorFrame: {fileID: -2052435911, guid: bd921eb373b4c5049bf1b441654e23e7, type: 3}
+  indicatorArrow: {fileID: 767777184, guid: c5f77704bfea43d4dbf1f97820ee758c, type: 3}
+  indicatorScaleNear: 1.2
+  indicatorScaleFar: 0.6
+  indicatorDistNear: 5
+  indicatorDistFar: 25
+  indicatorMax: 5
+  indicatorBaseSize: 62
+  indicatorAlpha: 0.55
+  indicatorColor: {r: 0.55, g: 0.08, b: 0.08, a: 0.9}

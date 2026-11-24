@@ -1,23 +1,8 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Character : MonoBehaviour
 {    
-    public static float Speed           // ÀÌµ¿¼Óµµ Áõ°¡ : ÀÌµ¿¼Óµµ °ü·Ã ¿É¼Ç
-    {
-        get
-        {
-            switch (GameManager.instance.playerId)
-            {
-                case 0: return 1.0f;
-                case 1: return 1.1f;
-                case 2: return 0.8f;
-                case 3: return 1.5f;
-                default: return 1.0f;
-            }
-        }
-    }
-
-    public static float WeaponSpeed     // ½ºÅ×¹Ì³ª Áõ°¡ : °ø°İ¼Óµµ¿Í ·£½ºÀÇ µ¹ÁøÀ¯Áö ½Ã°£ °ü·Ã
+    public static float Speed           // ì´ë™ì†ë„ ì¦ê°€ : ì´ë™ì†ë„ ê´€ë ¨ ì˜µì…˜
     {
         get
         {
@@ -25,21 +10,36 @@ public class Character : MonoBehaviour
             {
                 case 0: return 1.0f;
                 case 1: return 1.2f;
-                case 2: return 1.0f;
-                case 3: return 0.5f;
+                case 2: return 0.85f;
+                case 3: return 1.35f;
                 default: return 1.0f;
             }
         }
     }
 
-    public static float WeaponRate      // ÄğÅ¸ÀÓ °¨¼Ò : Åõ»çÃ¼ ¹ß»ç ¼Óµµ, °ø°İ µô·¹ÀÌ °¨¼Ò
+    public static float WeaponSpeed     // ìŠ¤í…Œë¯¸ë‚˜ ì¦ê°€ : ê³µê²©ì†ë„ì™€ ëœìŠ¤ì˜ ëŒì§„ìœ ì§€ ì‹œê°„ ê´€ë ¨
     {
         get
         {
             switch (GameManager.instance.playerId)
             {
                 case 0: return 1.0f;
-                case 1: return 0.8f;
+                case 1: return 1.25f;
+                case 2: return 1.0f;
+                case 3: return 0.75f;
+                default: return 1.0f;
+            }
+        }
+    }
+
+    public static float WeaponRate      // ì¿¨íƒ€ì„ ê°ì†Œ : íˆ¬ì‚¬ì²´ ë°œì‚¬ ì†ë„, ê³µê²© ë”œë ˆì´ ê°ì†Œ
+    {
+        get
+        {
+            switch (GameManager.instance.playerId)
+            {
+                case 0: return 1.0f;
+                case 1: return 0.85f;
                 case 2: return 1.0f;
                 case 3: return 1.1f;
                 default: return 1.0f;
@@ -47,15 +47,15 @@ public class Character : MonoBehaviour
         }
     }
 
-    public static float Damage          // °ø°İ·Â Áõ°¡ : ÀüÃ¼ÀûÀÎ µ¥¹ÌÁö °ü·Ã
+    public static float Damage          // ê³µê²©ë ¥ ì¦ê°€ : ì „ì²´ì ì¸ ë°ë¯¸ì§€ ê´€ë ¨
     {
         get
         {
             switch (GameManager.instance.playerId)
             {
                 case 0: return 1.0f;
-                case 1: return 0.75f;
-                case 2: return 1.2f;
+                case 1: return 0.65f;
+                case 2: return 1.45f;
                 case 3: return 0.7f;
                 default: return 1.0f;
             }

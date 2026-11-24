@@ -1,39 +1,73 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class Option : MonoBehaviour
 {
-    public GameObject player;        // ÇÃ·¹ÀÌ À¯¹«¸¦ ÆÄ¾ÇÇÒ PlayerObject ¹Ş±â
-    public GameObject panel;         // Option Panel ¿ÀºêÁ§Æ® ¹èÄ¡ ÇÊ¿ä
-    public Button optionButton;      // Option Button ¿ÀºêÁ§Æ® ¹èÄ¡ ÇÊ¿ä
-    public Button continueButton;    // Option Panle -> Continue ¹èÄ¡ ÇÊ¿ä
-    public GameObject uiJoy;         // JoyStick ¿ÀºêÁ§Æ® ¹èÄ¡ ÇÊ¿ä
-    public GameObject GameResult;    // GameResult ¿ÀºêÁ§Æ® ¹èÄ¡ ÇÊ¿ä
+    public GameObject player;        // í”Œë ˆì´ ìœ ë¬´ë¥¼ íŒŒì•…í•  PlayerObject ë°›ê¸°
+    public GameObject panel;         // Option Panel ì˜¤ë¸Œì íŠ¸ ë°°ì¹˜ í•„ìš”
+    public Button optionButton;      // Option Button ì˜¤ë¸Œì íŠ¸ ë°°ì¹˜ í•„ìš”
+    public Button continueButton;    // Option Panle -> Continue ë°°ì¹˜ í•„ìš”
+    public GameObject uiJoy;         // JoyStick ì˜¤ë¸Œì íŠ¸ ë°°ì¹˜ í•„ìš”
+    public GameObject GameResult;    // GameResult ì˜¤ë¸Œì íŠ¸ ë°°ì¹˜ í•„ìš”
+    public Button giveUpButton;      // ì‚¬ë§í•˜ê¸°(í¬ê¸°) ë²„íŠ¼ (ë¹„ì›Œë‘ë©´ íŒ¨ë„ì—ì„œ GiveUpBtnê³¼ ì—°ê²°ëœ ë²„íŠ¼ì„ ìë™ìœ¼ë¡œ ì°¾ìŒ)
 
     private bool isPaused = false;
     private bool OptionPanel = false;
+    private RectTransform continueRect;
+    private Vector2 continueOriginalPos;
+    private Vector2 continueCenterPos;
 
     private void Start()
     {
-        // °ÔÀÓ ½ÃÀÛ ½Ã Option PanelÀ» ºñÈ°¼ºÈ­
+        // ê²Œì„ ì‹œì‘ ì‹œ Option Panelì„ ë¹„í™œì„±í™”
         panel.SetActive(false);
 
-        // Option ¹öÆ°¿¡ Å¬¸¯ ÀÌº¥Æ® ¸®½º³Ê µî·Ï
+        // ê²Œì„ ì‹œì‘ ì „ì—ëŠ” ì‚¬ë§í•˜ê¸° ë²„íŠ¼ì„ ìˆ¨ê¸°ê³  ë’¤ë¡œê°€ê¸° ë²„íŠ¼ì„ ê°€ìš´ë°ë¡œ ì˜®ê¸°ê¸° ìœ„í•´ ìœ„ì¹˜ë¥¼ ê¸°ì–µ
+        if (giveUpButton == null)
+        {
+            giveUpButton = FindGiveUpButton();
+        }
+        continueRect = continueButton.transform as RectTransform;
+        if (continueRect != null)
+        {
+            continueOriginalPos = continueRect.anchoredPosition;
+            continueCenterPos = continueOriginalPos;
+
+            // ë‘ ë²„íŠ¼ì´ ê°™ì€ ë¶€ëª¨ ì•„ë˜ ë‚˜ë€íˆ ìˆìœ¼ë©´ ë‘ ë²„íŠ¼ì˜ ê°€ìš´ë°, ì•„ë‹ˆë©´ ê°€ë¡œ ì¤‘ì•™
+            RectTransform giveUpRect = giveUpButton != null ? giveUpButton.transform as RectTransform : null;
+            if (giveUpRect != null && giveUpRect.parent == continueRect.parent)
+            {
+                continueCenterPos = (continueOriginalPos + giveUpRect.anchoredPosition) * 0.5f;
+            }
+            else
+            {
+                continueCenterPos.x = 0f;
+            }
+        }
+
+        // Option ë²„íŠ¼ì— í´ë¦­ ì´ë²¤íŠ¸ ë¦¬ìŠ¤ë„ˆ ë“±ë¡
         optionButton.onClick.AddListener(ToggleOption);
 
-        // Continue ¹öÆ°¿¡ Å¬¸¯ ÀÌº¥Æ® ¸®½º³Ê µî·Ï
+        // Continue ë²„íŠ¼ì— í´ë¦­ ì´ë²¤íŠ¸ ë¦¬ìŠ¤ë„ˆ ë“±ë¡
         continueButton.onClick.AddListener(ContinueGame);
     }
 
     private void Update()
     {
-        /* [ Á¶°Ç ] 
-        1. LevelUpFinish °¡ true ÀÏ¶§
-        2. Player ¿ÀºêÁ§Æ®°¡ true ÀÏ¶§
-        3. °ÔÀÓ°á°ú ÆÇ³ÚÀÌ False ÀÏ¶§ 
-        4. ¿É¼ÇÃ¢ÀÌ ²¨Á®ÀÖÀ» ¶§
-        =  Á¶ÀÌ½ºÆ½ È°¼ºÈ­.*/
+        // ê²Œì„ ì§„í–‰ ì¤‘ ESCë¥¼ ëˆ„ë¥´ë©´ ì˜µì…˜ì°½ì„ ì—´ê³ , ì—´ë ¤ ìˆìœ¼ë©´ ë‹«ìŒ
+        if (Input.GetKeyDown(KeyCode.Escape) && CanToggleByEscape())
+        {
+            // ë²„íŠ¼ì˜ í´ë¦­ ì´ë²¤íŠ¸ë¥¼ ì‹¤í–‰í•´ íš¨ê³¼ìŒ(ClickSound)ê¹Œì§€ í´ë¦­ê³¼ ë™ì¼í•˜ê²Œ ë™ì‘ì‹œí‚´
+            (OptionPanel ? continueButton : optionButton).onClick.Invoke();
+        }
+
+        /* [ ì¡°ê±´ ]
+        1. LevelUpFinish ê°€ true ì¼ë•Œ
+        2. Player ì˜¤ë¸Œì íŠ¸ê°€ true ì¼ë•Œ
+        3. ê²Œì„ê²°ê³¼ íŒë„¬ì´ False ì¼ë•Œ 
+        4. ì˜µì…˜ì°½ì´ êº¼ì ¸ìˆì„ ë•Œ
+        =  ì¡°ì´ìŠ¤í‹± í™œì„±í™”.*/
         if (LevelUp.instance.LevelUpFinish == true &&
             player.gameObject.activeInHierarchy == true &&
             GameResult.gameObject.activeInHierarchy == false &&
@@ -41,26 +75,41 @@ public class Option : MonoBehaviour
         {
             uiJoy.SetActive(true);
         }
-        // ·¹º§¾÷ÀÌ ³¡³ªÁö ¾Ê¾Ò´Ù¸é, Á¤ÁöÇÔ¼ö ½ÇÇà
+        // ë ˆë²¨ì—…ì´ ëë‚˜ì§€ ì•Šì•˜ë‹¤ë©´, ì •ì§€í•¨ìˆ˜ ì‹¤í–‰
         else if (LevelUp.instance.LevelUpFinish == false)
         {
             GameManager.instance.Stop();
         }
-        // °ÔÀÓÀ» ½Â¸®ÇÏ°Å³ª ÆĞ¹èÇÏ¿© Á¾·áµÈ´Ù¸é, ¿É¼Ç ¾ÆÀÌÄÜ ºñÈ°¼ºÈ­
+        // ê²Œì„ì„ ìŠ¹ë¦¬í•˜ê±°ë‚˜ íŒ¨ë°°í•˜ì—¬ ì¢…ë£Œëœë‹¤ë©´, ì˜µì…˜ ì•„ì´ì½˜ ë¹„í™œì„±í™”
         else if (GameResult.gameObject.activeInHierarchy == true)
         {
             optionButton.gameObject.SetActive(false);
         }
     }
 
+    // ìºë¦­í„° ì„ íƒ, ë ˆë²¨ì—…, ê²Œì„ ê²°ê³¼ í™”ë©´ì—ì„œëŠ” ESCë¡œ ì˜µì…˜ì„ ì—´ì§€ ì•ŠìŒ
+    private bool CanToggleByEscape()
+    {
+        return !ConfirmPopup.IsOpen &&                         // í¬ê¸° í™•ì¸ ì°½ì´ ë–  ìˆìœ¼ë©´ ì˜µì…˜ì„ ë‹«ì§€ ì•ŠìŒ
+               player.gameObject.activeInHierarchy &&
+               !GameResult.gameObject.activeInHierarchy &&
+               LevelUp.instance.LevelUpFinish &&
+               (GameManager.instance.isLive || OptionPanel);
+    }
+
     private void ToggleOption()
     {
         isPaused = !isPaused;
 
-        // Option Panel È°¼ºÈ­ »óÅÂ ÀüÈ¯
+        // Option Panel í™œì„±í™” ìƒíƒœ ì „í™˜
         panel.SetActive(isPaused);
 
-        // °ÔÀÓ ÀÏ½ÃÁ¤Áö ¹× Àç°³
+        if (isPaused)
+        {
+            ApplyButtonLayout();
+        }
+
+        // ê²Œì„ ì¼ì‹œì •ì§€ ë° ì¬ê°œ
         if (isPaused)
         {
             OptionPanel = true;
@@ -73,13 +122,45 @@ public class Option : MonoBehaviour
         }
     }
 
+    // ê²Œì„ ì‹œì‘ ì „(ìºë¦­í„° ì„ íƒ í™”ë©´)ì—ëŠ” ì‚¬ë§í•˜ê¸° ë²„íŠ¼ì„ ìˆ¨ê¸°ê³  ë’¤ë¡œê°€ê¸° ë²„íŠ¼ì„ ê°€ìš´ë°ì— ë°°ì¹˜
+    private void ApplyButtonLayout()
+    {
+        bool inGame = player.gameObject.activeInHierarchy;
+
+        if (giveUpButton != null)
+        {
+            giveUpButton.gameObject.SetActive(inGame);
+        }
+        if (continueRect != null)
+        {
+            continueRect.anchoredPosition = inGame || giveUpButton == null ? continueOriginalPos : continueCenterPos;
+        }
+    }
+
+    // íŒ¨ë„ ì•ˆì—ì„œ GiveUpBtn.SceneChangeê°€ ì—°ê²°ëœ ë²„íŠ¼, ë˜ëŠ” GiveUpBtnì´ ë¶™ì€ ë²„íŠ¼ì„ ì°¾ìŒ
+    private Button FindGiveUpButton()
+    {
+        foreach (Button button in panel.GetComponentsInChildren<Button>(true))
+        {
+            if (button.GetComponent<GiveUpBtn>() != null)
+                return button;
+
+            for (int i = 0; i < button.onClick.GetPersistentEventCount(); i++)
+            {
+                if (button.onClick.GetPersistentTarget(i) is GiveUpBtn)
+                    return button;
+            }
+        }
+        return null;
+    }
+
     private void ContinueGame()
     {
-        // ÇÃ·¹ÀÌ¾î ¿ÀºêÁ§Æ®°¡ ²¨Á®ÀÖÀ¸¸é, °ÔÀÓ ½ÇÇàÁßÀÌ ¾Æ´Ï±â ¶§¹®¿¡
+        // í”Œë ˆì´ì–´ ì˜¤ë¸Œì íŠ¸ê°€ êº¼ì ¸ìˆìœ¼ë©´, ê²Œì„ ì‹¤í–‰ì¤‘ì´ ì•„ë‹ˆê¸° ë•Œë¬¸ì—
         if (player.gameObject.activeInHierarchy == false)
         {
             panel.SetActive(false);
-            uiJoy.SetActive(false); // Á¶ÀÌ½ºÆ½ ²¨Áø»óÅÂ À¯Áö
+            uiJoy.SetActive(false); // ì¡°ì´ìŠ¤í‹± êº¼ì§„ìƒíƒœ ìœ ì§€
             isPaused = false;
         }
         else

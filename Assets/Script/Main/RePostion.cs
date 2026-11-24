@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -14,39 +14,39 @@ public class RePostion : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        // AreaTag°¡ ¾Æ´Ï¸é (Á¶°Ç)
+        // AreaTagê°€ ì•„ë‹ˆë©´ (ì¡°ê±´)
         if (!collision.CompareTag("Area"))
             return;
 
-        // ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡ ¹Ş¾Æ¿Í¼­ ÀúÀåÇÏ±â
+        // í”Œë ˆì´ì–´ì˜ ìœ„ì¹˜ ë°›ì•„ì™€ì„œ ì €ì¥í•˜ê¸°
         Vector3 playerPos = GameManager.instance.player.transform.position;
         Vector3 myPos = transform.position;
 
-        // Tag ÀÇ Case¿¡ µû¶ó Á¶°Ç ½ÇÇà
+        // Tag ì˜ Caseì— ë”°ë¼ ì¡°ê±´ ì‹¤í–‰
         switch (transform.tag)
         {
-            // ¹«ÇÑ¸Ê±â´ÉÀº ¹Ì»ç¿ë
+            // ë¬´í•œë§µê¸°ëŠ¥ì€ ë¯¸ì‚¬ìš©
             /*
             case "Ground":
-                // ÇÃ·¹ÀÌ¾î À§Ä¡ - Å¸ÀÏ¸Ê À§Ä¡ °è»êÀ¸·Î °Å¸® ±¸ÇØ¼­ ¹æÇâ ±¸ÇÏ±â
+                // í”Œë ˆì´ì–´ ìœ„ì¹˜ - íƒ€ì¼ë§µ ìœ„ì¹˜ ê³„ì‚°ìœ¼ë¡œ ê±°ë¦¬ êµ¬í•´ì„œ ë°©í–¥ êµ¬í•˜ê¸°
                 float diffX = playerPos.x - (myPos.x);
                 float diffY = playerPos.y - (myPos.y);
-                // True ¿Í False¿¡ ´ëÇÑ °ª ³Ö±â
+                // True ì™€ Falseì— ëŒ€í•œ ê°’ ë„£ê¸°
                 float dirX = diffX < 0 ? -1 : 1;
                 float dirY = diffY < 0 ? -1 : 1;
                 diffX = Mathf.Abs(diffX);
                 diffY = Mathf.Abs(diffY);
-                // µÎ ¿ÀºêÁ§Æ®ÀÇ °Å¸® Â÷ÀÌ¿¡¼­, XÃàÀÌ YÃàº¸´Ù Å©¸é ¼öÆò ÀÌµ¿
+                // ë‘ ì˜¤ë¸Œì íŠ¸ì˜ ê±°ë¦¬ ì°¨ì´ì—ì„œ, Xì¶•ì´ Yì¶•ë³´ë‹¤ í¬ë©´ ìˆ˜í‰ ì´ë™
                 if (diffX > diffY)
                 {
                     transform.Translate(Vector3.right * dirX * 70);
                 }
-                // µÎ ¿ÀºêÁ§Æ®ÀÇ °Å¸® Â÷ÀÌ¿¡¼­, YÃàÀÌ XÃàº¸´Ù Å©¸é ¼öÁ÷ ÀÌµ¿
+                // ë‘ ì˜¤ë¸Œì íŠ¸ì˜ ê±°ë¦¬ ì°¨ì´ì—ì„œ, Yì¶•ì´ Xì¶•ë³´ë‹¤ í¬ë©´ ìˆ˜ì§ ì´ë™
                 else if (diffX < diffY)
                 {
                     transform.Translate(Vector3.up * dirY * 70);
                 }
-                // ±× ¿Ü¿¡´Â Å¸ÀÏ 2°³ ÀÌµ¿
+                // ê·¸ ì™¸ì—ëŠ” íƒ€ì¼ 2ê°œ ì´ë™
                 else
                 {
                     transform.Translate(Vector3.right * dirX * 70);
@@ -55,9 +55,12 @@ public class RePostion : MonoBehaviour
                 break;
             */
             case "Enemy":
+                if (TryGetComponent(out Enemy guard) && (guard.GuardIdle || guard.NightWave))
+                    break;                                   // êµ°ë½ í˜¸ìœ„ ëŒ€ê¸° ì¤‘Â·ë°¤ ì›¨ì´ë¸Œ(ê²½ë¡œë¡œë§Œ ì´ë™): í”Œë ˆì´ì–´ ìª½ìœ¼ë¡œ ì¬ë°°ì¹˜ ì•ˆ í•¨
+                                                             // (ë°¤ ëª¬ìŠ¤í„°ê°€ í•œ í”„ë ˆì„ ì—‰ëš±í•œ ê³³Â·ë§µ ë°–ìœ¼ë¡œ ì˜®ê²¨ì ¸ í¬íƒ‘ì´ ë¹ˆ ê³³ì„ ì¡°ì¤€Â·ë°œì‚¬í•˜ë˜ ì›ì¸)
                 if (coll.enabled)
                 {
-                    // ¸¸¾à ±× Enemy°¡ »ıÁ¸»óÅÂ¶ó¸é, Àç¹èÄ¡µÇ¾î ´Ù°¡¿È
+                    // ë§Œì•½ ê·¸ Enemyê°€ ìƒì¡´ìƒíƒœë¼ë©´, ì¬ë°°ì¹˜ë˜ì–´ ë‹¤ê°€ì˜´
                     Vector3 dist = playerPos - myPos;
                     Vector3 ran = new Vector3(Random.Range(-6, 6), Random.Range(-6, 6), 0);
 

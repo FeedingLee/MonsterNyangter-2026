@@ -1,0 +1,221 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 176fd8d0e5412cc4f914bbbf67bdb7b1, type: 3}
+  m_Name: GimmickCatalog
+  m_EditorClassIdentifier: 
+  consumableSlotRate: 0.15
+  consumableOnlyEvery: 17
+  weaponOnlyEvery: 5
+  netRangeAdd: 0.3
+  icons:
+  - {fileID: 1338723762, guid: 8eaef733af0ffe5439a809eb32db6a2d, type: 3}
+  - {fileID: -1444101173, guid: 8eaef733af0ffe5439a809eb32db6a2d, type: 3}
+  - {fileID: -881945453, guid: 8eaef733af0ffe5439a809eb32db6a2d, type: 3}
+  - {fileID: -693808739, guid: 8eaef733af0ffe5439a809eb32db6a2d, type: 3}
+  - {fileID: -1202298227, guid: 8eaef733af0ffe5439a809eb32db6a2d, type: 3}
+  - {fileID: -1734312591, guid: 8eaef733af0ffe5439a809eb32db6a2d, type: 3}
+  - {fileID: 673022012, guid: 8eaef733af0ffe5439a809eb32db6a2d, type: 3}
+  - {fileID: -495608849, guid: 8eaef733af0ffe5439a809eb32db6a2d, type: 3}
+  - {fileID: -220728807, guid: 8eaef733af0ffe5439a809eb32db6a2d, type: 3}
+  - {fileID: 794820507, guid: 8eaef733af0ffe5439a809eb32db6a2d, type: 3}
+  - {fileID: 2031303623, guid: 8eaef733af0ffe5439a809eb32db6a2d, type: 3}
+  - {fileID: 437475737, guid: 8eaef733af0ffe5439a809eb32db6a2d, type: 3}
+  - {fileID: 1029707754, guid: 8eaef733af0ffe5439a809eb32db6a2d, type: 3}
+  - {fileID: 1873431228, guid: 8eaef733af0ffe5439a809eb32db6a2d, type: 3}
+  dodgeCounterBonus:
+  - 0.3
+  - 0.4
+  - 0.5
+  dodgeCounterWindow: 1
+  counterInstinctSpeed:
+  - 0.1
+  - 0.15
+  - 0.2
+  counterInstinctDuration: 2
+  focusPerStack:
+  - 0.03
+  - 0.04
+  - 0.05
+  focusInterval: 10
+  focusMaxStacks: 3
+  chainHitsPer: 1400000012000000100000000e0000000c000000
+  chainTargets: 0300000003000000040000000400000005000000
+  lightningDamageMul: 0.5
+  chainRadius: 4
+  lightningColor: {r: 0.55, g: 0.85, b: 1, a: 1}
+  lightningLifetime: 0.3
+  lightningWidth: 1.8
+  explodeChance:
+  - 0.1
+  - 0.15
+  - 0.2
+  explodeRadius: 1.5
+  explodeDamageMul: 0.5
+  huntBonus:
+  - 0.1
+  - 0.2
+  - 0.3
+  twinProjectiles: 0100000002000000
+  twinBlades: 0100000001000000
+  twinSpreadAngle: 10
+  twinSameTargetMul: 0.5
+  twinBladeSizeMul: 1.3
+  rerollFxSize: 51
+  rerollFxAlpha: 0.5
+  shieldInterval:
+  - 15
+  - 12
+  - 10
+  shieldColor: {r: 0.45, g: 0.8, b: 1, a: 0.35}
+  shieldSize: 1.6
+  frostSlow:
+  - 0.1
+  - 0.15
+  - 0.2
+  frostRadius: 2
+  frostColor: {r: 0.6, g: 0.9, b: 1, a: 0.55}
+  escapeMaxLevel: 1
+  escapeHealthRatio: 0.25
+  escapeInvincibleTime: 2
+  escapePushRadius: 3
+  escapePushForce: 8
+  escapeBlinkSpeed: 14
+  crisisPushRangeMul: 1.5
+  crisisPushForceMul: 2.25
+  lifeKillsPer: 64000000500000003c000000
+  lifeMaxHpStep: 0.01
+  lifeMaxHpCap: 0.2
+  lifeStrikeRatio:
+  - 0.15
+  - 0.25
+  - 0.35
+  lifeStrikeInterval: 5
+  lifeStrikeGlow: {r: 1, g: 0.35, b: 0.3, a: 1}
+  knockbackBaseDist: 1
+  knockbackPushTime: 0.15
+  knockbackCooldown: 0.5
+  subKnockbackMul: 0.5
+  miniBossKnockbackMul: 0.5
+  knockDualLeft: 0.05
+  knockDualRight: 0.2
+  knockDualSkill: 0.1
+  knockBowLeft: 0.1
+  knockBowRight: 0.2
+  knockBowRain: 0.05
+  knockHbgLight: 0.08
+  knockHbgHeavy: 0.35
+  knockHbgSniper: 1
+  knockGsLeft: 0.3
+  knockGsJust: 1
+  knockGsSkill: 0.6
+  knockLanceLeft: 0.2
+  knockLanceParry: 1
+  knockLanceZone: 0.1
+  knockExplosion: 0.3
+  shieldFrames:
+  - {fileID: -429652193, guid: fe4ba4861ba3d1f488a80243ebc18ae9, type: 3}
+  frostFrames:
+  - {fileID: -817186632, guid: fe4ba4861ba3d1f488a80243ebc18ae9, type: 3}
+  lightningFrames:
+  - {fileID: -1186668489, guid: 260fab00a5f12e14f8c8e6272898a777, type: 3}
+  - {fileID: 497517914, guid: 260fab00a5f12e14f8c8e6272898a777, type: 3}
+  - {fileID: -1944705763, guid: 260fab00a5f12e14f8c8e6272898a777, type: 3}
+  - {fileID: 1510720057, guid: 260fab00a5f12e14f8c8e6272898a777, type: 3}
+  - {fileID: 1856769000, guid: 260fab00a5f12e14f8c8e6272898a777, type: 3}
+  - {fileID: 1643643684, guid: 260fab00a5f12e14f8c8e6272898a777, type: 3}
+  - {fileID: -1105186774, guid: 260fab00a5f12e14f8c8e6272898a777, type: 3}
+  - {fileID: -1304236025, guid: 260fab00a5f12e14f8c8e6272898a777, type: 3}
+  - {fileID: -642648035, guid: 260fab00a5f12e14f8c8e6272898a777, type: 3}
+  - {fileID: 241064702, guid: 260fab00a5f12e14f8c8e6272898a777, type: 3}
+  - {fileID: -1820022040, guid: 260fab00a5f12e14f8c8e6272898a777, type: 3}
+  - {fileID: -623771772, guid: 260fab00a5f12e14f8c8e6272898a777, type: 3}
+  - {fileID: 1949089312, guid: 260fab00a5f12e14f8c8e6272898a777, type: 3}
+  - {fileID: -1787560051, guid: 260fab00a5f12e14f8c8e6272898a777, type: 3}
+  - {fileID: -1393450077, guid: 260fab00a5f12e14f8c8e6272898a777, type: 3}
+  - {fileID: -291576192, guid: 260fab00a5f12e14f8c8e6272898a777, type: 3}
+  shieldFps: 8
+  frostFps: 8
+  frostSize: 1.1
+  counterInstinctColor: {r: 1, g: 0.75, b: 0.35, a: 0.9}
+  counterInstinctAuraSize: 1.4
+  frostBodyTint: {r: 0.7, g: 0.88, b: 1, a: 1}
+  shieldPulse: 0.2
+  buffIconSize: 42
+  buffIconSpacing: 4
+  buffAlphaMin: 0.22
+  buffAlphaMax: 1
+  buffHeadOffsetY: 1.2
+  buffAboveChargeGap: 0.08
+  buffInactiveGray: 0.6
+  buffActiveScale: 1.12
+  frostOffsetY: -0.12
+  frame: {fileID: 1647925747, guid: ec420505ab1d26247acb64659c87889a, type: 3}
+  header: {fileID: -519366721, guid: ec420505ab1d26247acb64659c87889a, type: 3}
+  box: {fileID: -1865966948, guid: ec420505ab1d26247acb64659c87889a, type: 3}
+  card: {fileID: 119947486, guid: ec420505ab1d26247acb64659c87889a, type: 3}
+  slot: {fileID: -1866612527, guid: e4ba266698031664399c916dd223e2c4, type: 3}
+  levelTag: {fileID: 1749793838, guid: ec420505ab1d26247acb64659c87889a, type: 3}
+  badgeWeapon: {fileID: 1513586132, guid: ec420505ab1d26247acb64659c87889a, type: 3}
+  badgeGimmick: {fileID: -679875205, guid: ec420505ab1d26247acb64659c87889a, type: 3}
+  divider: {fileID: -2107435128, guid: ec420505ab1d26247acb64659c87889a, type: 3}
+  leaf: {fileID: -1201033300, guid: ec420505ab1d26247acb64659c87889a, type: 3}
+  buttonGreen: {fileID: 362766881, guid: ec420505ab1d26247acb64659c87889a, type: 3}
+  buttonBrown: {fileID: -660348740, guid: ec420505ab1d26247acb64659c87889a, type: 3}
+  buttonGrey: {fileID: -1792538733, guid: ec420505ab1d26247acb64659c87889a, type: 3}
+  rerollIcon: {fileID: -565250709, guid: 2e3814c906e8f574fbee1cd492b2037a, type: 3}
+  superMagnetIcon: {fileID: 21300000, guid: d6db65e6e5cc7114a9e8eae51ca27b27, type: 3}
+  selectIcon: {fileID: -52281638, guid: 2e3814c906e8f574fbee1cd492b2037a, type: 3}
+  panelSize: {x: 1060, y: 1010}
+  panelPosition: {x: 0, y: -4}
+  pixelScale: 1
+  headerSize: {x: 880, y: 92}
+  headerFontSize: 32
+  headerTextOffset: {x: 0, y: 4}
+  weaponBoxPosition: {x: 0, y: 300}
+  weaponSlotSize: {x: 96, y: 96}
+  weaponSlotGap: {x: 16, y: 34}
+  gimmickBoxPosition: {x: 0, y: 26}
+  gimmickSlotCount: 14
+  gimmickColumns: 7
+  gimmickSlotSize: {x: 80, y: 80}
+  gimmickSlotGap: {x: 14, y: 34}
+  slotLevelFontSize: 20
+  cardSize: {x: 300, y: 362}
+  cardY: -294
+  cardSpacing: 322
+  cardNameFromTop: 62
+  cardStepFromBottom: 66
+  cardNameFontSize: 28
+  cardDescFontSize: 20
+  cardStepFontSize: 22
+  confirmSize: {x: 270, y: 60}
+  confirmY: -494
+  confirmFontSize: 30
+  rerollSize: {x: 190, y: 60}
+  rerollX: 300
+  cardHoverScale: 1.03
+  cardSelectedScale: 1.06
+  cardDimColor: {r: 0.8, g: 0.77, b: 0.73, a: 1}
+  textDark: {r: 0.27, g: 0.15, b: 0.07, a: 1}
+  textLight: {r: 0.97, g: 0.91, b: 0.79, a: 1}
+  textAccent: {r: 0.2, g: 0.5, b: 0.12, a: 1}
+  emptySlotTint: {r: 1, g: 1, b: 1, a: 0.55}
+  tagColorWeapon: {r: 0.86, g: 0.55, b: 0.28, a: 1}
+  tagColorConsumable: {r: 0.45, g: 0.72, b: 0.38, a: 1}
+  tagColorGimmick: {r: 0.42, g: 0.58, b: 0.92, a: 1}
+  cardTagSize: {x: 214, y: 66}
+  goldBoxIconScale: 1.3
+  cardIconGap: 12
+  cardIconSize: 84
+  cardDescGap: 10
+  mainWeaponPanelScale: 0.8
+  mainWeaponBgAlpha: 0.5

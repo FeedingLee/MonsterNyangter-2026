@@ -1,23 +1,23 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Scene_ChangeBtn : MonoBehaviour
 {
-    public float fadeDuration = 1.5f;           // Fade ½Ã°£ (ÃÊ)
-    public float delayBeforeSceneChange = 2.0f; // ¾À º¯°æ Àü ´ë±â ½Ã°£ (ÃÊ)
-    public Image transparentBlock;              // Åõ¸íÇÑ ºí·° UI
+    public float fadeDuration = 1.5f;           // Fade ì‹œê°„ (ì´ˆ)
+    public float delayBeforeSceneChange = 2.0f; // ì”¬ ë³€ê²½ ì „ ëŒ€ê¸° ì‹œê°„ (ì´ˆ)
+    public Image transparentBlock;              // íˆ¬ëª…í•œ ë¸”ëŸ­ UI
     public AudioSource bgmAudioSource;          // BGM AudioSource
-    public Button ExitBtn;                      // °ÔÀÓÁ¾·á ¹öÆ°
+    public Button ExitBtn;                      // ê²Œì„ì¢…ë£Œ ë²„íŠ¼
 
-    private bool isClicked = false;             // ¹öÆ°ÀÌ Å¬¸¯µÇ¾ú´ÂÁö ¿©ºÎ
-    private bool hasFadedOut = false;           // FadeOutÀÌ ¿Ï·áµÇ¾ú´ÂÁö ¿©ºÎ
-    private bool hasSceneChanged = false;       // ¾ÀÀÌ º¯°æµÇ¾ú´ÂÁö ¿©ºÎ
+    private bool isClicked = false;             // ë²„íŠ¼ì´ í´ë¦­ë˜ì—ˆëŠ”ì§€ ì—¬ë¶€
+    private bool hasFadedOut = false;           // FadeOutì´ ì™„ë£Œë˜ì—ˆëŠ”ì§€ ì—¬ë¶€
+    private bool hasSceneChanged = false;       // ì”¬ì´ ë³€ê²½ë˜ì—ˆëŠ”ì§€ ì—¬ë¶€
 
     private void Update()
     {
-        // ¹öÆ°ÀÌ Å¬¸¯µÇ°í ¾ÆÁ÷ FadeOutÀÌ ½ÇÇàµÇÁö ¾Ê¾Ò´Ù¸é ½ÇÇà
+        // ë²„íŠ¼ì´ í´ë¦­ë˜ê³  ì•„ì§ FadeOutì´ ì‹¤í–‰ë˜ì§€ ì•Šì•˜ë‹¤ë©´ ì‹¤í–‰
         if (isClicked && !hasFadedOut)
         {
             FadeOut();
@@ -26,6 +26,12 @@ public class Scene_ChangeBtn : MonoBehaviour
 
     private void ExitBtnOff()
     {
+        if (ExitBtn == null)                    // ì¸ìŠ¤í™í„°ì— ExitBtnì´ ì—°ê²°ë˜ì§€ ì•Šì€ ê²½ìš° ë’¤ì˜ OnClick í˜¸ì¶œì´ ëŠê¸°ì§€ ì•Šë„ë¡ í•¨
+        {
+            Debug.LogWarning($"{name}ì˜ Scene_ChangeBtnì— ExitBtnì´ ì—°ê²°ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.", this);
+            return;
+        }
+
         ExitBtn.interactable = false;
     }
 
@@ -34,10 +40,10 @@ public class Scene_ChangeBtn : MonoBehaviour
         Application.Quit();
     }
 
-    // ¹öÆ°À» Å¬¸¯ÇÏ¸é ¾À º¯°æ
+    // ë²„íŠ¼ì„ í´ë¦­í•˜ë©´ ì”¬ ë³€ê²½
     private void SceneChange()
     {
-        // ¹öÆ°À» Ã³À½ ´­·¶À» ¶§ ÇÑ ¹ø¸¸ ½ÇÇà
+        // ë²„íŠ¼ì„ ì²˜ìŒ ëˆŒë €ì„ ë•Œ í•œ ë²ˆë§Œ ì‹¤í–‰
         if (!isClicked)
         {
             isClicked = true;
@@ -45,29 +51,29 @@ public class Scene_ChangeBtn : MonoBehaviour
             AudioSource audio = GetComponent<AudioSource>(); 
             audio.Play();
 
-            // FadeOut ½ÇÇà
+            // FadeOut ì‹¤í–‰
             FadeOut();
         }
 
-        // ÀÌ¹Ì FadeOutÀÌ ½ÇÇàµÇ¾ú°í, ¾ÀÀÌ ¾ÆÁ÷ º¯°æµÇÁö ¾Ê¾Ò´Ù¸é
+        // ì´ë¯¸ FadeOutì´ ì‹¤í–‰ë˜ì—ˆê³ , ì”¬ì´ ì•„ì§ ë³€ê²½ë˜ì§€ ì•Šì•˜ë‹¤ë©´
         if (hasFadedOut && !hasSceneChanged)
         {
-            // ¾À º¯°æÀ» À§ÇÑ ÄÚ·çÆ¾ ½ÇÇà
+            // ì”¬ ë³€ê²½ì„ ìœ„í•œ ì½”ë£¨í‹´ ì‹¤í–‰
             StartCoroutine(DelayedSceneChange());
         }
     }
 
-    // FadeOut ½ÇÇà ÇÔ¼ö
+    // FadeOut ì‹¤í–‰ í•¨ìˆ˜
     private void FadeOut()
     {
-        // FadeOutÀÌ ½ÇÇà ÁßÀÓÀ» Ç¥½Ã
+        // FadeOutì´ ì‹¤í–‰ ì¤‘ì„ì„ í‘œì‹œ
         hasFadedOut = true;
 
-        // Åõ¸íÇÑ ºí·° UIÀÇ Åõ¸íµµ¸¦ Á¡ÁøÀûÀ¸·Î Áõ°¡½ÃÅ°±â
+        // íˆ¬ëª…í•œ ë¸”ëŸ­ UIì˜ íˆ¬ëª…ë„ë¥¼ ì ì§„ì ìœ¼ë¡œ ì¦ê°€ì‹œí‚¤ê¸°
         StartCoroutine(FadeImageAndAudio());
     }
 
-    // Image¿Í Audio FadeOut ÄÚ·çÆ¾
+    // Imageì™€ Audio FadeOut ì½”ë£¨í‹´
     private IEnumerator FadeImageAndAudio()
     {
         float elapsedTime = 0f;
@@ -76,32 +82,32 @@ public class Scene_ChangeBtn : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
 
-            // Åõ¸íÇÑ ºí·° UIÀÇ Åõ¸íµµ¸¦ ¼­¼­È÷ Áõ°¡½ÃÅ´
+            // íˆ¬ëª…í•œ ë¸”ëŸ­ UIì˜ íˆ¬ëª…ë„ë¥¼ ì„œì„œíˆ ì¦ê°€ì‹œí‚´
             float alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
             Color color = transparentBlock.color;
             color.a = alpha;
             transparentBlock.color = color;
 
-            // BGM º¼·ıÀ» ¼­¼­È÷ ÁÙÀÓ
+            // BGM ë³¼ë¥¨ì„ ì„œì„œíˆ ì¤„ì„
             bgmAudioSource.volume = Mathf.Lerp(0.5f, 0f, elapsedTime / fadeDuration);
 
             yield return null;
         }
 
-        // ¾À º¯°æÀ» À§ÇÑ ´ë±â
+        // ì”¬ ë³€ê²½ì„ ìœ„í•œ ëŒ€ê¸°
         yield return new WaitForSeconds(delayBeforeSceneChange);
 
-        // ¾À º¯°æ
+        // ì”¬ ë³€ê²½
         SceneManager.LoadScene("Main");
     }
 
-    // ¾À º¯°æÀ» À§ÇÑ µô·¹ÀÌ ÄÚ·çÆ¾
+    // ì”¬ ë³€ê²½ì„ ìœ„í•œ ë”œë ˆì´ ì½”ë£¨í‹´
     private IEnumerator DelayedSceneChange()
     {
-        // ¾À º¯°æÀ» À§ÇÑ ´ë±â
+        // ì”¬ ë³€ê²½ì„ ìœ„í•œ ëŒ€ê¸°
         yield return new WaitForSeconds(delayBeforeSceneChange);
 
-        // ¾À º¯°æ
+        // ì”¬ ë³€ê²½
         SceneManager.LoadScene("Main");
     }
 }

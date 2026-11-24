@@ -1,126 +1,149 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 
 public class JoystickController : MonoBehaviour
 {
-    public RectTransform joystickBackground;            // Á¶ÀÌ½ºÆ½ ¹è°æ RectTransform
-    public RectTransform joystickHandle;                // Á¶ÀÌ½ºÆ½ ÇÚµé RectTransform
-    public Canvas canvas;                               // Á¶ÀÌ½ºÆ½ÀÌ À§Ä¡ÇÒ Äµ¹ö½º
-    public Camera mainCamera;                           // ¸ŞÀÎ Ä«¸Ş¶ó (»ç¿ëµÇÁö ¾Ê¾ÒÁö¸¸ Ãß°¡ °¡´É¼º)
-    public GameObject player;                           // ÇÃ·¹ÀÌ¾î °´Ã¼
-    public float moveSpeed = 5f;                        // ÇÃ·¹ÀÌ¾îÀÇ ÀÌµ¿ ¼Óµµ
-    public GameObject LevelUpUi;                        // ·¹º§ ¾÷ UI
+    public RectTransform joystickBackground;            // ì¡°ì´ìŠ¤í‹± ë°°ê²½ RectTransform
+    public RectTransform joystickHandle;                // ì¡°ì´ìŠ¤í‹± í•¸ë“¤ RectTransform
+    public Canvas canvas;                               // ì¡°ì´ìŠ¤í‹±ì´ ìœ„ì¹˜í•  ìº”ë²„ìŠ¤
+    public Camera mainCamera;                           // ë©”ì¸ ì¹´ë©”ë¼ (ì‚¬ìš©ë˜ì§€ ì•Šì•˜ì§€ë§Œ ì¶”ê°€ ê°€ëŠ¥ì„±)
+    public GameObject player;                           // í”Œë ˆì´ì–´ ê°ì²´
+    public float moveSpeed = 5f;                        // í”Œë ˆì´ì–´ì˜ ì´ë™ ì†ë„
+    public GameObject LevelUpUi;                        // ë ˆë²¨ ì—… UI
 
-    private Vector2 inputVec;                           // Á¶ÀÌ½ºÆ½ ÀÔ·Â º¤ÅÍ
-    private bool isJoy;                                 // Á¶ÀÌ½ºÆ½ÀÌ È°¼º »óÅÂÀÎÁö ¿©ºÎ
+    private Vector2 inputVec;                           // ì¡°ì´ìŠ¤í‹± ì…ë ¥ ë²¡í„°
+    private bool isJoy;                                 // ì¡°ì´ìŠ¤í‹±ì´ í™œì„± ìƒíƒœì¸ì§€ ì—¬ë¶€
 
     private void Start()
     {
-        joystickBackground.gameObject.SetActive(false); // ½ÃÀÛ ½Ã Á¶ÀÌ½ºÆ½ ¹è°æ ºñÈ°¼ºÈ­
-        joystickHandle.gameObject.SetActive(false);     // ½ÃÀÛ ½Ã Á¶ÀÌ½ºÆ½ ÇÚµé ºñÈ°¼ºÈ­
-        isJoy = false;                                  // Á¶ÀÌ½ºÆ½ ºñÈ°¼º »óÅÂ·Î ÃÊ±âÈ­
+        joystickBackground.gameObject.SetActive(false); // ì‹œì‘ ì‹œ ì¡°ì´ìŠ¤í‹± ë°°ê²½ ë¹„í™œì„±í™”
+        joystickHandle.gameObject.SetActive(false);     // ì‹œì‘ ì‹œ ì¡°ì´ìŠ¤í‹± í•¸ë“¤ ë¹„í™œì„±í™”
+        isJoy = false;                                  // ì¡°ì´ìŠ¤í‹± ë¹„í™œì„± ìƒíƒœë¡œ ì´ˆê¸°í™”
     }
 
     private void Update()
     {
-        if (Input.touchCount > 0)                                  // ÅÍÄ¡°¡ ÇÏ³ª ÀÌ»ó °¨ÁöµÇ¾úÀ» ¶§
+        if (Input.touchCount > 0)                                  // í„°ì¹˜ê°€ í•˜ë‚˜ ì´ìƒ ê°ì§€ë˜ì—ˆì„ ë•Œ
         {
-            Touch touch = Input.GetTouch(0);                       // Ã¹ ¹øÂ° ÅÍÄ¡ Á¤º¸ °¡Á®¿À±â
+            Touch touch = Input.GetTouch(0);                       // ì²« ë²ˆì§¸ í„°ì¹˜ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
 
-            if (touch.phase == TouchPhase.Began)                   // ÅÍÄ¡°¡ ½ÃÀÛµÉ ¶§
+            if (touch.phase == TouchPhase.Began)                   // í„°ì¹˜ê°€ ì‹œì‘ë  ë•Œ
             {
-                if (!IsTouchingUI(touch))                          // ÅÍÄ¡°¡ UI ¿ä¼Ò¸¦ ´©¸¥ °ÍÀÌ ¾Æ´Ï¶ó¸é
+                if (!IsTouchingUI(touch))                          // í„°ì¹˜ê°€ UI ìš”ì†Œë¥¼ ëˆ„ë¥¸ ê²ƒì´ ì•„ë‹ˆë¼ë©´
                 {
-                    SetJoystickPosition(touch.position);           // ÅÍÄ¡ À§Ä¡¿¡ Á¶ÀÌ½ºÆ½ ¹è°æ À§Ä¡ ¼³Á¤
-                    joystickBackground.gameObject.SetActive(true); // Á¶ÀÌ½ºÆ½ ¹è°æ Ç¥½Ã
-                    joystickHandle.gameObject.SetActive(true);     // Á¶ÀÌ½ºÆ½ ÇÚµé Ç¥½Ã
-                    isJoy = true;                                  // Á¶ÀÌ½ºÆ½ È°¼ºÈ­ »óÅÂ·Î ¼³Á¤
+                    SetJoystickPosition(touch.position);           // í„°ì¹˜ ìœ„ì¹˜ì— ì¡°ì´ìŠ¤í‹± ë°°ê²½ ìœ„ì¹˜ ì„¤ì •
+                    joystickBackground.gameObject.SetActive(true); // ì¡°ì´ìŠ¤í‹± ë°°ê²½ í‘œì‹œ
+                    joystickHandle.gameObject.SetActive(true);     // ì¡°ì´ìŠ¤í‹± í•¸ë“¤ í‘œì‹œ
+                    isJoy = true;                                  // ì¡°ì´ìŠ¤í‹± í™œì„±í™” ìƒíƒœë¡œ ì„¤ì •
                 }
             }
-            else if (isJoy && (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary))        // ÅÍÄ¡°¡ ÀÌµ¿ ÁßÀÌ°Å³ª °¡¸¸È÷ ÀÖÀ» ¶§
+            else if (isJoy && (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary))        // í„°ì¹˜ê°€ ì´ë™ ì¤‘ì´ê±°ë‚˜ ê°€ë§Œíˆ ìˆì„ ë•Œ
             {
-                MoveJoystickHandle(touch.position);                                                             // Á¶ÀÌ½ºÆ½ ÇÚµéÀ» ÅÍÄ¡ À§Ä¡¿¡ ¸Â°Ô ÀÌµ¿
-                inputVec = (joystickHandle.anchoredPosition / (joystickBackground.sizeDelta.x / 2)).normalized; // ÀÔ·Â º¤ÅÍ¸¦ °è»êÇÏ¿© Á¤±ÔÈ­
+                MoveJoystickHandle(touch.position);                                                             // ì¡°ì´ìŠ¤í‹± í•¸ë“¤ì„ í„°ì¹˜ ìœ„ì¹˜ì— ë§ê²Œ ì´ë™
+                inputVec = (joystickHandle.anchoredPosition / (joystickBackground.sizeDelta.x / 2)).normalized; // ì…ë ¥ ë²¡í„°ë¥¼ ê³„ì‚°í•˜ì—¬ ì •ê·œí™”
             }
-            else if (isJoy && (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled))          // ÅÍÄ¡°¡ ³¡³ª°Å³ª Ãë¼ÒµÇ¾úÀ» ¶§
+            else if (isJoy && (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled))          // í„°ì¹˜ê°€ ëë‚˜ê±°ë‚˜ ì·¨ì†Œë˜ì—ˆì„ ë•Œ
             {
-                ResetJoystick();                                                                                // ÅÍÄ¡°¡ ³¡³µÀ» ¶§ Á¶ÀÌ½ºÆ½À» ÃÊ±âÈ­ÇÏ°í ¼û±è
+                ResetJoystick();                                                                                // í„°ì¹˜ê°€ ëë‚¬ì„ ë•Œ ì¡°ì´ìŠ¤í‹±ì„ ì´ˆê¸°í™”í•˜ê³  ìˆ¨ê¹€
             }
         }
     }
 
-    // ÅÍÄ¡°¡ UI¸¦ ´­·¶´ÂÁö È®ÀÎÇÏ´Â ÇÔ¼ö
+    // í„°ì¹˜ê°€ UIë¥¼ ëˆŒë €ëŠ”ì§€ í™•ì¸í•˜ëŠ” í•¨ìˆ˜
     private bool IsTouchingUI(Touch touch)
     {
-        PointerEventData pointerData = new PointerEventData(EventSystem.current);                               // ÅÍÄ¡ À§Ä¡¿¡ ´ëÇÑ Æ÷ÀÎÅÍ µ¥ÀÌÅÍ »ı¼º
-        pointerData.position = touch.position;                                                                  // ÅÍÄ¡ÀÇ À§Ä¡¸¦ ¼³Á¤
+        PointerEventData pointerData = new PointerEventData(EventSystem.current);                               // í„°ì¹˜ ìœ„ì¹˜ì— ëŒ€í•œ í¬ì¸í„° ë°ì´í„° ìƒì„±
+        pointerData.position = touch.position;                                                                  // í„°ì¹˜ì˜ ìœ„ì¹˜ë¥¼ ì„¤ì •
 
-        List<RaycastResult> results = new List<RaycastResult>();                                                // Raycast °á°ú¸¦ ÀúÀåÇÒ ¸®½ºÆ® »ı¼º
-        EventSystem.current.RaycastAll(pointerData, results);                                                   // ÇöÀç ÅÍÄ¡°¡ UI¿¡ ¸Â´ÂÁö È®ÀÎ
+        List<RaycastResult> results = new List<RaycastResult>();                                                // Raycast ê²°ê³¼ë¥¼ ì €ì¥í•  ë¦¬ìŠ¤íŠ¸ ìƒì„±
+        EventSystem.current.RaycastAll(pointerData, results);                                                   // í˜„ì¬ í„°ì¹˜ê°€ UIì— ë§ëŠ”ì§€ í™•ì¸
 
-        foreach (RaycastResult result in results)                                                               // °á°ú¸¦ ¼øÈ¸ÇÏ¸é¼­
+        foreach (RaycastResult result in results)                                                               // ê²°ê³¼ë¥¼ ìˆœíšŒí•˜ë©´ì„œ
         {
-            if (result.gameObject.name == "Option Button")                                                      // ¸¸¾à "Option Button"ÀÌ¶ó´Â UI¸¦ ÅÍÄ¡Çß´Ù¸é
+            if (result.gameObject.name == "Option Button" || result.gameObject.name == UltimateManager.ButtonObjectName || result.gameObject.name == DodgeCooldownUI.ButtonObjectName || result.gameObject.name == MainWeaponSkillButton.ButtonObjectName || result.gameObject.name == StatPanel.SlotButtonName)                                                    // ë§Œì•½ "Option Button"ì´ë¼ëŠ” UIë¥¼ í„°ì¹˜í–ˆë‹¤ë©´
             {
-                return true;                                                                                    // ÅÍÄ¡°¡ UI¸¦ ´©¸¥ °ÍÀÓ
+                return true;                                                                                    // í„°ì¹˜ê°€ UIë¥¼ ëˆ„ë¥¸ ê²ƒì„
             }
         }
 
-        return false;                                                                                           // ÅÍÄ¡°¡ UI°¡ ¾Æ´Ô
+        return false;                                                                                           // í„°ì¹˜ê°€ UIê°€ ì•„ë‹˜
     }
 
-    // ÅÍÄ¡ À§Ä¡¿¡ ¸ÂÃç Á¶ÀÌ½ºÆ½ÀÇ ¹è°æ À§Ä¡¸¦ ¼³Á¤ÇÏ´Â ÇÔ¼ö
+    // í„°ì¹˜ ìœ„ì¹˜ì— ë§ì¶° ì¡°ì´ìŠ¤í‹±ì˜ ë°°ê²½ ìœ„ì¹˜ë¥¼ ì„¤ì •í•˜ëŠ” í•¨ìˆ˜
     private void SetJoystickPosition(Vector2 screenPosition)
     {
-        if (GameManager.instance.isLive)                                                                        // °ÔÀÓÀÌ ÁøÇà ÁßÀÏ ¶§¸¸ Á¶ÀÌ½ºÆ½ ¼³Á¤
+        if (GameManager.instance.isLive)                                                                        // ê²Œì„ì´ ì§„í–‰ ì¤‘ì¼ ë•Œë§Œ ì¡°ì´ìŠ¤í‹± ì„¤ì •
         {
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                canvas.transform as RectTransform, screenPosition, null, out Vector2 anchoredPosition);         // È­¸éÀÇ ÅÍÄ¡ ÁÂÇ¥¸¦ ·ÎÄÃ ÁÂÇ¥·Î º¯È¯
+                canvas.transform as RectTransform, screenPosition, null, out Vector2 anchoredPosition);         // í™”ë©´ì˜ í„°ì¹˜ ì¢Œí‘œë¥¼ ë¡œì»¬ ì¢Œí‘œë¡œ ë³€í™˜
 
-            joystickBackground.anchoredPosition = anchoredPosition;                                             // º¯È¯µÈ ÁÂÇ¥¸¦ Á¶ÀÌ½ºÆ½ ¹è°æ¿¡ Àû¿ë
-            joystickHandle.anchoredPosition = Vector2.zero;                                                     // ÇÚµéÀ» ¹è°æÀÇ Áß¾Ó¿¡ À§Ä¡
+            joystickBackground.anchoredPosition = anchoredPosition;                                             // ë³€í™˜ëœ ì¢Œí‘œë¥¼ ì¡°ì´ìŠ¤í‹± ë°°ê²½ì— ì ìš©
+            joystickHandle.anchoredPosition = Vector2.zero;                                                     // í•¸ë“¤ì„ ë°°ê²½ì˜ ì¤‘ì•™ì— ìœ„ì¹˜
         }
     }
 
-    // Á¶ÀÌ½ºÆ½ ÇÚµéÀ» ÅÍÄ¡ À§Ä¡¿¡ ¸Â°Ô ÀÌµ¿½ÃÅ°´Â ÇÔ¼ö
+    // ì¡°ì´ìŠ¤í‹± í•¸ë“¤ì„ í„°ì¹˜ ìœ„ì¹˜ì— ë§ê²Œ ì´ë™ì‹œí‚¤ëŠ” í•¨ìˆ˜
     private void MoveJoystickHandle(Vector2 screenPosition)
     {
-        // ÅÍÄ¡ À§Ä¡¸¦ Äµ¹ö½ºÀÇ ·ÎÄÃ ÁÂÇ¥·Î º¯È¯
+        // í„°ì¹˜ ìœ„ì¹˜ë¥¼ ìº”ë²„ìŠ¤ì˜ ë¡œì»¬ ì¢Œí‘œë¡œ ë³€í™˜
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             canvas.transform as RectTransform, screenPosition, null, out Vector2 localPoint);
 
-        // ¹è°æÀÇ À§Ä¡¿Í ÅÍÄ¡ À§Ä¡ °£ÀÇ Â÷ÀÌ¸¦ °è»ê
+        // ë°°ê²½ì˜ ìœ„ì¹˜ì™€ í„°ì¹˜ ìœ„ì¹˜ ê°„ì˜ ì°¨ì´ë¥¼ ê³„ì‚°
         Vector2 offset = localPoint - joystickBackground.anchoredPosition;
 
-        // Á¶ÀÌ½ºÆ½ ¹è°æÀÇ ¹İÁö¸§À» °è»ê
+        // ì¡°ì´ìŠ¤í‹± ë°°ê²½ì˜ ë°˜ì§€ë¦„ì„ ê³„ì‚°
         float radius = joystickBackground.sizeDelta.x / 2;
 
-        // ¸¸¾à ÅÍÄ¡ À§Ä¡°¡ Á¶ÀÌ½ºÆ½ ¹è°æÀÇ ¹üÀ§¸¦ ³ÑÀ¸¸é, ¹üÀ§ ³»·Î Á¦ÇÑ
+        // ë§Œì•½ í„°ì¹˜ ìœ„ì¹˜ê°€ ì¡°ì´ìŠ¤í‹± ë°°ê²½ì˜ ë²”ìœ„ë¥¼ ë„˜ìœ¼ë©´, ë²”ìœ„ ë‚´ë¡œ ì œí•œ
         if (offset.magnitude > radius)
         {
-            offset = offset.normalized * radius; // Á¤±ÔÈ­µÈ °ªÀ¸·Î Á¶Á¤
+            offset = offset.normalized * radius; // ì •ê·œí™”ëœ ê°’ìœ¼ë¡œ ì¡°ì •
         }
 
-        // ÇÚµéÀÇ À§Ä¡¸¦ ÅÍÄ¡¿¡ ¸Â°Ô ¼³Á¤
+        // í•¸ë“¤ì˜ ìœ„ì¹˜ë¥¼ í„°ì¹˜ì— ë§ê²Œ ì„¤ì •
         joystickHandle.anchoredPosition = offset;
     }
 
-    // Á¶ÀÌ½ºÆ½À» ÃÊ±âÈ­ÇÏ°í ¼û±â´Â ÇÔ¼ö
+    // ì¡°ì´ìŠ¤í‹±ì„ ì´ˆê¸°í™”í•˜ê³  ìˆ¨ê¸°ëŠ” í•¨ìˆ˜
     public void ResetJoystick()
     {
-        joystickBackground.gameObject.SetActive(false); // Á¶ÀÌ½ºÆ½ ¹è°æ ¼û±â±â
-        joystickHandle.gameObject.SetActive(false);     // Á¶ÀÌ½ºÆ½ ÇÚµé ¼û±â±â
-        isJoy = false;                                  // Á¶ÀÌ½ºÆ½ ºñÈ°¼ºÈ­ »óÅÂ·Î ¼³Á¤
-        inputVec = Vector2.zero;                        // ÀÔ·Â º¤ÅÍ ÃÊ±âÈ­
+        joystickBackground.gameObject.SetActive(false); // ì¡°ì´ìŠ¤í‹± ë°°ê²½ ìˆ¨ê¸°ê¸°
+        joystickHandle.gameObject.SetActive(false);     // ì¡°ì´ìŠ¤í‹± í•¸ë“¤ ìˆ¨ê¸°ê¸°
+        isJoy = false;                                  // ì¡°ì´ìŠ¤í‹± ë¹„í™œì„±í™” ìƒíƒœë¡œ ì„¤ì •
+        inputVec = Vector2.zero;                        // ì…ë ¥ ë²¡í„° ì´ˆê¸°í™”
 
-        //Debug.Log("Á¶ÀÌ½ºÆ½ ÃÊ±âÈ­");                 // ÇÔ¼ö°¡ Á¦´ë·Î ÀÛµ¿ÇÏ´ÂÁö È®ÀÎÇÏ´Â ·Î±×
+        //Debug.Log("ì¡°ì´ìŠ¤í‹± ì´ˆê¸°í™”");                 // í•¨ìˆ˜ê°€ ì œëŒ€ë¡œ ì‘ë™í•˜ëŠ”ì§€ í™•ì¸í•˜ëŠ” ë¡œê·¸
     }
 
-    // Á¶ÀÌ½ºÆ½ ÀÔ·Â º¤ÅÍ¸¦ ¹İÈ¯ÇÏ´Â ÇÔ¼ö
+    // ì¡°ì´ìŠ¤í‹± ì…ë ¥ ë²¡í„°ë¥¼ ë°˜í™˜í•˜ëŠ” í•¨ìˆ˜
     public Vector2 GetInputVector()
     {
-        return inputVec; // ÇöÀç ÀÔ·Â º¤ÅÍ ¹İÈ¯
+        if (isJoy)                                      // í„°ì¹˜ ì¡°ì´ìŠ¤í‹± ì‚¬ìš© ì¤‘ì´ë©´ ì¡°ì´ìŠ¤í‹± ì…ë ¥ ìš°ì„ 
+        {
+            return inputVec;                            // í˜„ì¬ ì…ë ¥ ë²¡í„° ë°˜í™˜
+        }
+
+        if (!GameManager.instance.isLive)               // ê²Œì„ì´ ë©ˆì¶˜ ë™ì•ˆì—ëŠ” í‚¤ë³´ë“œ ì…ë ¥ ë¬´ì‹œ
+        {
+            return Vector2.zero;
+        }
+
+        return GetKeyboardVector();                     // PC ë¹Œë“œìš© í‚¤ë³´ë“œ ì…ë ¥ ë°˜í™˜
+    }
+
+    // WASDì™€ ë°©í–¥í‚¤ ì…ë ¥ì„ ì •ê·œí™”ëœ ë²¡í„°ë¡œ ë°˜í™˜í•˜ëŠ” í•¨ìˆ˜
+    private Vector2 GetKeyboardVector()
+    {
+        Vector2 keyboardVec = Vector2.zero;
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) keyboardVec.y += 1f;
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) keyboardVec.y -= 1f;
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) keyboardVec.x += 1f;
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) keyboardVec.x -= 1f;
+
+        return keyboardVec.normalized;                  // ëŒ€ê°ì„  ì´ë™ ì‹œ ì†ë„ê°€ ë¹¨ë¼ì§€ì§€ ì•Šë„ë¡ ì •ê·œí™”
     }
 }

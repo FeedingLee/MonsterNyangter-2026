@@ -1,29 +1,30 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 
 public class BossReposition : MonoBehaviour
 {
     [Header("#BossReposion")]
-    public float fallingWaitTime;       // ³«ÇÏÇÏ±â Àü ´ë±â ½Ã°£
-    public float fallingDistance;       // ÀÌ ÀÌ»ó ÇÃ·¹ÀÌ¾î¿Í ¸Ö¾îÁö¸é ³«ÇÏ ½ÃÀÛ
-    public float fallingSpeed;          // ³«ÇÏ ¼Óµµ
-    public Transform targetTransform;   // ÇÃ·¹ÀÌ¾î Æ®·£½ºÆû
-    public bool isBossMove;             // º¸½º ÀÌµ¿ °ü·Ã bool º¯¼ö
-    public bool IsBossFalling;          // º¸½º ¼ø°£ÀÌµ¿ °ü·Ã bool º¯¼ö 
-    public float WaitReposition;        // º¸½º Reposition ÄğÅ¸ÀÓ
+    public float fallingWaitTime;       // ë‚™í•˜í•˜ê¸° ì „ ëŒ€ê¸° ì‹œê°„
+    public float fallingDistance;       // ì´ ì´ìƒ í”Œë ˆì´ì–´ì™€ ë©€ì–´ì§€ë©´ ë‚™í•˜ ì‹œì‘
+    public float fallingSpeed;          // ë‚™í•˜ ì†ë„
+    public Transform targetTransform;   // í”Œë ˆì´ì–´ íŠ¸ëœìŠ¤í¼
+    public bool isBossMove;             // ë³´ìŠ¤ ì´ë™ ê´€ë ¨ bool ë³€ìˆ˜
+    public bool IsBossFalling;          // ë³´ìŠ¤ ìˆœê°„ì´ë™ ê´€ë ¨ bool ë³€ìˆ˜ 
+    public float WaitReposition;        // ë³´ìŠ¤ Reposition ì¿¨íƒ€ì„
     public BossPattern bossPattern;
     private float time;
-    Transform bossTransform;            // ÀÚ½Å(º¸½º) Æ®·£½ºÆû
-    Rigidbody2D bossRigid;              // ÀÚ½Å(º¸½º) Rigidbody2D
-    Vector2 dirVec;                     // ÀÌµ¿ ¹æÇâ
-    GameObject bossShadow;              // ±×¸²ÀÚ¸¦ ÀúÀåÇÒ ¿ÀºêÁ§Æ®
-    Animator anim;                      // º¸½º ¾Ö´Ï¸ŞÀÌÅÍ 
+    Transform bossTransform;            // ìì‹ (ë³´ìŠ¤) íŠ¸ëœìŠ¤í¼
+    Rigidbody2D bossRigid;              // ìì‹ (ë³´ìŠ¤) Rigidbody2D
+    Vector2 landingPos;                 // ë‚™í•˜ ëª©í‘œ ìœ„ì¹˜
+    bool isDescending;                  // ê·¸ë¦¼ìë¥¼ í–¥í•´ ë‚™í•˜ ì¤‘ì¸ì§€ ì—¬ë¶€
+    GameObject bossShadow;              // ê·¸ë¦¼ìë¥¼ ì €ì¥í•  ì˜¤ë¸Œì íŠ¸
+    Animator anim;                      // ë³´ìŠ¤ ì• ë‹ˆë©”ì´í„° 
     Coroutine test;
 
-    [Header("# Landing Firing")]        // ÂøÁö Àü¹æÇâ ¹ß»ç °ü·Ã º¯¼ö
-    public int LBulletCount;            // ¹ß»ç °¹¼ö 20
-    public float LBossBulletDamage;     // ¹ß»ç µ¥¹ÌÁö
-    public float LFireSpeed;            // ¹ß»ç ¼Óµµ 0.5
+    [Header("# Landing Firing")]        // ì°©ì§€ ì „ë°©í–¥ ë°œì‚¬ ê´€ë ¨ ë³€ìˆ˜
+    public int LBulletCount;            // ë°œì‚¬ ê°¯ìˆ˜ 20
+    public float LBossBulletDamage;     // ë°œì‚¬ ë°ë¯¸ì§€
+    public float LFireSpeed;            // ë°œì‚¬ ì†ë„ 0.5
 
     private void Awake()
     {
@@ -31,7 +32,6 @@ public class BossReposition : MonoBehaviour
         bossRigid = GetComponent<Rigidbody2D>();
         isBossMove = true;
         IsBossFalling = false;
-        dirVec = Vector2.zero;
         targetTransform = GameManager.instance.player.transform;
         bossPattern = gameObject.GetComponent<BossPattern>();
         anim = GetComponent<Animator>();
@@ -40,7 +40,20 @@ public class BossReposition : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Reposition ÄğÅ¸ÀÓ °è»ê
+        // ë‚™í•˜ê°€ ì‹œì‘ë˜ë©´ ì¿¨íƒ€ì„ì´ë‚˜ ê³µê²© ìƒíƒœì™€ ê´€ê³„ì—†ì´ ì„ ì •ëœ ìœ„ì¹˜ê¹Œì§€ ë°˜ë“œì‹œ ë‚´ë ¤ê°
+        if (isDescending)
+        {
+            Vector2 nextPos = Vector2.MoveTowards(bossRigid.position, landingPos, fallingSpeed * Time.fixedDeltaTime);
+            bossRigid.MovePosition(nextPos);
+
+            if (nextPos == landingPos)
+            {
+                Land();
+            }
+            return;
+        }
+
+        // Reposition ì¿¨íƒ€ì„ ê³„ì‚°
         time += Time.deltaTime;
         if (time < WaitReposition)
         {
@@ -48,91 +61,87 @@ public class BossReposition : MonoBehaviour
             return;
         }
 
-        // º¸½º°¡ °ø°İÁßÀÏ¶§´Â RepositionÀ» ¸·À½
+        // ë³´ìŠ¤ê°€ ê³µê²©ì¤‘ì¼ë•ŒëŠ” Repositionì„ ë§‰ìŒ
         if (bossPattern.isBossAttacking || !bossPattern.isBossLive)
         {
             return;
         }
 
-        // ÇÃ·¹ÀÌ¾î¿Í º¸½º »çÀÌÀÇ °Å¸® ÃøÁ¤
-        float distance = Vector3.Distance(targetTransform.position, bossTransform.position);
+        // í”Œë ˆì´ì–´ì™€ ë³´ìŠ¤ ì‚¬ì´ì˜ ê±°ë¦¬ ì¸¡ì •
+        float distance = Vector2.Distance(bossPattern.TargetPosition, bossTransform.position);
 
-        // °Å¸®°¡ ÁöÁ¤ÇÑ °ªº¸´Ù ¸Ö¾îÁ³À» °æ¿ì & BossReposionÀÌ ÁøÇàÁßÀÌÁö ¾ÊÀ» °æ¿ì
-        // & º¸½ºÀÇ °ø°İÀÌ ÁøÇàÁßÀÌÁö ¾ÊÀ» °æ¿ì
+        // ê±°ë¦¬ê°€ ì§€ì •í•œ ê°’ë³´ë‹¤ ë©€ì–´ì¡Œì„ ê²½ìš° & BossReposionì´ ì§„í–‰ì¤‘ì´ì§€ ì•Šì„ ê²½ìš°
+        // & ë³´ìŠ¤ì˜ ê³µê²©ì´ ì§„í–‰ì¤‘ì´ì§€ ì•Šì„ ê²½ìš°
         if (distance > fallingDistance &&
             !IsBossFalling &&
+            isBossMove &&                       // ì°©ì§€ ì• ë‹ˆë©”ì´ì…˜ ì¤‘ì—ëŠ” ë‹¤ìŒ ë‚™í•˜ë¥¼ ì‹œì‘í•˜ì§€ ì•ŠìŒ
             !bossPattern.isBossAttacking)
         {
-            // Reposition ½ÃÀÛ
+            // Reposition ì‹œì‘
             StartCoroutine(StartBossReposition());
-        }
-
-        // º¸½ºÀÇ ¸ñÇ¥ ¹æÇâÀÌ Á¸ÀçÇÒ °æ¿ì
-        if (dirVec != Vector2.zero)
-        {
-            Vector2 nextVec = dirVec.normalized * fallingSpeed * Time.fixedDeltaTime;
-            bossRigid.MovePosition(bossRigid.position + nextVec);
         }
     }
 
     private IEnumerator StartBossReposition()
     {
-        // Á¡ÇÁ »ç¿îµå Àç»ı
+        // ì í”„ ì‚¬ìš´ë“œ ì¬ìƒ
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Anj_Jump);
+        SpriteFx.GroundBurst(bossTransform.position + new Vector3(0f, -2f, 0f), 8f);   // ë›°ì–´ì˜¤ë¥´ëŠ” ìë¦¬ ë•… íŠ€ê¹€ (í¬ê²Œ)
 
-        // ÇÏ°­Áß¿¡´Â Ãæµ¹ ÆÇÁ¤À» ÁÙÀÓ
+        // í•˜ê°•ì¤‘ì—ëŠ” ì¶©ëŒ íŒì •ì„ ì¤„ì„
         gameObject.GetComponent<CapsuleCollider2D>().size = new Vector2(1.2f, 1.2f);
 
-        // º¸½º °ø°İ ÆĞÅÏ ÁßÁö
+        // ë³´ìŠ¤ ê³µê²© íŒ¨í„´ ì¤‘ì§€
         bossPattern.StopAttack();
 
-        // º¸½º ÀÌµ¿ Á¦ÇÑ
+        // ë³´ìŠ¤ ì´ë™ ì œí•œ
         isBossMove = false;
         IsBossFalling = true;
 
-        // Player¿Í Boss ÀÇ ¹æÇâº¤ÅÍ °è»ê
-        Vector3 direction = (targetTransform.position - bossTransform.position).normalized;
+        // Playerì™€ Boss ì˜ ë°©í–¥ë²¡í„° ê³„ì‚°
+        Vector3 targetPosition = bossPattern.TargetPosition;
+        Vector3 direction = (targetPosition - bossTransform.position).normalized;
 
         // BossReposion
-        bossTransform.position = targetTransform.position + direction * 2.0f;
+        bossTransform.position = targetPosition + direction * 2.0f;
 
-        // À§Ä¡¿¡ ±×¸²ÀÚ »ı¼º
+        // ìœ„ì¹˜ì— ê·¸ë¦¼ì ìƒì„±
         bossShadow = GameManager.instance.pool.GetEnemy(3);
         bossShadow.transform.position = bossTransform.position - new Vector3(0, 1, 0);
 
-        // ±×¸²ÀÚ ÃßÀû Çã¿ë
+        // ê·¸ë¦¼ì ì¶”ì  í—ˆìš©
         bossShadow.GetComponent<BossShadow>().IsTraceTarget = true;
 
-        // Boss À§Ä¡ ÇÏ´Ã·Î ¼³Á¤
+        // Boss ìœ„ì¹˜ í•˜ëŠ˜ë¡œ ì„¤ì •
         bossTransform.position += new Vector3(0, 5000, 0);
 
-        // ÇÏ´Ã¿¡¼­ ¶³¾îÁö´Â ½Ã°£ ´ë±â
+        // í•˜ëŠ˜ì—ì„œ ë–¨ì–´ì§€ëŠ” ì‹œê°„ ëŒ€ê¸°
         yield return new WaitForSeconds(fallingWaitTime - 0.5f);
 
-        // ±×¸²ÀÚ ÃßÀû Á¾·á
+        // ê·¸ë¦¼ì ì¶”ì  ì¢…ë£Œ
         bossShadow.GetComponent<BossShadow>().IsTraceTarget = false;
 
-        // ±×¸²ÀÚ ÃßÀû Á¾·á ÈÄ 0.5ÃÊ µÚ ÇÏ°­ ½ÃÀÛ
+        // ê·¸ë¦¼ì ì¶”ì  ì¢…ë£Œ í›„ 0.5ì´ˆ ë’¤ í•˜ê°• ì‹œì‘
         yield return new WaitForSeconds(0.5f);
 
-        // Boss À§Ä¡ ±×¸²ÀÚ À§·Î ¼³Á¤
+        // Boss ìœ„ì¹˜ ê·¸ë¦¼ì ìœ„ë¡œ ì„¤ì •
         bossTransform.position = bossShadow.transform.position + new Vector3(0, 50, 0);
 
-        // ÇÏ°­ ¸ñÇ¥ ¹æÇâ ¼³Á¤
-        dirVec = bossShadow.GetComponent<Transform>().position - bossTransform.position;
-
-        yield return new WaitForFixedUpdate();
+        // í•˜ê°• ì¤‘ì—ëŠ” í”Œë ˆì´ì–´ë‚˜ ë²½ì— ë§‰íˆì§€ ì•Šë„ë¡ ì¶©ëŒì„ ë„ê³  ê·¸ë¦¼ì ìœ„ì¹˜ë¥¼ ëª©í‘œë¡œ ê³ ì •
+        landingPos = CampZone.PushOut(bossShadow.transform.position, 1.2f);   // í…íŠ¸ ìš¸íƒ€ë¦¬ ì•ˆì—ëŠ” ë‚´ë ¤ì•‰ì§€ ì•ŠìŒ
+        gameObject.GetComponent<CapsuleCollider2D>().isTrigger = true;
+        isDescending = true;
     }
 
     private IEnumerator WaitAnim(float waitTime)
     {
-        // ÂøÁö ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ Àç»ıÁßÀÎ µ¿¾È ´ë±â
+        // ì°©ì§€ ì• ë‹ˆë©”ì´ì…˜ì´ ì¬ìƒì¤‘ì¸ ë™ì•ˆ ëŒ€ê¸°
         yield return new WaitForSeconds(waitTime);
 
-        // º¸½º ÀÌµ¿ Á¦ÇÑ ÇØÁ¦
+        // ë³´ìŠ¤ ì´ë™ ì œí•œ í•´ì œ
         isBossMove = true;
 
-        //º¸½º ÆĞÅÏ Àç½ÃÀÛ
+        //ë³´ìŠ¤ íŒ¨í„´ ì¬ì‹œì‘
         bossPattern.StartAttack();
 
         time = 0;
@@ -140,54 +149,65 @@ public class BossReposition : MonoBehaviour
 
     private void Fire()
     {
-        // º¸½º ÂøÁö ÈÄ µ¹Æ¢´Â »ç¿îµå Àç»ı
+        // ë³´ìŠ¤ ì°©ì§€ í›„ ëŒíŠ€ëŠ” ì‚¬ìš´ë“œ ì¬ìƒ
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Anj_Rock);
 
-        // »ç¹æÀ¸·Î ¹ß»çÇÏ´Â ÆĞÅÏ
-        float angleStep = 360f / LBulletCount;  // °¢ ¹ß»çÃ¼ »çÀÌÀÇ °¢µµ Â÷ÀÌ
+        // ì‚¬ë°©ìœ¼ë¡œ ë°œì‚¬í•˜ëŠ” íŒ¨í„´
+        float angleStep = 360f / LBulletCount;  // ê° ë°œì‚¬ì²´ ì‚¬ì´ì˜ ê°ë„ ì°¨ì´
 
         for (int i = 0; i < LBulletCount; i++)
         {
-            float angle = i * angleStep;  // °¢ ¹ß»çÃ¼ÀÇ °¢µµ
-            float rad = angle * Mathf.Deg2Rad;  // °¢µµ¸¦ ¶óµğ¾ÈÀ¸·Î º¯È¯
+            float angle = i * angleStep;  // ê° ë°œì‚¬ì²´ì˜ ê°ë„
+            float rad = angle * Mathf.Deg2Rad;  // ê°ë„ë¥¼ ë¼ë””ì•ˆìœ¼ë¡œ ë³€í™˜
 
-            // ¹æÇâ º¤ÅÍ °è»ê
+            // ë°©í–¥ ë²¡í„° ê³„ì‚°
             Vector3 dir = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0).normalized;
 
-            // ¹ß»çÃ¼ »ı¼º ¹× ÃÊ±âÈ­          
+            // ë°œì‚¬ì²´ ìƒì„± ë° ì´ˆê¸°í™”          
             bossPattern.SpawnFireActor(LBossBulletDamage, 0, new Vector3(0, -1.5f, 0), dir, LFireSpeed, false);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "BossShadow")
+        if (isDescending && collision.tag == "BossShadow")
         {
-            // º¸½º ÂøÁö »ç¿îµå Àç»ı
-            AudioManager.instance.PlaySfx(AudioManager.Sfx.Anj_Landing);
-
-            // ÂøÁö ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
-            anim.SetTrigger("isBossRanding");
-
-            // ÇÏ°­ ¸ñÇ¥ ¹æÇâ ÃÊ±âÈ­
-            dirVec = Vector2.zero;
-
-            // ±×¸²ÀÚ¿Í Ãæµ¹½Ã º¸½º ÇÏ°­ ¸ØÃã
-            bossRigid.velocity = Vector3.zero;
-
-            // ÇÏ°­ »óÅÂ ºñÈ°¼ºÈ­
-            IsBossFalling = false;
-
-            // Ãæµ¹ ÆÇÁ¤ º¹±¸
-            gameObject.GetComponent<CapsuleCollider2D>().size = new Vector2(6.5f, 10.0f);
-
-            // ±×¸²ÀÚ ºñÈ°¼ºÈ­
-            bossShadow.SetActive(false);
-
-            // »ç¹æÀ¸·Î µ¹¸ÍÀÌ ¹ß»ç
-            Fire();
-
-            StartCoroutine(WaitAnim(0.5f));
+            Land();
         }
+    }
+
+    // ì°©ì§€ ì²˜ë¦¬ (ê·¸ë¦¼ì ì ‘ì´‰ ë˜ëŠ” ëª©í‘œ ìœ„ì¹˜ ë„ë‹¬ ì‹œ í•œ ë²ˆë§Œ ì‹¤í–‰)
+    private void Land()
+    {
+        isDescending = false;
+
+        // ë³´ìŠ¤ ì°©ì§€ ì‚¬ìš´ë“œ ì¬ìƒ
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Anj_Landing);
+        SpriteFx.LandingRing(landingPos, 12f);                                   // ì°©ì§€ í™ë¨¼ì§€ ê³ ë¦¬
+        CameraShake.Play(0.35f, 0.45f);                                          // ì°©ì§€: ê°•í•˜ê²Œ
+        SpriteFx.RockBurst((Vector3)landingPos + new Vector3(-3f, 0.5f, 0f), 3f);         // íŠ€ëŠ” íŒŒí¸
+        SpriteFx.RockBurst((Vector3)landingPos + new Vector3(3f, 0.5f, 0f), 3f);
+
+        // ì°©ì§€ ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ
+        anim.SetTrigger("isBossRanding");
+
+        // ê·¸ë¦¼ìì™€ ì¶©ëŒì‹œ ë³´ìŠ¤ í•˜ê°• ë©ˆì¶¤
+        bossRigid.velocity = Vector3.zero;
+
+        // í•˜ê°• ìƒíƒœ ë¹„í™œì„±í™”
+        IsBossFalling = false;
+
+        // ì¶©ëŒ íŒì • ë³µêµ¬
+        CapsuleCollider2D capsule = gameObject.GetComponent<CapsuleCollider2D>();
+        capsule.isTrigger = false;
+        capsule.size = new Vector2(6.5f, 10.0f);
+
+        // ê·¸ë¦¼ì ë¹„í™œì„±í™”
+        bossShadow.SetActive(false);
+
+        // ì‚¬ë°©ìœ¼ë¡œ ëŒë§¹ì´ ë°œì‚¬
+        Fire();
+
+        StartCoroutine(WaitAnim(0.5f));
     }
 }

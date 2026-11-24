@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,32 +10,31 @@ public class Weapon : MonoBehaviour
     public int id;
     public int prefabId;
     public float damage;
-    public float speed;                       // ¹«±âÀÇ È¸Àü ¼Óµµ
-    public float rate;                        // ¹«±âÀÇ ¿¬»ç ¼Óµµ
-    public int count;                         // È¸ÀüÇÏ´Â ¹«±â °¹¼ö
+    public float speed;                       // ë¬´ê¸°ì˜ íšŒì „ ì†ë„
+    public float rate;                        // ë¬´ê¸°ì˜ ì—°ì‚¬ ì†ë„
+    public int count;                         // íšŒì „í•˜ëŠ” ë¬´ê¸° ê°¯ìˆ˜
 
     [Header("# Etc Data")]
-    public float memorydamage;                // µ¥¹ÌÁö ÀúÀå
-    public float Critical_Damage;             // Å©¸®Æ¼ÄÃ µ¥¹ÌÁö
-    public float Chargespeed;                 // ·£½º µ¹Áø ½ºÇÇµå ÀúÀå
-    Vector3 lastDirection;                    // Á¶ÀÌ½ºÆ½ÀÌ ¸¶Áö¸·À¸·Î ÇâÇÑ ¹æÇâ°ª [´ë°Ë]
-    Vector3 lastSniperDirection = Vector3.up; // Á¶ÀÌ½ºÆ½ÀÌ ¸¶Áö¸·À¸·Î ÇâÇÑ ¹æÇâ°ª [Çìº¸°Ç]
-    /* [ Damage °ü·Ã] */
+    public float memorydamage;                // ë°ë¯¸ì§€ ì €ì¥
+    public float Critical_Damage;             // í¬ë¦¬í‹°ì»¬ ë°ë¯¸ì§€
+    public float Chargespeed;                 // ëœìŠ¤ ëŒì§„ ìŠ¤í”¼ë“œ ì €ì¥
+    Vector3 lastDirection;                    // ì¡°ì´ìŠ¤í‹±ì´ ë§ˆì§€ë§‰ìœ¼ë¡œ í–¥í•œ ë°©í–¥ê°’ [ëŒ€ê²€]
+    /* [ Damage ê´€ë ¨] */
     public float Gear_RemDmg;
     public float RemDmg;
-    /* [ Speed(°ø°İ¼Óµµ, µ¹ÁøÀ¯Áö µî) °ü·Ã] */
+    /* [ Speed(ê³µê²©ì†ë„, ëŒì§„ìœ ì§€ ë“±) ê´€ë ¨] */
     public float Gear_RemSpd;
     public float RemSpd;
-    /* [ Rate(¿¬»ç¼Óµµ, ÄğÅ¸ÀÓ µî) °ü·Ã] */
+    /* [ Rate(ì—°ì‚¬ì†ë„, ì¿¨íƒ€ì„ ë“±) ê´€ë ¨] */
     public float Gear_RemRate;
     public float RemRate;
 
-    /* [ ¹«±â »óÅÂ È®ÀÎ º¯¼ö ] */
-    bool charm = false;                        // [´ë°Ë] Âü ¸ğ¾Æº£±â»óÅÂ È®ÀÎÇÏ´Â º¯¼ö
-    bool cooldown = false;                     // ÄğÅ¸ÀÓÀ» È®ÀÎÇÏ´Â º¯¼ö
-    bool lancecharge = false;                  // [·£½º] µ¹Áø»óÅÂ È®ÀÎÇÏ´Â º¯¼ö
+    /* [ ë¬´ê¸° ìƒíƒœ í™•ì¸ ë³€ìˆ˜ ] */
+    bool charm = false;                        // [ëŒ€ê²€] ì°¸ ëª¨ì•„ë² ê¸°ìƒíƒœ í™•ì¸í•˜ëŠ” ë³€ìˆ˜
+    bool cooldown = false;                     // ì¿¨íƒ€ì„ì„ í™•ì¸í•˜ëŠ” ë³€ìˆ˜
+    bool lancecharge = false;                  // [ëœìŠ¤] ëŒì§„ìƒíƒœ í™•ì¸í•˜ëŠ” ë³€ìˆ˜
 
-    /* [ ½ºÅ©¸³Æ® ¿¬°á ] */
+    /* [ ìŠ¤í¬ë¦½íŠ¸ ì—°ê²° ] */
     float timer;
     Player player;
     ItemData data;
@@ -44,11 +43,11 @@ public class Weapon : MonoBehaviour
     SpriteRenderer spriteRenderer;
 
     [Header("# Weapon Level")]
-    public static int DB_level;               // ½Ö°Ë
-    public static int HB_level;               // È°
-    public static int SH_level;               // Çìº¸°Ç
-    public static int GS_level;               // ´ë°Ë
-    public static int LC_level;               // ·£½º
+    public static int DB_level;               // ìŒê²€
+    public static int HB_level;               // í™œ
+    public static int SH_level;               // í—¤ë³´ê±´
+    public static int GS_level;               // ëŒ€ê²€
+    public static int LC_level;               // ëœìŠ¤
 
     private void Awake()
     {
@@ -58,26 +57,195 @@ public class Weapon : MonoBehaviour
         Gear_RemRate = 100;
     }
 
+    // ë©”ì¸ë¬´ê¸°ê°€ ë˜ë©´ ë³´ì¡°ë¬´ê¸°ë¡œ ì‘ë™í•˜ì§€ ì•Šê³  MainWeaponControllerê°€ ì§ì ‘ ì¡°ì‘
+    public bool IsMain { get; private set; }
+
+    // ì‹œì‘ ê¸°ë³¸ë¬´ê¸° ë‚˜ë¬´ ë§‰ëŒ€ê¸°: ìŒê²€ 1ë ˆë²¨ê³¼ ê°™ì€ ë™ì‘, ë‹¤ë¥¸ ë¬´ê¸°ë¥¼ ì²˜ìŒ ì–»ìœ¼ë©´ ì‚¬ë¼ì§
+    public bool IsStarter { get; private set; }
+    private static Weapon starter;
+    private readonly List<(SpriteRenderer r, Sprite sprite, Vector3 scale, Quaternion rot)> starterOriginals = new List<(SpriteRenderer, Sprite, Vector3, Quaternion)>();
+    private readonly List<(Collider2D original, BoxCollider2D added)> starterColliders = new List<(Collider2D, BoxCollider2D)>();
+
+    public static void CreateStarter(ItemData dualBlades, Sprite stickSprite)
+    {
+        RemoveStarter();
+        Weapon w = new GameObject().AddComponent<Weapon>();
+        w.Init(dualBlades);
+        DB_level--;                                          // ìŒê²€ ë ˆë²¨ë¡œ ì¹˜ì§€ ì•ŠìŒ (ìŒê²€ ì¹´ë“œëŠ” ìƒˆ ë¬´ê¸°ë¡œ ë‚˜ì˜´)
+        WeaponSynergy.Evaluate();
+        w.IsStarter = true;
+        w.name = "Wood Stick (Starter)";
+        if (stickSprite != null)
+        {
+            RunConfig rc = RunConfig.Instance;
+            foreach (SpriteRenderer r in w.GetComponentsInChildren<SpriteRenderer>(true))
+            {
+                w.starterOriginals.Add((r, r.sprite, r.transform.localScale, r.transform.localRotation));   // í’€ì— ëŒë ¤ì¤„ ë•Œ ì›ë˜ëŒ€ë¡œ
+                float bladeLength = r.bounds.size.y;                                      // ìŒê²€ ì¹¼ ê¸¸ì´ (ì›”ë“œ)
+                r.sprite = stickSprite;
+                float stickLength = rc.woodStickHitSize.y * Mathf.Abs(r.transform.lossyScale.y);   // ê·¸ë¦¼ ì† ë§‰ëŒ€ ê¸¸ì´ (ì›”ë“œ)
+                r.transform.localScale *= bladeLength / Mathf.Max(0.0001f, stickLength) * rc.woodStickScale;
+                r.transform.localRotation *= Quaternion.Euler(0f, 0f, rc.woodStickAngle);   // ê·¸ë¦¼ì˜ ë§‰ëŒ€ë¥¼ ë°”ê¹¥(ìœ„)ìœ¼ë¡œ ì„¸ì›€
+
+                // í”¼ê²© íŒì •ì„ ë§‰ëŒ€ ê·¸ë¦¼ì— ë§ì¶¤ (ìŒê²€ ì¹¼ë‚  íŒì •ì€ êº¼ ë‘ê³  í’€ì— ëŒë ¤ì¤„ ë•Œ ë‹¤ì‹œ ì¼¬)
+                Collider2D original = r.GetComponent<Collider2D>();
+                if (original != null)
+                {
+                    original.enabled = false;
+                    BoxCollider2D hit = r.gameObject.AddComponent<BoxCollider2D>();
+                    hit.isTrigger = original.isTrigger;
+                    hit.size = rc.woodStickHitSize;
+                    hit.offset = rc.woodStickHitOffset;
+                    w.starterColliders.Add((original, hit));
+                }
+            }
+        }
+        starter = w;
+    }
+
+    // ë‹¤ë¥¸ ë¬´ê¸°ë¥¼ ì²˜ìŒ ì–»ì—ˆì„ ë•Œ: ë‚˜ë¬´ ë§‰ëŒ€ê¸° ì œê±° (ë°œì‚¬ì²´ëŠ” í’€ì— ëŒë ¤ë†“ìŒ)
+    public static void RemoveStarter()
+    {
+        if (starter == null)
+            return;
+        foreach (var o in starter.starterOriginals)
+        {
+            if (o.r == null) continue;
+            o.r.sprite = o.sprite;
+            o.r.transform.localScale = o.scale;
+            o.r.transform.localRotation = o.rot;
+        }
+        foreach (var c in starter.starterColliders)
+        {
+            if (c.added != null) Destroy(c.added);
+            if (c.original != null) c.original.enabled = true;
+        }
+        Transform pool = GameManager.instance.pool.transform;
+        for (int i = starter.transform.childCount - 1; i >= 0; i--)
+        {
+            Transform child = starter.transform.GetChild(i);
+            child.gameObject.SetActive(false);
+            child.SetParent(pool, false);
+        }
+        Destroy(starter.gameObject);
+        starter = null;
+    }
+
+    // í…ŒìŠ¤íŠ¸ ëª¨ë“œ: ë¬´ê¸° ì œê±° (ë°œì‚¬ì²´ëŠ” í’€ì— ëŒë ¤ë†“ìŒ)
+    public static void RemoveForTest(Weapon weapon)
+    {
+        if (weapon == null)
+            return;
+        Transform pool = GameManager.instance.pool.transform;
+        for (int i = weapon.transform.childCount - 1; i >= 0; i--)
+        {
+            Transform child = weapon.transform.GetChild(i);
+            child.gameObject.SetActive(false);
+            child.SetParent(pool, false);
+        }
+        Destroy(weapon.gameObject);
+    }
+
+    public ItemData Data => data;
+
+    // ëŒ€ê²€, ëœìŠ¤ëŠ” damageê°€ ëª¨ë“œì— ë”°ë¼ ë°”ë€Œë¯€ë¡œ ê¸°ë³¸ í”¼í•´ëŸ‰ì„ ë”°ë¡œ ì‚¬ìš©
+    public float BaseDamage => (id == 3 || id == 4) ? memorydamage : damage;
+
+    // ë©”ì¸ë¬´ê¸° ì „í™˜: ì§„í–‰ ì¤‘ì´ë˜ ë³´ì¡°ë¬´ê¸° ë™ì‘ì„ ë©ˆì¶”ê³  ì›ë˜ ìƒíƒœë¡œ ë˜ëŒë¦¼
+    public void PrepareMainWeapon()
+    {
+        IsMain = true;
+        StopAllCoroutines();
+
+        if (id == 3 || id == 4)
+        {
+            damage = memorydamage;
+        }
+        if (id == 4)
+        {
+            player.speed = player.memoryspeed;      // ëœìŠ¤ ëŒì§„ëª¨ë“œ ì†ë„ ë³µêµ¬
+        }
+
+        charm = false;
+        cooldown = false;
+        lancecharge = false;
+        transform.localRotation = Quaternion.identity;
+    }
+
+    // ëœìŠ¤ ê°ì„±ìœ¼ë¡œ ìˆ¨ê²¼ë‹¤ê°€ ë‹¤ì‹œ ë‚˜íƒ€ë‚˜ë©´ ëŒ€ê²€ íšŒì „ì„ ì²˜ìŒë¶€í„° (êº¼ì§€ëŠ” ë™ì•ˆ ì½”ë£¨í‹´ì´ ë©ˆì¶¤)
+    private void OnEnable()
+    {
+        if (id != 3 || IsMain)
+            return;
+        charm = false;
+        spinning = false;
+        bonusSpins = 0;
+        if (transform.childCount > 0 && transform.GetChild(0).TryGetComponent(out Bullet sword))
+        {
+            sword.IsHarmless = false;
+        }
+    }
+
+    // ëœìŠ¤ ê³µëª… ã€ŒëŒ€ê²€ ê³µëª…ã€: íŒ¨ë§í•˜ë©´ ë³´ì¡° ëŒ€ê²€ì´ ì¦‰ì‹œ 1íšŒ íšŒì „, ì´ë¯¸ ëŒê³  ìˆìœ¼ë©´ ëë‚œ ì§í›„ 1íšŒ ë” (ì›ë˜ ì¿¨íƒ€ì„ê³¼ ë³„ê°œ)
+    bool spinning;                             // [ëŒ€ê²€] ì‹¤ì œë¡œ ëŒê³  ìˆëŠ”ì§€
+    int bonusSpins;                            // [ëŒ€ê²€] ì´ì–´ì„œ ëŒ ì¶”ê°€ íšŒì „ ìˆ˜
+
+    public void RequestBonusSpin()
+    {
+        if (id != 3 || IsMain || !isActiveAndEnabled)
+            return;
+        bonusSpins++;
+        if (!spinning)
+        {
+            StartCoroutine(RunBonusSpins());
+        }
+    }
+
+    private IEnumerator RunBonusSpins()
+    {
+        while (bonusSpins > 0)
+        {
+            bonusSpins--;
+            yield return BonusSpin();
+        }
+    }
+
+    private IEnumerator BonusSpin()
+    {
+        spinning = true;
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Weapon_GreatSword);
+        float rotated = 0f;
+        while (rotated < 360f)
+        {
+            float step = Mathf.Min(speed * PlayerBuff.Stamina * Time.deltaTime, 360f - rotated);
+            transform.Rotate(Vector3.back * step);
+            rotated += step;
+            yield return null;
+        }
+        yield return MoveSwordToLastDirection();
+        spinning = false;
+    }
+
     private void Update()
     {
-        if (!GameManager.instance.isLive)
+        if (!GameManager.instance.isLive || IsMain || MainWeaponController.SubWeaponsPaused)
             return;
 
         switch (id)
         {
-            // ½Ö°ËÀÇ °ø°İ ¹æ½Ä
+            // ìŒê²€ì˜ ê³µê²© ë°©ì‹
             case 0:
-                transform.Rotate(Vector3.back * speed * Time.deltaTime * (1 + Gear.stamina_stat));
+                transform.Rotate(Vector3.back * speed * PlayerBuff.Stamina * Time.deltaTime);   // speedì— ìŠ¤í…Œë¯¸ë‚˜ê°€ ì´ë¯¸ ë“¤ì–´ ìˆìŒ (í•œ ë²ˆë§Œ)
                 DualBlades();
                 if (DB_level == 5)
                 {
                     changesprite();
                 }
                 break;
-            // È°ÀÇ °ø°İ ¹æ½Ä
+            // í™œì˜ ê³µê²© ë°©ì‹
             case 1:
                 timer += Time.deltaTime;
-                if (timer > rate)
+                if (timer > rate * PlayerBuff.RateScale)
                 {
                     timer = 0f;
                     HuntingBow();
@@ -87,10 +255,10 @@ public class Weapon : MonoBehaviour
                     changesprite();
                 }
                 break;
-            // Àú°İ¿ëÅº Çìºñº¸¿ì°ÇÀÇ °ø°İ ¹æ½Ä
+            // ì €ê²©ìš©íƒ„ í—¤ë¹„ë³´ìš°ê±´ì˜ ê³µê²© ë°©ì‹
             case 2:
                 timer += Time.deltaTime;
-                if (timer > rate)
+                if (timer > rate * PlayerBuff.RateScale)
                 {
                     timer = 0f;
                     Sniper();
@@ -100,11 +268,11 @@ public class Weapon : MonoBehaviour
                     changesprite();
                 }
                 break;
-            // ´ë°ËÀÇ °ø°İ ¹æ½Ä - È¸Àü ÁßÀÌ ¾Æ´Ò ¶§¸¸ È£Ãâ
+            // ëŒ€ê²€ì˜ ê³µê²© ë°©ì‹ - íšŒì „ ì¤‘ì´ ì•„ë‹ ë•Œë§Œ í˜¸ì¶œ
             case 3:
-                if (!charm)       // È¸Àü ÁßÀÌ ¾Æ´Ò ¶§¸¸ ½ÇÇà
+                if (!charm)       // íšŒì „ ì¤‘ì´ ì•„ë‹ ë•Œë§Œ ì‹¤í–‰
                 {
-                    charm = true; // È¸Àü ÁßÀ¸·Î ¼³Á¤
+                    charm = true; // íšŒì „ ì¤‘ìœ¼ë¡œ ì„¤ì •
                     GreatSword();
                     StartCoroutine(GreatSwordRotate());
                 }
@@ -113,7 +281,7 @@ public class Weapon : MonoBehaviour
                     changesprite();
                 }
                 break;
-            // ·£½ºÀÇ °ø°İ ¹æ½Ä
+            // ëœìŠ¤ì˜ ê³µê²© ë°©ì‹
             case 4:
                 LanceShieldMod();
                 if (!lancecharge)
@@ -123,9 +291,9 @@ public class Weapon : MonoBehaviour
                     StartCoroutine(LanceAttack());
                 }
 
-                if (damage == Critical_Damage && player.speed != Chargespeed)       // µ¹Áø¸ğµåÀÎµ¥, ¼Óµµ°¡ UpµÇÁö ¾ÊÀ¸¸é
+                if (damage == Critical_Damage && player.speed != Chargespeed)       // ëŒì§„ëª¨ë“œì¸ë°, ì†ë„ê°€ Upë˜ì§€ ì•Šìœ¼ë©´
                 {
-                    player.speed = GameManager.instance.player.memoryspeed + count; // ÇÃ·¹ÀÌ¾îÀÇ ¼Óµµ¸¦ count¸¸Å­ ¿Ã¸°´Ù
+                    player.speed = GameManager.instance.player.memoryspeed + count; // í”Œë ˆì´ì–´ì˜ ì†ë„ë¥¼ countë§Œí¼ ì˜¬ë¦°ë‹¤
                 }
 
                 if (LC_level == 5 && damage == Critical_Damage)
@@ -142,14 +310,55 @@ public class Weapon : MonoBehaviour
 
     public void changesprite()
     {
-        // ¸ğµç ÀÚ½Ä ¿ÀºêÁ§Æ®ÀÇ SpriteRenderer ÄÄÆ÷³ÍÆ® °¡Á®¿À±â
+        // ëª¨ë“  ìì‹ ì˜¤ë¸Œì íŠ¸ì˜ SpriteRenderer ì»´í¬ë„ŒíŠ¸ ê°€ì ¸ì˜¤ê¸°
         SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
 
         foreach (SpriteRenderer spriteRenderer in spriteRenderers)
         {
-            // °¢ SpriteRendererÀÇ ½ºÇÁ¶óÀÌÆ®¸¦ º¯°æ
+            // ê° SpriteRendererì˜ ìŠ¤í”„ë¼ì´íŠ¸ë¥¼ ë³€ê²½
             spriteRenderer.sprite = data.weaponimage[0];
         }
+    }
+
+    // ë ˆë²¨ì—… í›„ ëŠ¥ë ¥ì¹˜ (LevelUpê³¼ ë ˆë²¨ì—… ì„ íƒì§€ ì„¤ëª…ì´ ê°™ì€ ê³„ì‚°ì„ ì“°ë„ë¡ ë¶„ë¦¬)
+    public struct Stats
+    {
+        public float damage;          // ë¬´ê¸° ê³µê²©ë ¥
+        public float speed;           // íšŒì „ ì†ë„ (ëœìŠ¤ëŠ” ëŒì§„ ìœ ì§€ ì‹œê°„)
+        public float rate;            // ì—°ì‚¬ ê°„ê²©, ì¿¨íƒ€ì„ (ì´ˆ)
+        public int count;             // ê°¯ìˆ˜, ê´€í†µë ¥, ë² ê¸° íšŸìˆ˜, ëŒì§„ ì†ë„ ì¦ê°€
+        public float baseDamage;      // ëŒ€ê²€, ëœìŠ¤ì˜ ê¸°ë³¸ í”¼í•´ëŸ‰ (ê·¸ ì™¸ëŠ” damageì™€ ê°™ìŒ)
+        public float criticalDamage;  // ëŒ€ê²€, ëœìŠ¤ ê°•í™” ìƒíƒœ í”¼í•´ëŸ‰
+    }
+
+    // ë ˆë²¨ì—…í–ˆì„ ë•Œì˜ ëŠ¥ë ¥ì¹˜ë¥¼ ê³„ì‚°ë§Œ í•¨ (ë¬´ê¸° ìƒíƒœëŠ” ë°”ê¾¸ì§€ ì•ŠìŒ)
+    public Stats PreviewLevelUp(float damage, float speed, float rate, int count)
+    {
+        Stats next = new Stats();
+
+        next.damage = damage * Character.Damage * (1 + Gear.damage_stat);
+
+        next.speed = id == 4 ? speed : speed * Character.WeaponSpeed * (1 + Gear.stamina_stat);   // ëœìŠ¤ì˜ speedëŠ” ëŒì§„ ìœ ì§€ ì‹œê°„ì´ë¼ ê³µê²© ì†ë„ ì˜í–¥ ì—†ìŒ
+
+        next.rate = rate * Character.WeaponRate * (1 - Gear.rate_stat);
+
+        next.count = count + Gear.upgrade_stat;
+
+        next.baseDamage = next.damage;
+        next.criticalDamage = Critical_Damage;
+        // ëŒ€ê²€, ëœìŠ¤ë„ ë‹¤ë¥¸ ë¬´ê¸°ì²˜ëŸ¼ ìºë¦­í„° ê¸°ë³¸ ê³µê²©ë ¥ ë°°ìœ¨(Character.Damage)ì„ ì ìš©
+        if (id == 3)
+        {
+            next.criticalDamage = damage * 1.5f * Character.Damage * (1 + Gear.damage_stat);
+            next.baseDamage = next.criticalDamage / 1.5f;
+        }
+        else if (id == 4)
+        {
+            next.criticalDamage = damage * 3 * Character.Damage * (1 + Gear.damage_stat);
+            next.baseDamage = next.criticalDamage / 4;
+        }
+
+        return next;
     }
 
     public void LevelUp(float damage, float speed, float rate, int count)
@@ -158,25 +367,11 @@ public class Weapon : MonoBehaviour
         RemSpd = speed;
         RemRate = rate;
 
-        this.damage = damage * Character.Damage * (1 + Gear.damage_stat);
-        if (Gear_RemDmg > this.damage)
-        {
-            this.damage = Gear_RemDmg + RemDmg;
-        }
-
-        this.speed = speed * Character.WeaponSpeed * (1 + Gear.stamina_stat);
-        if (Gear_RemSpd > this.speed)
-        {
-            this.speed = Gear_RemSpd + RemSpd;
-        }
-
-        this.rate = rate * Character.WeaponRate * (1 - Gear.rate_stat);
-        if (Gear_RemRate < this.rate)
-        {
-            this.rate = Gear_RemRate;
-        }
-
-        this.count = count + Gear.upgrade_stat;
+        Stats next = PreviewLevelUp(damage, speed, rate, count);
+        this.damage = next.damage;
+        this.speed = next.speed;
+        this.rate = next.rate;
+        this.count = next.count;
 
         if (id == 0)
         {
@@ -184,19 +379,26 @@ public class Weapon : MonoBehaviour
         }
         else if (id == 3)
         {
-            Critical_Damage = damage * 1.5f * (1 + Gear.damage_stat);
-            memorydamage = Critical_Damage / 1.5f;
+            Critical_Damage = next.criticalDamage;
+            memorydamage = next.baseDamage;
             GreatSword();
         }
         else if (id == 4)
         {
-            spriteRenderer.sprite = data.weaponimage[1];
-            Critical_Damage = damage * 3 * (1 + Gear.damage_stat);
-            memorydamage = Critical_Damage / 4;
+            if (spriteRenderer == null)
+            {
+                spriteRenderer = GetComponentInChildren<SpriteRenderer>();   // íšë“ ì§í›„ ê°™ì€ í”„ë ˆì„ì— ë ˆë²¨ì—…í•´ë„ ë™ì‘í•˜ë„ë¡
+            }
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.sprite = data.weaponimage[1];
+            }
+            Critical_Damage = next.criticalDamage;
+            memorydamage = next.baseDamage;
             Lance();
         }
 
-        switch (id)  // ¹«±â
+        switch (id)  // ë¬´ê¸°
         {
             case 0:
                 DB_level++;
@@ -214,6 +416,7 @@ public class Weapon : MonoBehaviour
                 LC_level++;
                 break;
         }
+        WeaponSynergy.Evaluate();                            // ì§ ë¬´ê¸° ë ˆë²¨ì´ ì˜¤ë¥´ë©´ ì‹œë„ˆì§€ íŒì •
     }
 
     public void Init(ItemData data)
@@ -245,13 +448,14 @@ public class Weapon : MonoBehaviour
             name = "Lance [" + data.itemId + "]";
             LC_level++;
         }
+        WeaponSynergy.Evaluate();                            // ë¬´ê¸° íšë“ ì‹œ ì‹œë„ˆì§€ íŒì •
         transform.parent = player.transform;
         transform.localPosition = Vector3.zero;
 
-        // ¹«±â ´É·ÂÄ¡ ¼ÂÆÃ
+        // ë¬´ê¸° ëŠ¥ë ¥ì¹˜ ì…‹íŒ…
         id = data.itemId;
         damage = data.baseDamage * Character.Damage * (1 + Gear.damage_stat);
-        speed = data.baseSpeed * Character.WeaponSpeed * (1 + Gear.stamina_stat);
+        speed = data.itemId == 4 ? data.baseSpeed : data.baseSpeed * Character.WeaponSpeed * (1 + Gear.stamina_stat);   // ëœìŠ¤ëŠ” ëŒì§„ ìœ ì§€ ì‹œê°„
         rate = data.baseRate * Character.WeaponRate * (1 - Gear.rate_stat);
         count = (int)(data.baseCount + Gear.upgrade_stat);
 
@@ -264,10 +468,10 @@ public class Weapon : MonoBehaviour
             }
         }
 
-        // °¢ ±ÙÁ¢¹«±â ÇÔ¼ö È£ÃâÇÏ¿© ÀÚ½Ä ¿ÀºêÁ§Æ® »ı¼º
+        // ê° ê·¼ì ‘ë¬´ê¸° í•¨ìˆ˜ í˜¸ì¶œí•˜ì—¬ ìì‹ ì˜¤ë¸Œì íŠ¸ ìƒì„±
         if (id == 0)
         {
-            DualBlades();  // ¹«±â ÃÊ±âÈ­ ½ÃÁ¡¿¡¼­ DualBlades È£Ãâ  
+            DualBlades();  // ë¬´ê¸° ì´ˆê¸°í™” ì‹œì ì—ì„œ DualBlades í˜¸ì¶œ  
         }
         else if (id == 3)
         {
@@ -283,46 +487,87 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    // ½Ö°Ë °ø°İ, ¹èÄ¡ ·ÎÁ÷
+    // ë³´ì¡°ë¬´ê¸°(ìë™ ê³µê²©) í‘œì‹œ: ë³´ì¡°ë¬´ê¸° í”¼í•´ ë°°ìœ¨ê³¼ ë¬´ê¸°Â·ì´ì•Œ í¬ê¸° ì ìš©. ë©”ì¸ë¬´ê¸°ëŠ” MainWeaponControllerê°€ ë”°ë¡œ ì²˜ë¦¬
+    private void MarkSubWeapon(Bullet bullet)
+    {
+        if (bullet == null || IsMain)
+            return;
+        bullet.SubWeapon = true;
+        bullet.TwinBlade = id == 0;                                   // ìŒë‘¥ì´ ë¬´ê¸° Lv2 ì¹¼ í¬ê¸° (ìŒê²€ë§Œ)
+        bullet.OrbitScaled = id == 0;                                 // ì£¼ìœ„ë¥¼ ë„ëŠ” ì¹¼: í¬ê¸°ê°€ ë°”ë€Œë©´ ê±°ë¦¬ë„ (ëŒ€ê²€ì€ ë°°ì¹˜ ë’¤ì— ì¼¬)
+        bullet.ApplyWeaponSize();
+        GimmickCatalog gc = GimmickCatalog.Instance;
+        bullet.KnockChance = gc.KnockLeft(id) * gc.subKnockbackMul;   // ë³´ì¡°ë¬´ê¸° ë„‰ë°± = ê°™ì€ ë¬´ê¸° ì¢Œí´ë¦­ x ë°°ìœ¨
+    }
+
+    // ìŒë‘¥ì´ ë¬´ê¸°: ë³´ì¡° ìŒê²€ ì¹¼ / ë³´ì¡° í™œÂ·í—¤ë¹„ë³´ìš°ê±´ íˆ¬ì‚¬ì²´ ì¶”ê°€ (ë ˆë²¨ë³„ ê³ ì •ê°’, ëˆ„ì í•˜ì§€ ì•ŠìŒ)
+    private int TwinBlades => IsMain ? 0 : TwinTable(GimmickCatalog.Instance.twinBlades);
+    private int TwinProjectiles => IsMain ? 0 : TwinTable(GimmickCatalog.Instance.twinProjectiles);
+
+    private static int TwinTable(int[] table)
+    {
+        int level = ExtraCards.Level(ItemData.ItemType.TwinWeapon);
+        return level <= 0 || table == null || table.Length == 0 ? 0 : table[Mathf.Min(level, table.Length) - 1];
+    }
+
+    // ì¶”ê°€ íˆ¬ì‚¬ì²´ ë°©í–¥: ì›ë˜ ë°©í–¥ ì¢Œìš°ë¡œ ë²ˆê°ˆì•„ ë²Œë¦¼
+    private static Vector3 TwinDirection(Vector3 dir, int index)
+    {
+        float step = GimmickCatalog.Instance.twinSpreadAngle * ((index + 2) / 2) * (index % 2 == 0 ? 1f : -1f);
+        return Quaternion.Euler(0f, 0f, step) * dir;
+    }
+
+    // ìŒë‘¥ì´ ë¬´ê¸° ì¹´ë“œë¥¼ ê³ ë¥¸ ìˆœê°„ ë³´ì¡° ìŒê²€ ì¹¼ ë°°ì¹˜ë¥¼ ë‹¤ì‹œ í•¨ (ì¹¼ ìˆ˜ ë°˜ì˜)
+    public void RefreshTwinBlades()
+    {
+        if (id == 0 && !IsMain && !IsStarter) DualBlades();
+    }
+
+    // ìŒê²€ ê³µê²©, ë°°ì¹˜ ë¡œì§
     private void DualBlades()
     {
-        for (int index = 0; index < count; index++)                         // ¹«±â °¹¼ö(count) ¸¸Å­ ·çÇÁ¸¦ µ¹¸²
+        int total = count + TwinBlades;
+        for (int index = 0; index < total; index++)                         // ë¬´ê¸° ê°¯ìˆ˜(count, ìŒë‘¥ì´ ë¬´ê¸° í¬í•¨) ë§Œí¼ ë£¨í”„ë¥¼ ëŒë¦¼
         {
             Transform bullet;
 
-            if (index < transform.childCount)                               // ÀÌ¹Ì Á¸ÀçÇÏ´Â ÀÚ½Ä ¿ÀºêÁ§Æ®°¡ ÀÖ´Ù¸é ÇØ´ç ¿ÀºêÁ§Æ®¸¦ bullet¿¡ ÇÒ´ç
+            if (index < transform.childCount)                               // ì´ë¯¸ ì¡´ì¬í•˜ëŠ” ìì‹ ì˜¤ë¸Œì íŠ¸ê°€ ìˆë‹¤ë©´ í•´ë‹¹ ì˜¤ë¸Œì íŠ¸ë¥¼ bulletì— í• ë‹¹
             {
                 bullet = transform.GetChild(index);
             }
-            else                                                            // ÀÚ½Ä ¿ÀºêÁ§Æ®°¡ ¾ø´Ù¸é »õ·Ó°Ô bullet »ı¼º
+            else                                                            // ìì‹ ì˜¤ë¸Œì íŠ¸ê°€ ì—†ë‹¤ë©´ ìƒˆë¡­ê²Œ bullet ìƒì„±
             {
-                bullet = GameManager.instance.pool.Get(prefabId).transform; // Pool¿¡¼­ ¹ß»çÃ¼¸¦ °¡Á®¿È
-                bullet.parent = transform;                                  // »õ·Î¿î bulletÀ» ÇöÀç WeaponÀÇ ÀÚ½ÄÀ¸·Î ¼³Á¤
+                bullet = GameManager.instance.pool.Get(prefabId).transform; // Poolì—ì„œ ë°œì‚¬ì²´ë¥¼ ê°€ì ¸ì˜´
+                bullet.parent = transform;                                  // ìƒˆë¡œìš´ bulletì„ í˜„ì¬ Weaponì˜ ìì‹ìœ¼ë¡œ ì„¤ì •
             }
 
-            bullet.localPosition = Vector3.zero;                            // bulletÀÇ À§Ä¡¸¦ WeaponÀÇ À§Ä¡¿Í µ¿ÀÏÇÏ°Ô ¼³Á¤
-            bullet.localRotation = Quaternion.identity;                     // bulletÀÇ È¸ÀüÀ» ÃÊ±âÈ­
+            bullet.localPosition = Vector3.zero;                            // bulletì˜ ìœ„ì¹˜ë¥¼ Weaponì˜ ìœ„ì¹˜ì™€ ë™ì¼í•˜ê²Œ ì„¤ì •
+            bullet.localRotation = Quaternion.identity;                     // bulletì˜ íšŒì „ì„ ì´ˆê¸°í™”
 
-            Vector3 rotVec = Vector3.forward * 360 * index / count;         // bulletÀ» Weapon ÁÖÀ§·Î ±ÕÀÏÇÏ°Ô È¸Àü ¹èÄ¡
-            bullet.Rotate(rotVec);                                          // È¸Àü Àû¿ë
-            bullet.Translate(bullet.up * 1.5f, Space.World);                // È¸ÀüµÈ ¹æÇâÀ¸·Î 1.5¸¸Å­ ÀÌµ¿ÇØ Weapon¿¡¼­ ¾à°£ ¶³¾îÁø À§Ä¡·Î ¹èÄ¡
+            Vector3 rotVec = Vector3.forward * 360 * index / total;         // bulletì„ Weapon ì£¼ìœ„ë¡œ ê· ì¼í•˜ê²Œ íšŒì „ ë°°ì¹˜
+            bullet.Rotate(rotVec);                                          // íšŒì „ ì ìš©
+            // íšŒì „ëœ ë°©í–¥ìœ¼ë¡œ 1.5ë§Œí¼ ì´ë™í•´ ë°°ì¹˜. ìŒë‘¥ì´ ë¬´ê¸° Lv2ë¡œ ì¹¼ì´ ì»¤ì§€ë©´ ì†ì¡ì´ê°€ ìºë¦­í„°ë¥¼ ê°€ë¦¬ì§€ ì•Šê²Œ ê·¸ë§Œí¼ ë°”ê¹¥ìœ¼ë¡œ
+            float twinSize = !IsMain && ExtraCards.Level(ItemData.ItemType.TwinWeapon) >= 2 ? GimmickCatalog.Instance.twinBladeSizeMul : 1f;
+            float sizeMul = IsMain ? 1f : RunStats.Get(RunStat.WeaponSize);   // ã€Œë¬´ê¸°Â·ì´ì•Œ í¬ê¸°ã€ë¡œ ì¹¼ì´ ì»¤ì§„ ë§Œí¼ë„ ë°”ê¹¥ìœ¼ë¡œ
+            bullet.Translate(bullet.up * 1.5f * twinSize * sizeMul, Space.World);
 
-            bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero);   // bulletÀÇ µ¥¹ÌÁö ¼³Á¤ ¹× ¹æÇâ ÃÊ±âÈ­
+            bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero);   // bulletì˜ ë°ë¯¸ì§€ ì„¤ì • ë° ë°©í–¥ ì´ˆê¸°í™”
+            MarkSubWeapon(bullet.GetComponent<Bullet>());
         }
     }
 
-    // ´ë°Ë ¹èÄ¡ ·ÎÁ÷
+    // ëŒ€ê²€ ë°°ì¹˜ ë¡œì§
     private void GreatSword()
     {
-        if (cooldown)                                          // Äğ´Ù¿î »óÅÂ (Âü¸ğ¾Æ º£±â°¡ ³¡³­ µÚ) 
+        if (cooldown)                                          // ì¿¨ë‹¤ìš´ ìƒíƒœ (ì°¸ëª¨ì•„ ë² ê¸°ê°€ ëë‚œ ë’¤) 
         {
-            damage = memorydamage;                             // µ¥¹ÌÁö¸¦ ¿ø·¡ µ¥¹ÌÁö °ªÀ¸·Î º¯°æ
+            damage = memorydamage;                             // ë°ë¯¸ì§€ë¥¼ ì›ë˜ ë°ë¯¸ì§€ ê°’ìœ¼ë¡œ ë³€ê²½
             Critical_Damage = damage * 1.5f;
-            cooldown = false;                                  // Äğ´Ù¿î »óÅÂ¸¦ ÇØÁ¦ÇÔ
+            cooldown = false;                                  // ì¿¨ë‹¤ìš´ ìƒíƒœë¥¼ í•´ì œí•¨
         }
-        else if (!cooldown)                                    // °ø°İ °¡´É »óÅÂ (Âü¸ğ¾Æ º£±â Áß)
+        else if (!cooldown)                                    // ê³µê²© ê°€ëŠ¥ ìƒíƒœ (ì°¸ëª¨ì•„ ë² ê¸° ì¤‘)
         {
-            damage = Critical_Damage;                          // Ä«¿îÆ®¸¸Å­ È¸ÀüÇÏ¸é, µ¥¹ÌÁö¸¦ Å©¸®Æ¼ÄÃ µ¥¹ÌÁö·Î º¯°æ ex) count°¡ 3ÀÌ¸é 3¹øÂ° Âü¸ğ¾Æº£±â¿¡ µ¥¹ÌÁö Áõ°¡     
+            damage = Critical_Damage;                          // ì¹´ìš´íŠ¸ë§Œí¼ íšŒì „í•˜ë©´, ë°ë¯¸ì§€ë¥¼ í¬ë¦¬í‹°ì»¬ ë°ë¯¸ì§€ë¡œ ë³€ê²½ ex) countê°€ 3ì´ë©´ 3ë²ˆì§¸ ì°¸ëª¨ì•„ë² ê¸°ì— ë°ë¯¸ì§€ ì¦ê°€     
         }
 
         for (int i = 0; i < 1; i++)
@@ -341,12 +586,15 @@ public class Weapon : MonoBehaviour
             bullet.localPosition = Vector3.zero;
             bullet.localRotation = Quaternion.identity;
 
-            bullet.Translate(bullet.up * 3.5f, Space.World);
+            float sizeMul = IsMain ? 1f : RunStats.Get(RunStat.WeaponSize);   // ã€Œë¬´ê¸°Â·ì´ì•Œ í¬ê¸°ã€ë¡œ ì¹¼ì´ ì»¤ì§„ ë§Œí¼ ë°”ê¹¥ìœ¼ë¡œ
+            bullet.Translate(bullet.up * 3.5f * sizeMul, Space.World);
             bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero);
+            MarkSubWeapon(bullet.GetComponent<Bullet>());
+            bullet.GetComponent<Bullet>().OrbitScaled = !IsMain;
         }
     }
 
-    // ·£½º ¹èÄ¡ ·ÎÁ÷
+    // ëœìŠ¤ ë°°ì¹˜ ë¡œì§
     private void Lance()
     {
         for (int i = 0; i < 1; i++)
@@ -362,143 +610,223 @@ public class Weapon : MonoBehaviour
                 bullet = GameManager.instance.pool.Get(prefabId).transform;
                 bullet.parent = transform;
             }
-            bullet.localPosition = Vector3.zero;
+            // ì°½ ëª¨ì–‘ì¼ ë•ŒëŠ” ì†ì¡ì´ê°€ ìºë¦­í„° ëª¸í†µì— ì˜¤ë„ë¡ ì•ìœ¼ë¡œ ë‚´ë°€ì–´ ìºë¦­í„°ë¥¼ ê°€ë¦¬ì§€ ì•Šê²Œ í•¨ (ë°©íŒ¨ëŠ” ì¤‘ì•™)
+            SpriteRenderer lanceSprite = bullet.GetComponentInChildren<SpriteRenderer>();
+            bool isShield = lanceSprite != null && data.weaponimage != null && data.weaponimage.Length > 1 && lanceSprite.sprite == data.weaponimage[1];
+            bullet.localPosition = isShield ? Vector3.zero : LanceHoldPosition(bullet);
             bullet.localRotation = Quaternion.identity;
 
-            bullet.Translate(bullet.up * 0f, Space.World);
-            bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero);
+            Bullet hit = bullet.GetComponent<Bullet>();
+            hit.Init(damage, -1, Vector3.zero);
+            MarkSubWeapon(hit);
+            hit.RehitInterval = IsMain ? 0f : GameManager.instance.lanceRehitInterval;   // ë³´ì¡° ëœìŠ¤: ê°™ì€ ì  ì¬íƒ€ê²© ê°„ê²©
         }
     }
 
-    // È° ¹èÄ¡ + °ø°İ ·ÎÁ÷
+    // í™œ ë°°ì¹˜ + ê³µê²© ë¡œì§
     private void HuntingBow()
     {
-        if (!player.scanner.nearestTarget)
+        Transform target = player.scanner.NearestInRange(player.scanner.scanRange * player.scanner.subBowRangeScale);   // ë³´ì¡° í™œ ì¸ì‹ ë²”ìœ„
+        if (!target)
             return;
 
-        Vector3 targetPos = player.scanner.nearestTarget.position;
+        Vector3 targetPos = target.position;
         Vector3 dir = targetPos - transform.position;
         dir = dir.normalized;
 
         Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
         bullet.position = transform.position;
         bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
-        bullet.GetComponent<Bullet>().Init(damage, count, dir);
+        bullet.GetComponent<Bullet>().Init(damage, count + ExtraCards.PierceBonus, dir);   // ê´€í†µ í™”ì‚´ì´‰ í¬í•¨
+        MarkSubWeapon(bullet.GetComponent<Bullet>());
+        int volley = TwinProjectiles > 0 ? Bullet.NewVolley() : 0;   // ê°™ì€ ë°œì‚¬ ë¬¶ìŒ (ê°™ì€ ì  ì¤‘ë³µ ì ì¤‘ ê°ì†Œ)
+        bullet.GetComponent<Bullet>().VolleyId = volley;
+        for (int i = 0; i < TwinProjectiles; i++)                // ìŒë‘¥ì´ ë¬´ê¸°: ì¶”ê°€ í™”ì‚´
+        {
+            Vector3 d = TwinDirection(dir, i);
+            Transform extra = GameManager.instance.pool.Get(prefabId).transform;
+            extra.position = transform.position;
+            extra.rotation = Quaternion.FromToRotation(Vector3.up, d);
+            extra.GetComponent<Bullet>().Init(damage, count + ExtraCards.PierceBonus, d);
+            MarkSubWeapon(extra.GetComponent<Bullet>());
+            extra.GetComponent<Bullet>().VolleyId = volley;
+        }
+        SpriteFx.ArrowShot(transform.position, dir, false);     // ë°œì‚¬ ê¶¤ì 
 
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Weapon_Range);
     }
 
-    // Çìºñº¸¿ì°Ç ¹èÄ¡ + °ø°İ ·ÎÁ÷
+    // í—¤ë¹„ë³´ìš°ê±´ ë°°ì¹˜ + ê³µê²© ë¡œì§
     private void Sniper()
     {
-        Vector3 dir = joystickController.GetInputVector();       // Joystick ¹æÇâ º¤ÅÍ ¹Ş¾Æ¿È                                              
-        if (dir == Vector3.zero)                                 // JoystickÀÌ Á¤Áö »óÅÂ¶ó¸é
+        Vector3 dir = joystickController.GetInputVector();       // ì´ë™ ì…ë ¥(ì¡°ì´ìŠ¤í‹±, WASD, ë°©í–¥í‚¤) ë°©í–¥ìœ¼ë¡œ ë°œì‚¬
+        if (dir == Vector3.zero)                                 // ê°€ë§Œíˆ ì„œ ìˆë‹¤ë©´
         {
-            dir = lastSniperDirection;                           // ¸¶Áö¸· ¹æÇâÀ¸·Î ¹ß»ç
-        }
-        else
-        {
-            lastSniperDirection = dir;                           // »õ·Î¿î ¹æÇâ ÀÔ·Â ½Ã ¾÷µ¥ÀÌÆ®
+            float angle = UnityEngine.Random.Range(0f, 360f) * Mathf.Deg2Rad;
+            dir = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f); // 360ë„ ì¤‘ ë¬´ì‘ìœ„ ë°©í–¥ìœ¼ë¡œ ë°œì‚¬
         }
 
         Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
         bullet.position = transform.position;
         bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
-        bullet.GetComponent<Bullet>().Init(damage, count, dir);
+        bullet.GetComponent<Bullet>().Init(damage, -1, dir);    // í—¤ë¹„ë³´ìš°ê±´ì€ ê´€í†µë ¥ ë¬´í•œ (-1)
+        MarkSubWeapon(bullet.GetComponent<Bullet>());
+        int volley = TwinProjectiles > 0 ? Bullet.NewVolley() : 0;
+        bullet.GetComponent<Bullet>().VolleyId = volley;
+        for (int i = 0; i < TwinProjectiles; i++)                // ìŒë‘¥ì´ ë¬´ê¸°: ì¶”ê°€ íƒ„ (ê´€í†µ ë¬´í•œì´ë¼ ì†ë„ë¥¼ ì§ì ‘ ì§€ì •)
+        {
+            Vector3 d = TwinDirection(dir, i);
+            Transform extra = GameManager.instance.pool.Get(prefabId).transform;
+            extra.position = transform.position;
+            extra.rotation = Quaternion.FromToRotation(Vector3.up, d);
+            extra.GetComponent<Bullet>().Init(damage, -1, d);
+            MarkSubWeapon(extra.GetComponent<Bullet>());
+            extra.GetComponent<Bullet>().VolleyId = volley;
+            Rigidbody2D extraRigid = extra.GetComponent<Rigidbody2D>();
+            if (extraRigid != null) extraRigid.velocity = d * 25f;
+        }
+        SpriteFx.Muzzle(transform.position + dir * 0.6f, dir, false);   // ì´êµ¬ ë¶ˆê½ƒ + ì—°ê¸° + íƒ„ ê¶¤ì 
+
+        Rigidbody2D bulletRigid = bullet.GetComponent<Rigidbody2D>();
+        if (bulletRigid != null)
+        {
+            bulletRigid.velocity = dir * 25f;                     // ê´€í†µ ë¬´í•œ íƒ„ì€ Initì—ì„œ ì†ë„ë¥¼ ì£¼ì§€ ì•Šìœ¼ë¯€ë¡œ ì§ì ‘ ì§€ì •
+        }
 
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Weapon_Sniper);
     }
 
-    // ´ë°Ë È¸Àü °ø°İ ÄÚ·çÆ¾
+    // ëŒ€ê²€ íšŒì „ ê³µê²© ì½”ë£¨í‹´
     private IEnumerator GreatSwordRotate()
     {
-        int rotationCount = 0;                                                          // È¸Àü È½¼ö¸¦ ÃßÀûÇÏ±â À§ÇÑ º¯¼ö
+        int rotationCount = 0;                                                          // íšŒì „ íšŸìˆ˜ë¥¼ ì¶”ì í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
 
-        while (rotationCount < count)                                                   // count È½¼ö¸¸Å­ È¸ÀüÀ» ¹İº¹
+        while (rotationCount < count)                                                   // count íšŸìˆ˜ë§Œí¼ íšŒì „ì„ ë°˜ë³µ
         {
-            AudioManager.instance.PlaySfx(AudioManager.Sfx.Weapon_GreatSword);          // ¹«±â »ç¿îµå
-            float rotatedAmount = 0f;                                                   // È¸Àü ´©Àû°ªÀ» ÃÊ±âÈ­         
-
-            while (rotatedAmount < (360f * count))                                      // count ¼ö¸¸Å­(¹ÙÄû) 360µµ¸¦ È¸Àü
+            while (spinning)                                                            // ê³µëª… ì¶”ê°€ íšŒì „ ì¤‘ì´ë©´ ëë‚  ë•Œê¹Œì§€ ëŒ€ê¸°
             {
-                float rotationStep = speed * Time.deltaTime;                            // ¸Å ÇÁ·¹ÀÓ¸¶´Ù È¸ÀüÇÒ ¾ç °è»ê
-                transform.Rotate(Vector3.back * rotationStep);                          // ½ÇÁ¦ È¸Àü ¼öÇà
-                rotatedAmount += rotationStep;                                          // ´©Àû È¸Àü·® Áõ°¡
-                yield return null;                                                      // ÇÑ ÇÁ·¹ÀÓ ´ë±â
+                yield return null;
             }
-            Vector3 dir = joystickController.GetInputVector();                          // Joystick ¹æÇâ º¤ÅÍ ¹Ş¾Æ¿È
-            transform.localRotation = Quaternion.FromToRotation(Vector3.up, dir);       // ¸¶Áö¸· Á¶ÀÌ½ºÆ½ ¹æÇâÀ¸·Î, ´ë°ËÀ» À§Ä¡ÇÔ
+            spinning = true;
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Weapon_GreatSword);          // ë¬´ê¸° ì‚¬ìš´ë“œ
+            float rotatedAmount = 0f;                                                   // íšŒì „ ëˆ„ì ê°’ì„ ì´ˆê¸°í™”         
 
-            rotationCount++;                                                            // ÇÑ ¹øÀÇ 360µµ È¸ÀüÀÌ ³¡³¯ ¶§¸¶´Ù È¸Àü È½¼ö Áõ°¡
+            while (rotatedAmount < (360f * count))                                      // count ìˆ˜ë§Œí¼(ë°”í€´) 360ë„ë¥¼ íšŒì „
+            {
+                float rotationStep = speed * PlayerBuff.Stamina * Time.deltaTime;                          // ë§¤ í”„ë ˆì„ë§ˆë‹¤ íšŒì „í•  ì–‘ ê³„ì‚°
+                transform.Rotate(Vector3.back * rotationStep);                          // ì‹¤ì œ íšŒì „ ìˆ˜í–‰
+                rotatedAmount += rotationStep;                                          // ëˆ„ì  íšŒì „ëŸ‰ ì¦ê°€
+                yield return null;                                                      // í•œ í”„ë ˆì„ ëŒ€ê¸°
+            }
+            yield return MoveSwordToLastDirection();                                    // ë§ˆì§€ë§‰ ì¡°ì‘ ë°©í–¥ìœ¼ë¡œ ëŒ€ê²€ì„ ì´ë™
+            spinning = false;
+            if (bonusSpins > 0)
+            {
+                yield return RunBonusSpins();                                           // íšŒì „ ì¤‘ íŒ¨ë§í•œ ë§Œí¼ ì´ì–´ì„œ 1íšŒ ë”
+            }
 
-            cooldown = true;                                                            // Äğ´Ù¿î »óÅÂ¸¦ true·Î ¸¸µë (°ø°İ ÁßÁö)
-            GreatSword();                                                               // µ¥¹ÌÁö Á¶Á¤À» À§ÇØ GreatSword ÇÔ¼ö¸¦ ´Ù½Ã ºÎ¸§
-            yield return new WaitForSeconds(rate);                                      // ÇÑ ¹ø È¸ÀüÀÌ ³¡³­ ÈÄ rate¸¸Å­ ´ë±â
+            rotationCount++;                                                            // í•œ ë²ˆì˜ 360ë„ íšŒì „ì´ ëë‚  ë•Œë§ˆë‹¤ íšŒì „ íšŸìˆ˜ ì¦ê°€
+
+            cooldown = true;                                                            // ì¿¨ë‹¤ìš´ ìƒíƒœë¥¼ trueë¡œ ë§Œë“¬ (ê³µê²© ì¤‘ì§€)
+            GreatSword();                                                               // ë°ë¯¸ì§€ ì¡°ì •ì„ ìœ„í•´ GreatSword í•¨ìˆ˜ë¥¼ ë‹¤ì‹œ ë¶€ë¦„
+            yield return new WaitForSeconds(rate * PlayerBuff.RateScale);                                      // í•œ ë²ˆ íšŒì „ì´ ëë‚œ í›„ rateë§Œí¼ ëŒ€ê¸°
         }
-        charm = false;                                                                  // Âü¸ğ¾Æº£±â Á¤Áö»óÅÂ·Î º¯°æ   
+        charm = false;                                                                  // ì°¸ëª¨ì•„ë² ê¸° ì •ì§€ìƒíƒœë¡œ ë³€ê²½   
     }
 
-    // ·£½º ¿òÁ÷ÀÌ´Â ·ÎÁ÷
+    // íšŒì „ì´ ëë‚œ ëŒ€ê²€ì„ ë§ˆì§€ë§‰ ì¡°ì‘ ë°©í–¥ìœ¼ë¡œ ë¹ ë¥´ê²Œ ì˜®ê¸°ëŠ” ì½”ë£¨í‹´ (ì´ë™ ì¤‘ì—ëŠ” ê³µê²© íŒì • ì—†ìŒ)
+    private IEnumerator MoveSwordToLastDirection()
+    {
+        Bullet sword = transform.GetChild(0).GetComponent<Bullet>();
+        sword.IsHarmless = true;
+
+        while (true)
+        {
+            Quaternion target = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.up, player.LastMoveDir));
+            float maxStep = GameManager.instance.greatSwordReturnSpeed * Time.deltaTime;
+            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, target, maxStep);
+
+            if (Quaternion.Angle(transform.localRotation, target) < 0.1f)
+                break;
+
+            yield return null;
+        }
+
+        sword.IsHarmless = false;
+    }
+
+    // ì°½ ëª¨ì–‘ì¼ ë•Œ ìœ„ì¹˜: ì°½ ì†ì¡ì´ ëì´ ìºë¦­í„° ëª¸í†µì— ì˜¤ë„ë¡ ì°½ ê¸¸ì´ì˜ ì ˆë°˜ë§Œí¼ ì•ìœ¼ë¡œ
+    private Vector3 LanceHoldPosition(Transform lance)
+    {
+        Sprite lanceImage = data.weaponimage != null && data.weaponimage.Length > 0 ? data.weaponimage[0] : null;
+        if (lanceImage == null)
+            return new Vector3(0f, 0.8f, 0f);
+
+        float half = lanceImage.bounds.extents.y * Mathf.Abs(lance.localScale.y);
+        return new Vector3(0f, Mathf.Max(0.8f, half - 0.15f), 0f);
+    }
+
+    // ëœìŠ¤ ì›€ì§ì´ëŠ” ë¡œì§
     private void LanceRotate()
     {
-        Vector3 dir = joystickController.GetInputVector();                              // Joystick ¹æÇâ º¤ÅÍ ¹Ş¾Æ¿È
+        Vector3 dir = joystickController.GetInputVector();                              // Joystick ë°©í–¥ ë²¡í„° ë°›ì•„ì˜´
 
-        if (dir != Vector3.zero)                                                        // dirÀÌ (0, 0, 0)ÀÌ ¾Æ´Ò ¶§¸¸ lastDirection ¾÷µ¥ÀÌÆ®
+        if (dir != Vector3.zero)                                                        // dirì´ (0, 0, 0)ì´ ì•„ë‹ ë•Œë§Œ lastDirection ì—…ë°ì´íŠ¸
         {
-            lastDirection = dir;                                                        // ¸¶Áö¸· ¹æÇâ ¾÷µ¥ÀÌÆ®
+            lastDirection = dir;                                                        // ë§ˆì§€ë§‰ ë°©í–¥ ì—…ë°ì´íŠ¸
         }
         else
         {
-            dir = lastDirection;                                                        // dirÀÌ (0, 0, 0)ÀÌ¸é ¸¶Áö¸· ¹æÇâ À¯Áö
+            dir = lastDirection;                                                        // dirì´ (0, 0, 0)ì´ë©´ ë§ˆì§€ë§‰ ë°©í–¥ ìœ ì§€
         }
-        transform.localRotation = Quaternion.FromToRotation(Vector3.up, dir);           // Á¶ÀÌ½ºÆ½ ¹æÇâ ¶Ç´Â ¸¶Áö¸· ¹æÇâÀ¸·Î ·£½º¸¦ ¹èÄ¡ÇÔ    
+        transform.localRotation = Quaternion.FromToRotation(Vector3.up, dir);           // ì¡°ì´ìŠ¤í‹± ë°©í–¥ ë˜ëŠ” ë§ˆì§€ë§‰ ë°©í–¥ìœ¼ë¡œ ëœìŠ¤ë¥¼ ë°°ì¹˜í•¨    
     }
 
-    // ·£½º °ø°İ ·ÎÁ÷
+    // ëœìŠ¤ ê³µê²© ë¡œì§
     private IEnumerator LanceAttack()
     {
-        yield return new WaitForSeconds(rate);                                          // rate ¸¸Å­ ÄğÅ¸ÀÓÀ» ±â´Ù·Á¾ß µ¹Áø¸ğµå È°¼ºÈ­
+        yield return new WaitForSeconds(rate * PlayerBuff.RateScale);                                          // rate ë§Œí¼ ì¿¨íƒ€ì„ì„ ê¸°ë‹¤ë ¤ì•¼ ëŒì§„ëª¨ë“œ í™œì„±í™”
 
         if (lancecharge == true)
         {
             LanceShieldMod();
-            AudioManager.instance.PlaySfx(AudioManager.Sfx.Weapon_ChargeMod);           // ¹«±â »ç¿îµå
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Weapon_ChargeMod);           // ë¬´ê¸° ì‚¬ìš´ë“œ
             damage = Critical_Damage;
 
-            Chargespeed = player.speed + count;                                         // µ¹Áø¸ğµåÀÇ ¼Óµµ ÀúÀå
-            player.speed += count;                                                      // count¸¸Å­ ¼Óµµ »ó½Â [ µ¹Áø¸ğµå ] 
+            Chargespeed = player.speed + count;                                         // ëŒì§„ëª¨ë“œì˜ ì†ë„ ì €ì¥
+            player.speed += count;                                                      // countë§Œí¼ ì†ë„ ìƒìŠ¹ [ ëŒì§„ëª¨ë“œ ] 
             Lance();
 
-            yield return new WaitForSeconds(speed);                                     // speed ¸¸Å­ µ¹Áø¸ğµå À¯Áö
+            yield return new WaitForSeconds(speed);                                     // speed ë§Œí¼ ëŒì§„ëª¨ë“œ ìœ ì§€ (ê³µê²© ì†ë„ ì˜í–¥ ì—†ìŒ)
 
             lancecharge = false;
             damage = memorydamage;
-            player.speed = GameManager.instance.player.memoryspeed;                     // ±× ÈÄ, ±â¾ïÇØµĞ ¼Óµµ·Î º¹±¸ [ µ¹ÁøÁ¾·á ]
+            player.speed = GameManager.instance.player.memoryspeed;                     // ê·¸ í›„, ê¸°ì–µí•´ë‘” ì†ë„ë¡œ ë³µêµ¬ [ ëŒì§„ì¢…ë£Œ ]
             Lance();
         }
     }
 
-    // ·£½º ¹«±â º¯°æ ·ÎÁ÷
+    // ëœìŠ¤ ë¬´ê¸° ë³€ê²½ ë¡œì§
     private void LanceShieldMod()
     {
-        Transform childTransform = transform.GetChild(0);                               // ÀÚ½Ä¿ÀºêÁ§Æ®¸¦ °¡Á®¿È
-        CircleCollider2D childCollider = childTransform.GetComponent<CircleCollider2D>(); // CircleCollider2D °¡Á®¿À±â   
+        Transform childTransform = transform.GetChild(0);                               // ìì‹ì˜¤ë¸Œì íŠ¸ë¥¼ ê°€ì ¸ì˜´
+        CircleCollider2D childCollider = childTransform.GetComponent<CircleCollider2D>(); // CircleCollider2D ê°€ì ¸ì˜¤ê¸°   
 
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();                      // ÀÚ½Ä¿ÀºêÁ§Æ®ÀÇ ½ºÇÁ¶óÀÌÆ®¸¦ ÃÊ±âÈ­
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();                      // ìì‹ì˜¤ë¸Œì íŠ¸ì˜ ìŠ¤í”„ë¼ì´íŠ¸ë¥¼ ì´ˆê¸°í™”
 
-        if (damage == Critical_Damage)                                                  // µ¥¹ÌÁö == Å©¸®Æ¼ÄÃ µ¥¹ÌÁö¶ó´Â ¶æÀº µ¹Áø¸ğµå ¶ó´Â ¶æ
+        if (damage == Critical_Damage)                                                  // ë°ë¯¸ì§€ == í¬ë¦¬í‹°ì»¬ ë°ë¯¸ì§€ë¼ëŠ” ëœ»ì€ ëŒì§„ëª¨ë“œ ë¼ëŠ” ëœ»
         {
-            childCollider.offset = new Vector2(0f, 0.47f);                              // Æ÷Áö¼Ç°ú, »çÀÌÁî¸¦ Ã¢¿¡ ¸Â°Ô º¯°æÇÔ
+            childCollider.offset = new Vector2(0f, 0.47f);                              // í¬ì§€ì…˜ê³¼, ì‚¬ì´ì¦ˆë¥¼ ì°½ì— ë§ê²Œ ë³€ê²½í•¨
             childCollider.radius = 1.36f;
-            childTransform.transform.localPosition = new Vector3(0f, 0.8f, 0f);
+            childTransform.transform.localPosition = LanceHoldPosition(childTransform);   // ì†ì¡ì´ ëì´ ëª¸í†µì— ì˜¤ë„ë¡
 
             LanceRotate();
         }
-        else if (lancecharge == false)                                                  // µ¹Áø¸ğµå°¡ ³¡³ª¸é
+        else if (lancecharge == false)                                                  // ëŒì§„ëª¨ë“œê°€ ëë‚˜ë©´
         {
-            spriteRenderer.sprite = data.weaponimage[1];                                // ÀÌ¹ÌÁö¸¦ ¹æÆĞ·Î ¹Ù²Ù°í
+            spriteRenderer.sprite = data.weaponimage[1];                                // ì´ë¯¸ì§€ë¥¼ ë°©íŒ¨ë¡œ ë°”ê¾¸ê³ 
 
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);                          // ¹æÆĞ¿¡ ¸Â°Ô »çÀÌÁî, Æ÷Áö¼Ç, ÇÇ°İ¹üÀ§ µîÀ» ¼öÁ¤ÇÔ
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);                          // ë°©íŒ¨ì— ë§ê²Œ ì‚¬ì´ì¦ˆ, í¬ì§€ì…˜, í”¼ê²©ë²”ìœ„ ë“±ì„ ìˆ˜ì •í•¨
 
             childCollider.offset = new Vector2(0f, 0f);
             childCollider.radius = 1.0f;

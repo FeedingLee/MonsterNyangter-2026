@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b17980c329c1547a8192c2d2fc596c, type: 3}
+  m_Name: MainWeapon_0
+  m_EditorClassIdentifier: 
+  weaponId: 0
+  baseDamage: 27.5
+  attackSpeedGrowth: 1
+  cooldownGrowth: 1
+  slashTime: 0.09
+  stepDelay: 0.1
+  spinDuration: 0.5
+  spinSpeed: 2160
+  comboCooldown: 0.8
+  dashCooldown: 6
+  fireInterval: 0.315
+  pierce: 1
+  fanChargeTime: 3
+  rainCooldown: 10
+  heavyDamage: 150
+  rapidDamage: 10
+  heavyInterval: 1
+  rapidPerSecond: 10
+  heavyRechargeTime: 3.25
+  rapidRechargePerSecond: 7.6923
+  rapidPierce: 0
+  sniperCooldown: 30
+  sniperMobDamage: 500
+  sniperBossDamage: 150
+  slamRaiseTime: 0.07
+  slamStrikeTime: 0.04
+  sweepTime: 0.14
+  upperSwingTime: 0.05
+  justRecoverTime: 0.1
+  failRecoverTime: 0.25
+  nextAttackDelay: 0.5
+  chargeCooldown: 8
+  thrustTime: 0.15
+  thrustInterval: 0.08
+  thrustComboCooldown: 0.56
+  gsComboCooldown: 0.42
+  zoneCooldown: 15

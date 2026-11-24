@@ -1,10 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public Transform[] spawnPoint;
+    [Tooltip("í™”ë©´(ë©”ì¸ ì¹´ë©”ë¼) í…Œë‘ë¦¬ ë°”ê¹¥ ì†Œí™˜ ê±°ë¦¬ ìµœì†Œ~ìµœëŒ€ (ì´ ì‚¬ì´ ë¬´ì‘ìœ„)")]
+    public Vector2 offscreenMargin = new Vector2(2.25f, 7.5f);
     public SpawnData[] spawnData;
     public BossSpawnData[] bossSpawnData;
     public GameManager GM;
@@ -16,7 +17,6 @@ public class Spawner : MonoBehaviour
 
     private void Awake()
     {
-        spawnPoint = GetComponentsInChildren<Transform>();
         levelTime = GameManager.instance.maxGameTime / spawnData.Length;
     }
 
@@ -24,17 +24,20 @@ public class Spawner : MonoBehaviour
     {
         if (!GameManager.instance.isLive)
             return;
+        if (DayNightCycle.DaySpawnPaused)                    // ê·€í™˜ ì¤€ë¹„ ~ ë°¤: ë‚® ëª¬ìŠ¤í„° ìƒˆë¡œ ì†Œí™˜í•˜ì§€ ì•ŠìŒ (ë°¤ì€ NightDefenseê°€ ê²½ë¡œë¡œ ì†Œí™˜)
+            return;
 
-        // Å¸ÀÌ¸ÓÀÇ ½Ã°£¿¡ ¸ÂÃç ¼ÒÈ¯
+        // íƒ€ì´ë¨¸ì˜ ì‹œê°„ì— ë§ì¶° ì†Œí™˜
         timer += Time.deltaTime;
-        level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / levelTime), spawnData.Length - 1);
+        level = CurrentLevel;                                // ì¼ì°¨ ê¸°ì¤€ (ê²½ê³¼ ì‹œê°„ ê¸°ì¤€ì´ë©´ 2ì¼ ì°¨ ë‚® ì¤‘ê°„ì— 3ì¼ ì°¨ ëª¬ìŠ¤í„°ê°€ ë‚˜ì˜´)
 
-        // ½ºÆùµ¥ÀÌÅÍÀÇ ·¹º§¿¡ µû¶ó ¼ÒÈ¯
-        if (timer > spawnData[level].spawnTime)
+        // ìŠ¤í°ë°ì´í„°ì˜ ë ˆë²¨ì— ë”°ë¼ ì†Œí™˜
+        // ìŠ¤í° ì†ë„ ë°°ìœ¨ (ëª°ì´ì‚¬ëƒ¥ ë“±)
+        if (timer > spawnData[level].spawnTime / RunStats.Get(RunStat.SpawnRate))
         {
             timer = 0;
             Spawn();
-            // º¸½º ½ºÆù½Ã Àâ¸÷ ¼ÒÈ¯ X
+            // ë³´ìŠ¤ ìŠ¤í°ì‹œ ì¡ëª¹ ì†Œí™˜ X
             /*if (GM.isBossSpawn == false)
             {           
                 Spawn();
@@ -44,36 +47,80 @@ public class Spawner : MonoBehaviour
     private void Spawn()
     {
         GameObject enemy = GameManager.instance.pool.Get(0);
-        enemy.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
+        // ê³ ì • ì†Œí™˜ ì§€ì  ëŒ€ì‹  í™”ë©´ ë°– 360ë„ ë¬´ì‘ìœ„ (OffscreenSpawn)
+        float margin = Random.Range(offscreenMargin.x, Mathf.Max(offscreenMargin.x, offscreenMargin.y));
+        if (CampLoiterPenalty.Punished)
+        {
+            Vector2 m = RunConfig.Instance.penaltySpawnMargin;   // ìº í”„ ë¹„ë¹„ê¸° ì²˜ë²Œ: í™”ë©´ ë°”ë¡œ ë°–ì—ì„œ ì†Œí™˜
+            margin = Random.Range(m.x, Mathf.Max(m.x, m.y));
+        }
+        enemy.transform.position = OffscreenSpawn.RandomPoint(GameManager.instance.player.transform.position, margin);
 
         int randomIndex = Random.Range(0, 100);
 
-        // chance : ¸ó½ºÅÍÀÇ Ã¼·ÂÀÌ 2¹è°¡ µÉ È®·ü
-        if (spawnData[level].chance >= randomIndex)
+        // chance : ëª¬ìŠ¤í„°ì˜ ì²´ë ¥ì´ 2ë°°ê°€ ë  í™•ë¥ 
+        // ì—˜ë¦¬íŠ¸ ë“±ì¥ í™•ë¥  ë°°ìœ¨ (ì—˜ë¦¬íŠ¸ í† ë²Œ, ì—˜ë¦¬íŠ¸ì˜ í–‰ì§„)
+        if (spawnData[level].chance * RunStats.Get(RunStat.EliteChance) >= randomIndex)
         {
-            // ¿ø·¡ Ã¼·Â ÀÓ½Ã ÀúÀå
+            // ì›ë˜ ì²´ë ¥ ì„ì‹œ ì €ì¥
             int tmp = spawnData[level].health;
 
-            // Ã¼·ÂÀ» ÀÓÀÇÀÇ ¹èÀ²¸¸Å­ Áõ°¡
+            // ì²´ë ¥ì„ ì„ì˜ì˜ ë°°ìœ¨ë§Œí¼ ì¦ê°€
             float newHp = spawnData[level].health * spawnData[level].stronger;
 
-            // Ã¼·ÂÀ» 2¹è·Î
+            // ì²´ë ¥ì„ 2ë°°ë¡œ
             spawnData[level].health = (int)newHp;
 
-            // Ã¼·ÂÀÌ 2¹èÀÎ ¸ó½ºÅÍ´Â »ö»óÀÌ ÁöÁ¤ÇÑ »öÀ¸·Î º¯°æ
-            enemy.gameObject.GetComponent<SpriteRenderer>().color = StrongMonsterColor;
+            // ê°•í™” ëª¬ìŠ¤í„° í‘œì‹œëŠ” ìƒ‰ ëŒ€ì‹  ë°œë°‘ ì˜¤ë¼ (Enemy.Init ì—ì„œ IsElite ë¡œ ì²˜ë¦¬)
 
-            // ¸ó½ºÅÍ ½ºÅÈ ÃÊ±âÈ­
+            // ëª¬ìŠ¤í„° ìŠ¤íƒ¯ ì´ˆê¸°í™”
             enemy.GetComponent<Enemy>().Init(spawnData[level], spawnData[level].expIndex);
 
-            // Ã¼·Â º¯¼ö¸¦ ¿ø·¡´ë·Î
+            // ì²´ë ¥ ë³€ìˆ˜ë¥¼ ì›ë˜ëŒ€ë¡œ
             spawnData[level].health = tmp;
         }
         else
         {
             enemy.GetComponent<Enemy>().Init(spawnData[level], 1);
         }
+        CampLoiterPenalty.ApplyToSpawn(enemy.GetComponent<Enemy>());   // ìº í”„ ë¹„ë¹„ê¸° ì²˜ë²Œ ìŠ¤íƒë§Œí¼ ì²´ë ¥ ì¦ê°€
 
+    }
+
+    // ì§€ê¸ˆ ë‚® ìŠ¤í° ë‹¨ê³„ì˜ ë°ì´í„° (êµ°ë½: ë‘¥ì§€ ì²´ë ¥Â·í˜¸ìœ„ ì¢…ë¥˜)
+    public SpawnData CurrentData => spawnData[CurrentLevel];
+
+    // ìŠ¤í° í‘œ ë‹¨ê³„ = ì¼ì°¨ - 1 (1ì¼ ì°¨ Mosswine, 2ì¼ ì°¨ Kestodon, 3ì¼ ì°¨ Vespoid, 4ì¼ ì°¨ Hercudrome, 5ì¼ ì°¨ Jagras: ë°¤ ì›¨ì´ë¸Œ í‘œì™€ ê°™ì€ ê¸°ì¤€)
+    public int CurrentLevel
+    {
+        get
+        {
+            DayNightCycle dn = DayNightCycle.Instance;
+            if (dn == null)                                  // ë‚®/ë°¤ì´ ì—†ìœ¼ë©´ ì˜ˆì „ì²˜ëŸ¼ ê²½ê³¼ ì‹œê°„ ê¸°ì¤€
+                return Mathf.Clamp(Mathf.FloorToInt(GameManager.instance.gameTime / Mathf.Max(0.01f, levelTime)), 0, spawnData.Length - 1);
+            return Mathf.Clamp(dn.DayCount - 1, 0, spawnData.Length - 1);
+        }
+    }
+
+    // ì§€ì • ìœ„ì¹˜ì— ê·¸ë‚  ë‚® ì¼ë°˜ ëª¬ìŠ¤í„° í•˜ë‚˜ (ì—˜ë¦¬íŠ¸ í™•ë¥ ì€ Spawnê³¼ ê°™ì€ ê·œì¹™, êµ°ë½ í˜¸ìœ„ìš©)
+    public Enemy SpawnDayMonsterAt(Vector2 position)
+    {
+        GameObject go = GameManager.instance.pool.Get(0);
+        go.transform.position = position;
+        Enemy enemy = go.GetComponent<Enemy>();
+        SpawnData d = CurrentData;
+        if (d.chance * RunStats.Get(RunStat.EliteChance) >= Random.Range(0, 100))
+        {
+            int tmp = d.health;
+            d.health = (int)(d.health * d.stronger);
+            enemy.Init(d, d.expIndex);
+            d.health = tmp;
+        }
+        else
+        {
+            enemy.Init(d, 1);
+        }
+        return enemy;
     }
 
     public void BossSpawn()
@@ -82,7 +129,7 @@ public class Spawner : MonoBehaviour
     }
 }
 
-    //¼ÒÈ¯µ¥ÀÌÅÍ ¼³Á¤ Å¬·¡½º [ ½ºÇÁ¶óÀÌÆ® Å¸ÀÔ, ¼ÒÈ¯½Ã°£, Ã¼·Â µî ]
+    //ì†Œí™˜ë°ì´í„° ì„¤ì • í´ë˜ìŠ¤ [ ìŠ¤í”„ë¼ì´íŠ¸ íƒ€ì…, ì†Œí™˜ì‹œê°„, ì²´ë ¥ ë“± ]
     [System.Serializable]
     public class SpawnData
     {   
@@ -92,7 +139,7 @@ public class Spawner : MonoBehaviour
         public float speed;
         public int chance;
         public float stronger;                  
-        public int expIndex;                    // Ãß°¡ °æÇèÄ¡ ±¸½½ °¹¼ö
+        public int expIndex;                    // ì¶”ê°€ ê²½í—˜ì¹˜ êµ¬ìŠ¬ ê°¯ìˆ˜
     }   
 
     [System.Serializable]

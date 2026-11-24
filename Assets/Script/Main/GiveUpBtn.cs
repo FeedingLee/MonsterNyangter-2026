@@ -1,49 +1,39 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GiveUpBtn : MonoBehaviour
 {
-    public GameObject player; // Player ¿ÀºêÁ§Æ®¸¦ ÂüÁ¶ÇÏ±â À§ÇÑ º¯¼ö
+    public GameObject player; // Player ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¸ì¡°í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
 
     private void Start()
     {
-        // Player ¿ÀºêÁ§Æ®¸¦ Ã£¾Æ¼­ º¯¼ö¿¡ ÇÒ´ç
+        // Player ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¾ì•„ì„œ ë³€ìˆ˜ì— í• ë‹¹
         if (player == null)
         {
             player = GameObject.Find("Player");
         }
     }
 
+    // í¬ê¸°í•˜ê¸° (ì˜µì…˜ ì°½ì˜ í•´ê³¨ ë²„íŠ¼): í•œ ë²ˆ í™•ì¸í•œ ë’¤ ìºë¦­í„°ë¥¼ ì¦‰ì‚¬ì‹œì¼œ ì‚¬ë§ê³¼ ê°™ì€ ì‹¤íŒ¨ íë¦„ìœ¼ë¡œ ë³´ëƒ„
+    // (Quest Failed â†’ ê²°ê³¼ ë³´ê¸° â†’ ê²°ê³¼ íŒ¨ë„, ì ¬ ë³´ìƒì€ ì‚¬ë§ê³¼ ê°™ì€ ê³„ì‚°)
     public void SceneChange()
     {
-        // Player ¿ÀºêÁ§Æ®°¡ È°¼ºÈ­µÈ »óÅÂÀÏ ¶§¸¸ ÀÛµ¿
-        if (player != null && player.activeInHierarchy)
+        // Player ì˜¤ë¸Œì íŠ¸ê°€ í™œì„±í™”ëœ ìƒíƒœì¼ ë•Œë§Œ ì‘ë™
+        if (player == null || !player.activeInHierarchy || GameManager.instance == null || GameManager.instance.health <= 0)
         {
-            // È¹µæÇß´ø ½ºÅİ °ª ÃÊ±âÈ­
-            Gear.rate_stat = 0.0f;
-            Gear.damage_stat = 0.0f;
-            Gear.stamina_stat = 0.0f;
-            Gear.upgrade_stat = 0;
-            // ¹«±â ·¹º§ ÃÊ±âÈ­
-            Weapon.DB_level = 0;
-            Weapon.HB_level = 0;
-            Weapon.SH_level = 0;
-            Weapon.GS_level = 0;
-            Weapon.LC_level = 0;
-            // °æÇèÄ¡ º¸³Ê½º »óÅÂ ÃÊ±âÈ­
-            Item.Exp_Bonus = 0;
-            GameManager.expbonuscheck = 0;
-            // ÀÚ¼® º¸³Ê½º »óÅÂ ÃÊ±âÈ­
-            Item.Super_Magnet = 0;
-            GameManager.supermagnetcheck = 0;
+            Debug.Log("Player ì˜¤ë¸Œì íŠ¸ê°€ ë¹„í™œì„±í™” ìƒíƒœì…ë‹ˆë‹¤. í¬ê¸°í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
+            return;
+        }
+        ConfirmPopup.Show("ì •ë§ë¡œ í¬ê¸°í•  ê±°ëƒ¥?", "ì‹¤íŒ¨ë¡œ ì²˜ë¦¬ë˜ê³  ê²°ê³¼ í™”ë©´ìœ¼ë¡œ ê°‘ë‹ˆë‹¤.", "í¬ê¸°í•˜ê¸°", GiveUp);
+    }
 
-            SceneManager.LoadScene("Main");
-        }
-        else
-        {
-            Debug.Log("Player ¿ÀºêÁ§Æ®°¡ ºñÈ°¼ºÈ­ »óÅÂÀÔ´Ï´Ù. ¾ÀÀ» º¯°æÇÒ ¼ö ¾ø½À´Ï´Ù.");
-        }
+    private void GiveUp()
+    {
+        // ì˜µì…˜ ì°½ì„ ë‹«ê³  ê²Œì„ì„ ì¬ê°œí•œ ë’¤ ì²´ë ¥ì„ 0ìœ¼ë¡œ â†’ Playerê°€ ì‚¬ë§ ì²˜ë¦¬(ì“°ëŸ¬ì§ ì—°ì¶œ + GameOver)
+        Option option = FindObjectOfType<Option>();
+        if (option != null && option.continueButton != null) option.continueButton.onClick.Invoke();
+        else GameManager.instance.Resume();
+        GameManager.instance.health = 0;
     }
 }

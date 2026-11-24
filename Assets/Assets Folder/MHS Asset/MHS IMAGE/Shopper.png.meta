@@ -1,0 +1,734 @@
+fileFormatVersion: 2
+guid: f6b44790ec9294045a7c3f8849dc5073
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Shopper_Idle_0
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 686
+        width: 236
+        height: 194
+      alignment: 9
+      pivot: {x: 0.51779664, y: 0.030927835}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cf2b0e950cec01b0800000000000000
+      internalID: -5688912720405254207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Idle_1
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 686
+        width: 236
+        height: 194
+      alignment: 9
+      pivot: {x: 0.5190678, y: 0.030927835}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6238b5bc51604c390800000000000000
+      internalID: -7799101964023004378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Idle_2
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 686
+        width: 236
+        height: 194
+      alignment: 9
+      pivot: {x: 0.527966, y: 0.030927835}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60bfaf83f3324a900800000000000000
+      internalID: 694718996967783174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Idle_3
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 686
+        width: 236
+        height: 194
+      alignment: 9
+      pivot: {x: 0.526271, y: 0.030927835}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 204b57ba4df2386a0800000000000000
+      internalID: -6448257651008228350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Idle_4
+      rect:
+        serializedVersion: 2
+        x: 1140
+        y: 686
+        width: 236
+        height: 194
+      alignment: 9
+      pivot: {x: 0.53135604, y: 0.030927835}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 440576da52a4174a0800000000000000
+      internalID: -6597410453437591484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Idle_5
+      rect:
+        serializedVersion: 2
+        x: 1382
+        y: 686
+        width: 236
+        height: 194
+      alignment: 9
+      pivot: {x: 0.5237287, y: 0.030927835}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dced146eb5d4661f0800000000000000
+      internalID: -1052068405843992883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Greet_0
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 458
+        width: 236
+        height: 214
+      alignment: 9
+      pivot: {x: 0.5148305, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9dab86572aaa1d4b0800000000000000
+      internalID: -5417361262018774311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Greet_1
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 458
+        width: 236
+        height: 214
+      alignment: 9
+      pivot: {x: 0.5432204, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36d162b1acd7cabf0800000000000000
+      internalID: -311735967203058333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Greet_2
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 458
+        width: 236
+        height: 214
+      alignment: 9
+      pivot: {x: 0.5741525, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cde3738f1c11c6c0800000000000000
+      internalID: -4124984862019686974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Greet_3
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 458
+        width: 236
+        height: 214
+      alignment: 9
+      pivot: {x: 0.54067785, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f9316dadbb24a6f0800000000000000
+      internalID: -674365950541088263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Greet_4
+      rect:
+        serializedVersion: 2
+        x: 1142
+        y: 458
+        width: 236
+        height: 214
+      alignment: 9
+      pivot: {x: 0.5207628, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04442b34c436e5c30800000000000000
+      internalID: 4350023469290898496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Greet_5
+      rect:
+        serializedVersion: 2
+        x: 1382
+        y: 458
+        width: 236
+        height: 214
+      alignment: 9
+      pivot: {x: 0.529661, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee99e443cee235700800000000000000
+      internalID: 527817173357205998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Enter_0
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 250
+        width: 230
+        height: 214
+      alignment: 9
+      pivot: {x: 0.45565218, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e933ab8a12e8c140800000000000000
+      internalID: 4740287211447204321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Enter_1
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 250
+        width: 230
+        height: 214
+      alignment: 9
+      pivot: {x: 0.47782606, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c1cdb8e5a65f2120800000000000000
+      internalID: 2391225197731365317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Enter_2
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 250
+        width: 230
+        height: 214
+      alignment: 9
+      pivot: {x: 0.4895651, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea08bb84fb8b54a90800000000000000
+      internalID: -7330249686777102162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Enter_3
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 250
+        width: 230
+        height: 214
+      alignment: 9
+      pivot: {x: 0.48869577, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69ba0ee3d121242c0800000000000000
+      internalID: -4448973565070365802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Enter_4
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 250
+        width: 230
+        height: 214
+      alignment: 9
+      pivot: {x: 0.48913044, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 069537671d1a33210800000000000000
+      internalID: 1311569837502454112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Enter_5
+      rect:
+        serializedVersion: 2
+        x: 1231
+        y: 250
+        width: 230
+        height: 214
+      alignment: 9
+      pivot: {x: 0.49695674, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c910a632b11ac52b0800000000000000
+      internalID: -5594419499170659940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Enter_6
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 250
+        width: 230
+        height: 214
+      alignment: 9
+      pivot: {x: 0.5021739, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8d8fa73601de3f50800000000000000
+      internalID: 6863152706793475468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Leave_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 23
+        width: 220
+        height: 214
+      alignment: 9
+      pivot: {x: 0.49954545, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e97e9aeeea794820800000000000000
+      internalID: 2902986601374054881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Leave_1
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 23
+        width: 220
+        height: 214
+      alignment: 9
+      pivot: {x: 0.4972727, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd1b28bb1610b13f0800000000000000
+      internalID: -929147378852515363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Leave_2
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 23
+        width: 220
+        height: 214
+      alignment: 9
+      pivot: {x: 0.4909091, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64f93bf519a2b9580800000000000000
+      internalID: -8819408641410752698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Leave_3
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 23
+        width: 220
+        height: 214
+      alignment: 9
+      pivot: {x: 0.49272737, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4335bd303dc619e30800000000000000
+      internalID: 4508504355533181748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Leave_4
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 23
+        width: 220
+        height: 214
+      alignment: 9
+      pivot: {x: 0.4713637, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc4fccf254bd27df0800000000000000
+      internalID: -183843544567581492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Leave_5
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 23
+        width: 220
+        height: 214
+      alignment: 9
+      pivot: {x: 0.49227294, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b33837fac52472c50800000000000000
+      internalID: 6640349141429093179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Leave_6
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 23
+        width: 220
+        height: 214
+      alignment: 9
+      pivot: {x: 0.454091, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fc00a1769fc67260800000000000000
+      internalID: 7095086508027153656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shopper_Leave_7
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 23
+        width: 220
+        height: 214
+      alignment: 9
+      pivot: {x: 0.5150002, y: 0.028037382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ff1c730a1e7f0620800000000000000
+      internalID: 2742549348284637174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Shopper_Enter_0: 4740287211447204321
+      Shopper_Enter_1: 2391225197731365317
+      Shopper_Enter_2: -7330249686777102162
+      Shopper_Enter_3: -4448973565070365802
+      Shopper_Enter_4: 1311569837502454112
+      Shopper_Enter_5: -5594419499170659940
+      Shopper_Enter_6: 6863152706793475468
+      Shopper_Greet_0: -5417361262018774311
+      Shopper_Greet_1: -311735967203058333
+      Shopper_Greet_2: -4124984862019686974
+      Shopper_Greet_3: -674365950541088263
+      Shopper_Greet_4: 4350023469290898496
+      Shopper_Greet_5: 527817173357205998
+      Shopper_Idle_0: -5688912720405254207
+      Shopper_Idle_1: -7799101964023004378
+      Shopper_Idle_2: 694718996967783174
+      Shopper_Idle_3: -6448257651008228350
+      Shopper_Idle_4: -6597410453437591484
+      Shopper_Idle_5: -1052068405843992883
+      Shopper_Leave_0: 2902986601374054881
+      Shopper_Leave_1: -929147378852515363
+      Shopper_Leave_2: -8819408641410752698
+      Shopper_Leave_3: 4508504355533181748
+      Shopper_Leave_4: -183843544567581492
+      Shopper_Leave_5: 6640349141429093179
+      Shopper_Leave_6: 7095086508027153656
+      Shopper_Leave_7: 2742549348284637174
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

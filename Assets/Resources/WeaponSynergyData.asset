@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36d09e7ec62657438a0837bb1a8065d, type: 3}
+  m_Name: WeaponSynergyData
+  m_EditorClassIdentifier: 
+  resonanceLevel: 3
+  awakeningLevel: 5
+  popupScaleTime: 0.3
+  popupSound: {fileID: 0}
+  popupPanelSprite: {fileID: 0}
+  popupTextGap: 20
+  popupGlowOffset: {x: 0, y: -150}
+  resonanceColor: {r: 0.35, g: 0.75, b: 1, a: 1}
+  awakeningColor: {r: 1, g: 0.78, b: 0.25, a: 1}
+  chargeDamageTakenRate: 0.5
+  guardBladeCount: 2
+  guardBladeDistance: 1.5
+  guardBladeSpeed: 300
+  arrowInterval: 0.3
+  arrowScale: 0.6
+  arrowRange: 6
+  arrowDamageRate: 0.5
+  arrowSpeed: 15
+  freezeTime: 0.4
+  cleaveBossDamage: 100
+  cleaveSecondHitDelay: 0.15
+  sliceKillDuration: 0.9
+  beamHitCount: 5
+  beamHitDamage: 35
+  beamSpeed: 28
+  beamLength: 4
+  stormBladeCount: 6
+  stormBladeDamage: 35
+  stormPierce: 2
+  stormTurnSpeed: 540
+  stormBladeSpeed: 14
+  dashRangeMul: 1.5
+  dashSpeedMul: 2
+  dashDamageMul: 1.5
+  slashDelay: 0.2
+  dashExplodeDamage: 100
+  dashExplodeWidth: 0.9
+  dualDashCharge: 2
+  dashPostInvincible: 0.25
+  lightningCount: 3
+  lightningFlashTime: 0.08
+  beamChargeTime: 0.3
+  beamAfterTime: 0.5
+  awakenFlashTime: 0.1
+  shakeWeakPower: 0.1
+  shakeWeakTime: 0.15
+  shakeStrongPower: 0.25
+  shakeStrongTime: 0.3
+  cleaveSound: {fileID: 0}
+  beamSound: {fileID: 0}
+  bladeStormSound: {fileID: 0}
+  flashDashSound: {fileID: 0}
+  entries:
+  - main: 3
+    partner: 4
+    resonanceName: "\uACAC\uB514\uAE30"
+    resonanceDesc: "\uCC28\uC9C0 \uC911 \uBC1B\uB294 \uD53C\uD574 \uAC10\uC18C"
+    awakeningName: "\uCC9C\uC9C0 \uAC00\uB974\uAE30"
+    awakeningDesc: "\uCD5C\uB300\uB85C \uBAA8\uC544 \uBCA0\uBA74 \uD654\uBA74 \uC548\uC758
+      \uC801\uC744 \uBAA8\uB450 \uBCA4\uB2E4"
+  - main: 1
+    partner: 2
+    resonanceName: "\uAFF0\uB6AB\uB294 \uD654\uC0B4"
+    resonanceDesc: "\uD654\uC0B4\uC774 \uB05D\uC5C6\uC774 \uAD00\uD1B5"
+    awakeningName: "\uAD00\uD1B5 \uC12C\uAD11"
+    awakeningDesc: "\uD654\uC0B4\uBE44 \uD6C4 \uAC70\uB300 \uAD00\uD1B5 \uD654\uC0B4
+      \uBC1C\uC0AC"
+  - main: 4
+    partner: 3
+    resonanceName: "\uB300\uAC80 \uACF5\uBA85"
+    resonanceDesc: "\uD328\uB9C1\uD558\uBA74 \uB300\uAC80\uC774 \uD568\uAED8 \uB3C8\uB2E4"
+    awakeningName: "\uB300\uAC80 \uD574\uBC29"
+    awakeningDesc: "\uCC3D\uC744 \uB358\uC9C0\uBA74 \uB300\uAC80\uC744 \uBF51\uC544
+      \uB4E0\uB2E4"
+  - main: 2
+    partner: 0
+    resonanceName: "\uCE7C\uB0A0 \uC5F0\uC0AC"
+    resonanceDesc: "\uC5F0\uC0AC\uD0C4 25\uBC1C\uB9C8\uB2E4 \uCE7C\uB0A0\uC774 \uC801\uC744
+      \uCD94\uACA9"
+    awakeningName: "\uCE7C\uB0A0 \uC911\uB7C9\uD0C4"
+    awakeningDesc: "\uC911\uB7C9\uD0C4\uC774 \uD654\uBA74 \uB05D\uC5D0\uC11C \uD295\uAE34\uB2E4"
+  - main: 0
+    partner: 1
+    resonanceName: "\uCD94\uACA9\uC758 \uAE43\uD138"
+    resonanceDesc: "\uBCA0\uAE30\uB9C8\uB2E4 \uC791\uC740 \uD654\uC0B4 \uBC1C\uC0AC"
+    awakeningName: "\uC12C\uAD11 \uB3CC\uACA9"
+    awakeningDesc: "\uB3CC\uC9C4\uC774 \uB354 \uBA40\uB9AC, \uB354 \uBE60\uB974\uAC8C,
+      \uB354 \uAC15\uD558\uAC8C"

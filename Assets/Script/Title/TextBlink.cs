@@ -1,23 +1,23 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class TextBlink : MonoBehaviour
 {
-    public float fadeDuration = 2f;             // ÆäÀÌµå ÀÎ/¾Æ¿ô Áö¼Ó ½Ã°£ (ÃÊ)
-    public Color targetColor = Color.white;     // ¸ñÇ¥ »ö»ó (ÀÌ °æ¿ì, Èò»ö)
+    public float fadeDuration = 2f;             // í˜ì´ë“œ ì¸/ì•„ì›ƒ ì§€ì† ì‹œê°„ (ì´ˆ)
+    public Color targetColor = Color.white;     // ëª©í‘œ ìƒ‰ìƒ (ì´ ê²½ìš°, í°ìƒ‰)
 
-    private Color initialColor;                 // ÅØ½ºÆ® UIÀÇ ÃÊ±â »ö»ó
-    private Text textComponent;                 // ÅØ½ºÆ® UI ÄÄÆ÷³ÍÆ®¿¡ ´ëÇÑ ÂüÁ¶
+    private Color initialColor;                 // í…ìŠ¤íŠ¸ UIì˜ ì´ˆê¸° ìƒ‰ìƒ
+    private Text textComponent;                 // í…ìŠ¤íŠ¸ UI ì»´í¬ë„ŒíŠ¸ì— ëŒ€í•œ ì°¸ì¡°
 
     private void Start()
     {
-        textComponent = GetComponent<Text>();   // ÀÌ °ÔÀÓ ¿ÀºêÁ§Æ®¿¡ ºÎÂøµÈ ÅØ½ºÆ® ÄÄÆ÷³ÍÆ® °¡Á®¿À±â
-        initialColor = textComponent.color;     // ÅØ½ºÆ®ÀÇ ÃÊ±â »ö»ó ÀúÀå
-        // ½ÃÀÛÇÒ ¶§ ÆäÀÌµå ¾Æ¿ô È¿°ú¸¦ À§ÇØ ÃÊ±â ¾ËÆÄ °ªÀ» 0À¸·Î ¼³Á¤
+        textComponent = GetComponent<Text>();   // ì´ ê²Œì„ ì˜¤ë¸Œì íŠ¸ì— ë¶€ì°©ëœ í…ìŠ¤íŠ¸ ì»´í¬ë„ŒíŠ¸ ê°€ì ¸ì˜¤ê¸°
+        initialColor = textComponent.color;     // í…ìŠ¤íŠ¸ì˜ ì´ˆê¸° ìƒ‰ìƒ ì €ì¥
+        // ì‹œì‘í•  ë•Œ í˜ì´ë“œ ì•„ì›ƒ íš¨ê³¼ë¥¼ ìœ„í•´ ì´ˆê¸° ì•ŒíŒŒ ê°’ì„ 0ìœ¼ë¡œ ì„¤ì •
         initialColor.a = 0f;
         textComponent.color = initialColor;
-        // ÆäÀÌµå ÇÁ·Î¼¼½º ½ÃÀÛ
+        // í˜ì´ë“œ í”„ë¡œì„¸ìŠ¤ ì‹œì‘
         StartCoroutine(FadeText());
     }
 
@@ -25,13 +25,13 @@ public class TextBlink : MonoBehaviour
     {
         while (true)
         {
-            // ÆäÀÌµå ¾Æ¿ô
+            // í˜ì´ë“œ ì•„ì›ƒ
             yield return FadeOut();
-            // ÆäÀÌµå ÀÎ Àü¿¡ Àá½Ã ´ë±â
+            // í˜ì´ë“œ ì¸ ì „ì— ì ì‹œ ëŒ€ê¸°
             yield return new WaitForSeconds(0.5f);
-            // ÆäÀÌµå ÀÎ
+            // í˜ì´ë“œ ì¸
             yield return FadeIn();
-            // ´Ù½Ã ÆäÀÌµå ¾Æ¿ôÇÏ±â Àü¿¡ Àá½Ã ´ë±â
+            // ë‹¤ì‹œ í˜ì´ë“œ ì•„ì›ƒí•˜ê¸° ì „ì— ì ì‹œ ëŒ€ê¸°
             yield return new WaitForSeconds(0.5f);
         }
     }
@@ -43,9 +43,9 @@ public class TextBlink : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             float t = Mathf.Clamp01(elapsedTime / fadeDuration);
-            // ÃÊ±â ¾ËÆÄ¿¡¼­ 0±îÁöÀÇ ¾ËÆÄ °ªÀ» º¸°£
+            // ì´ˆê¸° ì•ŒíŒŒì—ì„œ 0ê¹Œì§€ì˜ ì•ŒíŒŒ ê°’ì„ ë³´ê°„
             Color newColor = Color.Lerp(initialColor, targetColor, t);
-            newColor.a = Mathf.Lerp(1f, 0f, t); // ÆäÀÌµå ¾Æ¿ôÀ» À§ÇØ ¾ËÆÄ °ªÀ» ¼³Á¤
+            newColor.a = Mathf.Lerp(1f, 0f, t); // í˜ì´ë“œ ì•„ì›ƒì„ ìœ„í•´ ì•ŒíŒŒ ê°’ì„ ì„¤ì •
             textComponent.color = newColor;
             yield return null;
         }
@@ -58,9 +58,9 @@ public class TextBlink : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             float t = Mathf.Clamp01(elapsedTime / fadeDuration);
-            // 0¿¡¼­ ÃÊ±â ¾ËÆÄ±îÁöÀÇ ¾ËÆÄ °ªÀ» º¸°£
+            // 0ì—ì„œ ì´ˆê¸° ì•ŒíŒŒê¹Œì§€ì˜ ì•ŒíŒŒ ê°’ì„ ë³´ê°„
             Color newColor = Color.Lerp(initialColor, targetColor, t);
-            newColor.a = Mathf.Lerp(0f, 1f, t); // ÆäÀÌµå ÀÎÀ» À§ÇØ ¾ËÆÄ °ªÀ» ¼³Á¤
+            newColor.a = Mathf.Lerp(0f, 1f, t); // í˜ì´ë“œ ì¸ì„ ìœ„í•´ ì•ŒíŒŒ ê°’ì„ ì„¤ì •
             textComponent.color = newColor;
             yield return null;
         }

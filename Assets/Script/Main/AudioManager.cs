@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -23,8 +23,10 @@ public class AudioManager : MonoBehaviour
     [HideInInspector] public AudioSource bgmPlayer;
     [HideInInspector] public AudioSource WaitingbgmPlayer;
     AudioHighPassFilter bgmEffect;
-    // BGM ¸¶Áö¸· Àç»ı°îÀ» Ã¼Å©ÇÏ±â À§ÇÑ °ª
+    // BGM ë§ˆì§€ë§‰ ì¬ìƒê³¡ì„ ì²´í¬í•˜ê¸° ìœ„í•œ ê°’
     [HideInInspector] public int LastIndex = -1;
+    private const float BgmEndDelay = 0.5f;     // ê³¡ì´ ëë‚¬ë‹¤ê³  íŒë‹¨í•˜ê¸°ê¹Œì§€ ë©ˆì¶° ìˆì–´ì•¼ í•˜ëŠ” ì‹œê°„(ì´ˆ)
+    private float bgmSilentSince = -1f;         // BGMì´ ë©ˆì¶˜ ê²ƒì„ ì²˜ìŒ í™•ì¸í•œ ì‹œê°
 
     [Header("# SFX")]
     public AudioClip[] sfxClips;
@@ -70,7 +72,7 @@ public class AudioManager : MonoBehaviour
 
     private void Init()
     {
-        // BGM Player »ı¼º
+        // BGM Player ìƒì„±
         GameObject bgmObject = new GameObject("BgmPlayer");
         bgmObject.transform.parent = transform;
         bgmPlayer = bgmObject.AddComponent<AudioSource>();
@@ -79,7 +81,7 @@ public class AudioManager : MonoBehaviour
         bgmPlayer.volume = bgmVolume;
         bgmEffect = Camera.main.GetComponent<AudioHighPassFilter>();
 
-        // Waitingbgm Player »ı¼º
+        // Waitingbgm Player ìƒì„±
         GameObject WaitRoomBGM = new GameObject("Waiting_BgmPlayer");
         WaitRoomBGM.transform.parent = transform;
         WaitingbgmPlayer = WaitRoomBGM.AddComponent<AudioSource>();
@@ -87,7 +89,7 @@ public class AudioManager : MonoBehaviour
         WaitingbgmPlayer.loop = true;
         WaitingbgmPlayer.volume = bgmVolume;
 
-        // SFX Player »ı¼º
+        // SFX Player ìƒì„±
         GameObject sfxObject = new GameObject("SfxPlayer");
         sfxObject.transform.parent = transform;
         sfxPlayers = new AudioSource[channels];
@@ -100,7 +102,7 @@ public class AudioManager : MonoBehaviour
             sfxPlayers[index].volume = sfxVolume;
         }
 
-        // ¸ğµç ¿Àµğ¿À Å¬¸³ ¹Ì¸® ·Îµå
+        // ëª¨ë“  ì˜¤ë””ì˜¤ í´ë¦½ ë¯¸ë¦¬ ë¡œë“œ
         foreach (var clip in bgmClip)
         {
             clip.LoadAudioData();
@@ -130,6 +132,42 @@ public class AudioManager : MonoBehaviour
         bgmEffect.enabled = isPlay;
     }
 
+    // ì¸ìŠ¤í™í„°ì—ì„œ ì§ì ‘ ì§€ì •í•œ íš¨ê³¼ìŒì„ í˜„ì¬ SFX ë³¼ë¥¨ìœ¼ë¡œ ì¬ìƒ
+    public void PlayClip(AudioClip clip)
+    {
+        if (clip == null)
+            return;
+
+        sfxPlayers[channelIndex].PlayOneShot(clip);
+    }
+
+    // ì¤‘ê°„ ìœ„ì¹˜ë¶€í„° ì¬ìƒ (íŒŒì¼ ì•ë¶€ë¶„ ë¬´ìŒ ê±´ë„ˆë›°ê¸°ìš©, íš¨ê³¼ìŒ ë³¼ë¥¨ ì ìš©)
+    public void PlayClipFrom(AudioClip clip, float startTime)
+    {
+        if (clip == null)
+            return;
+        if (startTime <= 0f || startTime >= clip.length)
+        {
+            PlayClip(clip);
+            return;
+        }
+        AudioSource src = new GameObject("Sfx From " + clip.name).AddComponent<AudioSource>();
+        src.transform.SetParent(transform, false);
+        src.playOnAwake = false;
+        src.bypassListenerEffects = true;
+        src.volume = sfxVolume;
+        src.clip = clip;
+        src.time = startTime;
+        src.Play();
+        Destroy(src.gameObject, clip.length - startTime + 0.1f);
+    }
+
+    // ë¹ˆ ì±„ë„ì´ ì—†ì–´ë„ ëˆ„ë½ë˜ì§€ ì•Šì•„ì•¼ í•˜ëŠ” íš¨ê³¼ìŒ ì¬ìƒ
+    public void PlaySfxPriority(Sfx sfx)
+    {
+        PlayClip(sfxClips[(int)sfx]);
+    }
+
     public void PlaySfx(Sfx sfx)
     {
         for (int index = 0; index < sfxPlayers.Length; index++)
@@ -154,16 +192,34 @@ public class AudioManager : MonoBehaviour
     }
     
     public void Update()
-    {   // Player°¡ OnÀÌ°í, GameResult°¡ OFF¸é °ÔÀÓÁøÇàÁßÀÌ´Ï ´Ù½Ã ·£´ı ³ë·¡ Àç»ı
+    {   // Playerê°€ Onì´ê³ , GameResultê°€ OFFë©´ ê²Œì„ì§„í–‰ì¤‘ì´ë‹ˆ ë‹¤ì‹œ ëœë¤ ë…¸ë˜ ì¬ìƒ
         if (Need_GameResult_Obj.gameObject.activeInHierarchy == false
             && Need_Player_Obj.gameObject.activeInHierarchy == true
-            && !bgmPlayer.isPlaying)
+            && HasBgmFinished())
         {
             RandomPlay();
         }
     }
 
-    // ³ë·¡ ·£´ıÀç»ı ÇÔ¼ö
+    // ì°½ ì „í™˜ í›„ ëŒì•„ì˜¨ ì§í›„ì—ëŠ” isPlayingì´ ì ì‹œ falseì¼ ìˆ˜ ìˆìœ¼ë¯€ë¡œ, ì¼ì • ì‹œê°„ ê³„ì† ë©ˆì¶° ìˆì„ ë•Œë§Œ ê³¡ì´ ëë‚œ ê²ƒìœ¼ë¡œ íŒë‹¨
+    private bool HasBgmFinished()
+    {
+        if (bgmPlayer.isPlaying)
+        {
+            bgmSilentSince = -1f;
+            return false;
+        }
+
+        if (bgmSilentSince < 0f)
+        {
+            bgmSilentSince = Time.unscaledTime;
+            return false;
+        }
+
+        return Time.unscaledTime - bgmSilentSince >= BgmEndDelay;
+    }
+
+    // ë…¸ë˜ ëœë¤ì¬ìƒ í•¨ìˆ˜
     public void RandomPlay()
     {
         int RanNum = Random.Range(0, bgmClip.Count);
@@ -181,7 +237,7 @@ public class AudioManager : MonoBehaviour
 
     public void WaitBgmPlay()
     {
-        // °ÔÀÓ °á°ú ¿ÀºêÁ§Æ®°¡ ºñÈ°¼ºÈ­ + ÇÃ·¹ÀÌ¾î ¿ÀºêÁ§Æ®°¡ ºñÈ°¼ºÈ­ = °ÔÀÓÁßÀÌ ¾Æ´Ô.
+        // ê²Œì„ ê²°ê³¼ ì˜¤ë¸Œì íŠ¸ê°€ ë¹„í™œì„±í™” + í”Œë ˆì´ì–´ ì˜¤ë¸Œì íŠ¸ê°€ ë¹„í™œì„±í™” = ê²Œì„ì¤‘ì´ ì•„ë‹˜.
         if (Need_GameResult_Obj.gameObject.activeInHierarchy == false
             && Need_Player_Obj.gameObject.activeInHierarchy == false)
         {

@@ -1,0 +1,840 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22d833c17d769e14581dc65ddc793e9d, type: 3}
+  m_Name: RunConfig
+  m_EditorClassIdentifier: 
+  font: {fileID: 12800000, guid: e715fcabbb6163e48b780b3b92979f8e, type: 3}
+  panelSprite: {fileID: 997807344, guid: 6bf3ebce382d8444482a7f9cc702ee7d, type: 3}
+  panelBorder: {x: 40, y: 110, z: 40, w: 115}
+  rowSprite: {fileID: -1355074360, guid: 6bf3ebce382d8444482a7f9cc702ee7d, type: 3}
+  rowBorder: {x: 14, y: 14, z: 14, w: 14}
+  rowTint: {r: 1, g: 0.96, b: 0.9, a: 1}
+  dividerSprite: {fileID: -2145388060, guid: 6bf3ebce382d8444482a7f9cc702ee7d, type: 3}
+  slotSprite: {fileID: 130058501, guid: 6bf3ebce382d8444482a7f9cc702ee7d, type: 3}
+  slotBorder: {x: 12, y: 12, z: 12, w: 12}
+  titleSprite: {fileID: -1355074360, guid: 6bf3ebce382d8444482a7f9cc702ee7d, type: 3}
+  titleBorder: {x: 14, y: 14, z: 14, w: 14}
+  cardSprite: {fileID: 1242296929, guid: 6bf3ebce382d8444482a7f9cc702ee7d, type: 3}
+  cardBorder: {x: 25, y: 25, z: 25, w: 25}
+  buttonGreen: {fileID: -665186749, guid: 6bf3ebce382d8444482a7f9cc702ee7d, type: 3}
+  buttonRed: {fileID: 1952372557, guid: 6bf3ebce382d8444482a7f9cc702ee7d, type: 3}
+  buttonYellow: {fileID: 400451757, guid: 6bf3ebce382d8444482a7f9cc702ee7d, type: 3}
+  buttonBrown: {fileID: 141968804, guid: 6bf3ebce382d8444482a7f9cc702ee7d, type: 3}
+  rerollPanel: {fileID: 1715176497, guid: 03b3bd267cc5a4e4cab7dd031ee14abc, type: 3}
+  buttonBorder: {x: 10, y: 10, z: 10, w: 10}
+  pawSprite: {fileID: 1950431813, guid: 6bf3ebce382d8444482a7f9cc702ee7d, type: 3}
+  uiPixelScale: 1.4
+  parchmentTextColor: {r: 0.25, g: 0.14, b: 0.07, a: 1}
+  effectTextColor: {r: 0.1, g: 0.36, b: 0.08, a: 1}
+  titleTextColor: {r: 0.25, g: 0.14, b: 0.07, a: 1}
+  dayDuration: 100
+  nightDuration: 80
+  transitionTime: 3
+  nightColor: {r: 0.01, g: 0.02, b: 0.08, a: 0.93}
+  nightVisionRadius: 0.286
+  nightInnerDarkness: 0.35
+  totalTime: 780
+  lastDayTime: 60
+  returnPrepTime: 15
+  returnSpeedBonus: 0.5
+  returnAngle: 60
+  returnPrepText: "\uBAAC\uC2A4\uD130\uAC00 \uBAB0\uB824\uC635\uB2C8\uB2E4! \uC900\uBE44\uD558\uC138\uC694!"
+  returnPrepSound: {fileID: 8300000, guid: de3d875ad25864e0a8372a0105432575, type: 3}
+  miniBossDelayFirst: 50
+  miniBossDelay: 30
+  nightSpawnInterval:
+  - 1.2
+  - 1
+  - 0.8
+  - 0.6
+  nightSpecies: 00000000010000000200000003000000
+  nightTravelTime: 25
+  nightBuffRate: 0.2
+  nightHp:
+  - 6
+  - 60
+  - 96
+  - 120
+  bossUnitPlans:
+  - windows:
+    - {x: 5, y: 15}
+  - windows:
+    - {x: 5, y: 15}
+  - windows:
+    - {x: 5, y: 10}
+    - {x: 12, y: 15}
+  - windows:
+    - {x: 5, y: 10}
+    - {x: 12, y: 15}
+  bossArrivalMargin: 1.3
+  bossIgnoreHitStall: 1
+  bossUnitExtraWindow: {x: 5, y: 25}
+  bossUnitHpMul: 20
+  bossUnitTravelMul: 2
+  bossUnitScale: 2.08
+  bossUnitGateDamage: 10
+  bossUnitSortingOrder: 3
+  bossUnitTint: {r: 0.62, g: 0.48, b: 0.85, a: 1}
+  bossUnitAuraColor: {r: 0.55, g: 0.3, b: 0.95, a: 0.85}
+  bossUnitSound: {fileID: 8300000, guid: a62f2be5f31fc4e5bb72af4cc1c43054, type: 3}
+  bossUnitText: "\uB300\uC7A5 \uBAAC\uC2A4\uD130 \uCD9C\uD604!!"
+  bossUnitIcon: {fileID: -1260999852, guid: dc5d5dcccd2dcea42bbdcee6e3205580, type: 3}
+  bossUnitTextTime: 2.5
+  bossUnitTextY: 170
+  bossUnitFontSize: 40
+  bossUnitIconSize: 54
+  bossUnitBlinkSpeed: 6
+  bossUnitTextColor: {r: 0.85, g: 0.7, b: 1, a: 1}
+  returnBuffIcon: {fileID: -864071042, guid: dc5d5dcccd2dcea42bbdcee6e3205580, type: 3}
+  returnBuffIconSize: 34
+  returnBuffIconGap: 4
+  nightWalkAnimMul: 0.7
+  nightKnockbackMinTime: 0.3
+  colonyPenaltyRate: 0.3
+  colonyFirstDay: 2
+  colonyLastDay: 4
+  colonyCount: 1
+  colonyMinDist: 15
+  colonyHpMul: 30
+  colonySpawnCount: 12
+  colonySpawnRadius: 3
+  colonyGuardMinRadius: 2.2
+  colonyGuardMaxRadius: 4.5
+  colonyGuardWanderRadius: 1.2
+  colonyAggroRange: 6
+  colonyIdleSpeedMul: 0.35
+  colonyExpMul: 20
+  colonyCoinMin: 40
+  colonyCoinMax: 60
+  colonyEdgeMargin: 4
+  colonyCampClear: 6
+  colonyPathClear: 4
+  colonyPadClear: 4
+  colonyPlayerClear: 10
+  colonySheet: {fileID: 21300000, guid: 29f68d62236959a42adc6da4052ee472, type: 3}
+  colonySheetRows: 4
+  colonySheetCols: 6
+  colonyNestWidth: 6.6
+  colonyShadow: 0
+  colonyRowBySpriteType: 02000000010000000300000000000000ffffffff
+  colonyPivotY: 0.15
+  colonyNestFps: 0
+  colonySortingLayer: Enemy
+  colonyNestSortingOrder: 1
+  colonyHitboxScale: {x: 0.7, y: 0.6}
+  colonyShadowSize: {x: 2.6, y: 0.7}
+  colonyShadowOffsetY: 0.9
+  colonyBarSize: {x: 2.2, y: 0.22}
+  colonyBarGap: 0.2
+  colonyBarHeight: 0.72
+  colonyBarColor: {r: 0.9, g: 0.22, b: 0.16, a: 1}
+  colonyHitFlashColor: {r: 1, g: 0.75, b: 0.75, a: 1}
+  colonyBreakFxSize: 2.5
+  colonyBreakFadeTime: 0.6
+  colonyBreakSound: {fileID: 8300000, guid: 09a1eb7114a464e0dbcbf5c73bcc3eb2, type: 3}
+  colonyScatterRadius: 2.2
+  colonyScatterTime: 0.8
+  colonyFailColor: {r: 1, g: 0.2, b: 0.15, a: 1}
+  colonyFailGlowTime: 1.2
+  colonyWarningSound: {fileID: 8300000, guid: 1cc961a5774894de3957d7570f35670a, type: 3}
+  colonyWarningTime: 3
+  colonyWarningFontSize: 38
+  colonyWarningColor: {r: 1, g: 0.35, b: 0.3, a: 1}
+  colonyFailText: "\uAD70\uB77D\uC9C0 \uD30C\uAD34 \uC2E4\uD328 : \uC774\uBC88 \uBC24 \uBAAC\uC2A4\uD130 \uCCB4\uB825 +{0}%"
+  colonyPanelColor: {r: 0.55, g: 0.04, b: 0.03, a: 1}
+  colonyPanelSize: {x: 880, y: 96}
+  colonyTextOutline: 2
+  colonyWarningY: 60
+  colonyIndicatorArrowColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  colonyIndicatorFrameColor: {r: 1, g: 0.85, b: 0.35, a: 1}
+  colonyIndicatorBackColor: {r: 0.5, g: 0.04, b: 0.03, a: 1}
+  colonyIndicatorAlpha: 1
+  colonyIndicatorScale: 1.35
+  colonyAppearText: "\uC5B4\uB514\uC120\uAC00 \uAD70\uB77D\uC774 \uB4F1\uC7A5\uD588\uB2E4\uB0E5!"
+  colonyAppearColor: {r: 1, g: 0.88, b: 0.3, a: 1}
+  colonyAppearSound: {fileID: 0}
+  colonyAppearTime: 3
+  colonyAppearPulseTime: 5
+  colonyGuardMark: {fileID: 311346222, guid: 05a2f9ee103281240994c12999635081, type: 3}
+  colonyGuardMarkColor: {r: 1, g: 0.25, b: 0.2, a: 1}
+  colonyGuardMarkSize: 0.6
+  colonyGuardMarkGap: 0.12
+  baseHitPanelTime: 0.35
+  baseHitPanelShake: 8
+  baseHitPanelShakeSpeed: 60
+  baseHitPanelColor: {r: 1, g: 0.15, b: 0.1, a: 0.55}
+  baseMaxHp: 100
+  nightKnockbackMul: 0.5
+  hideFxTime: 0.6
+  hideSinkDistance: 0.6
+  nightLaneWidth: 0.6
+  gateFadeTime: 0.45
+  gateHitFxSize: 1.4
+  gateShakeTime: 0.3
+  gateShakeAmount: 0.12
+  baseHitShakePower: 0.08
+  baseHitShakeTime: 0.18
+  gateObjectNames:
+  - Gate_Open_0
+  - Gate_Close_4
+  morningContentHeight: 860
+  morningCardSize: {x: 280, y: 470}
+  morningCardSpacing: 300
+  bannerSortingOrder: 90
+  shopSignPawSize: 18
+  shopPromptAlpha: 0.6
+  baseHpPanelOffset: {x: -10, y: -112}
+  baseHpPanelSize: {x: 300, y: 110}
+  baseHpPanelScale: 0.8
+  baseHpIconSize: 52
+  baseHpFontSize: 22
+  baseHpBarSize: {x: 160, y: 20}
+  baseHpPanelAlpha: 0.45
+  baseHpBackColor: {r: 1, g: 1, b: 1, a: 1}
+  panelFont: {fileID: 12800000, guid: dafa3da64764da04fbeb64b88053fc64, type: 3}
+  panelFontStyle: 0
+  baseHpFillSprite: {fileID: -665186749, guid: 6bf3ebce382d8444482a7f9cc702ee7d, type: 3}
+  baseHpBackSprite: {fileID: 141968804, guid: 6bf3ebce382d8444482a7f9cc702ee7d, type: 3}
+  baseHpColor: {r: 0.9, g: 0.3, b: 0.25, a: 1}
+  returnTextY: -215
+  morningCards:
+    stretchLevels: 1
+    pocketMoneyCoins: 30
+    baseRepair: 25
+    engineerCostMul: 0.7
+    captureExpMul: 1.5
+    captureDamageMul: 0.75
+    eliteHuntCoins: 3
+    eliteHuntChanceMul: 3
+    eliteHuntHealthMul: 2
+    heavyBagCoins: 80
+    heavyBagMoveMul: 0.85
+    nestRewardMul: 2
+    nestCount: 2
+    bountyBoxCoinMul: 2
+    bountyLevels: 1
+    bountyHealthMul: 1.5
+    rushCoinMul: 2
+    rushTravelTime: 18
+    bloodLevels: 4
+    bloodCoins: 200
+    bloodNightBuffMul: 1.5
+    bloodPactHpAdd: 0.3
+    bloodPactExtraUnit: 1
+    elitesMarchScale: 1.5
+    marchEliteChanceMul: 2
+    marchEliteHealthMul: 2
+    marchEliteDamageMul: 2
+    rageLevels: 4
+    rageBossHpMul: 1.25
+    cursedCoins: 180
+    cursedChoices: 2
+    lastStandLevels: 2
+    lastStandCoins: 150
+    lastStandBaseMul: 0.5
+    openCampLevels: 2
+    openCampCoins: 200
+  sunsetTime: 20
+  sunsetColor: {r: 1, g: 0.55, b: 0.3, a: 0.13}
+  duskDarkness: 0.3
+  duskNightColor: {r: 0.25, g: 0.1, b: 0.12, a: 1}
+  sunGlowColor: {r: 1, g: 0.92, b: 0.7, a: 1}
+  sunGlowAlpha: 0
+  sunShadeAlpha: 0
+  dayDimMax: 0.12
+  cloudCount: 14
+  cloudAlpha: 0.22
+  cloudSize: {x: 20, y: 11}
+  cloudSpeed: 1.6
+  cloudSortingLayer: ForeGround
+  cloudSortingOrder: 50
+  nightMonsterBuff: 0.3
+  nightMonsterBuffPerNight: 0.15
+  nightSpeedRatio: 0.4
+  nightMonsterTint: {r: 1, g: 0.42, b: 0.42, a: 1}
+  clockSprite: {fileID: 1798983555, guid: 55db89b978772694eb700a709ce23487, type: 3}
+  hourHandSprite: {fileID: 696980920, guid: 55db89b978772694eb700a709ce23487, type: 3}
+  minuteHandSprite: {fileID: -2116144040, guid: 55db89b978772694eb700a709ce23487, type: 3}
+  clockOffset: {x: 70, y: -235}
+  clockSize: 100
+  clockLabelOffset: {x: 245, y: -170}
+  toadRangeStretchY: 1.5
+  toadZapEdgeCount: 8
+  toadRangeColor: {r: 1, g: 0.92, b: 0.3, a: 0.28}
+  bombRangeColor: {r: 1, g: 0.25, b: 0.2, a: 0.28}
+  rangeBlinkMin: 0.35
+  demonFlameSize: 1.7
+  demonFlameBaseOffset: 0
+  demonFlameColor: {r: 1, g: 0.3, b: 0.18, a: 0.9}
+  rainDustSize: 1.3
+  rangeSpikeScale: 1.2
+  clockLabelUnderOffset: {x: 70, y: -315}
+  clockLabelCenterOffset: {x: 0, y: -122}
+  clockFontSize: 20
+  clockLabelOutline: 1
+  coinFontSize: 34
+  coinOutline: 1.5
+  nightClockTint: {r: 0.6, g: 0.7, b: 1, a: 1}
+  clockZoneSize: 1.1
+  clockDayZoneColor: {r: 1, g: 0.86, b: 0.1, a: 0.82}
+  clockNightZoneColor: {r: 0.6, g: 0.35, b: 0.95, a: 0.68}
+  coinSprite: {fileID: -1885131113, guid: 2535030baf54b254a8c1fa4fa521ca87, type: 3}
+  coinIcon: {fileID: -729035622, guid: 55db89b978772694eb700a709ce23487, type: 3}
+  coinScale: 0.6
+  dayCoinChance: 0.04
+  nightCoinChance: 0.25
+  eliteCoins: 2
+  coinLifetime: 45
+  coinSound: {fileID: 0}
+  coinCounterOffset: {x: 118, y: -132}
+  questLabelOffset: {x: 245, y: -200}
+  tentSprite: {fileID: -1761059572, guid: 8dc629185bf56f9418938a2fd27851eb, type: 3}
+  titleLetterboxColor: {r: 0, g: 0, b: 0, a: 1}
+  titleLeafFrames:
+  - {fileID: -554568775591600893, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+  - {fileID: -6352514974847146304, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+  - {fileID: -6549704752028275943, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+  - {fileID: -928501722718310165, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+  - {fileID: -8448733932847281371, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+  - {fileID: -6163579049910806781, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+  - {fileID: 6582204464363218116, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+  - {fileID: 567727498356812561, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+  titleLeafCount: 6
+  titleLeafInterval: 1.6
+  titleLeafSize: {x: 0.035, y: 0.055}
+  titleLeafWind: {x: 0.11, y: -0.045}
+  titleLeafSway: 0.035
+  titleLeafFps: 9
+  titleLeafAlpha: 0.95
+  titleSunPosition: {x: 0.236, y: 0.831}
+  titleSunColor: {r: 1, g: 0.93, b: 0.62, a: 0.75}
+  titleSunGlowSize: 0.6
+  titleSunRaySize: 1.15
+  titleSunRayAlpha: 0.32
+  titleSunRaySpeed: 4
+  titleSunPulseSpeed: 1.2
+  campZoneMin: {x: -10, y: 2}
+  campZoneMax: {x: 10, y: 13}
+  fenceRailSprites:
+  - {fileID: -707135152431688414, guid: 739b07d2d413d65468610f7a77b4690d, type: 3}
+  - {fileID: 4710209226752990186, guid: 739b07d2d413d65468610f7a77b4690d, type: 3}
+  - {fileID: -707135152431688414, guid: 739b07d2d413d65468610f7a77b4690d, type: 3}
+  - {fileID: -707135152431688414, guid: 739b07d2d413d65468610f7a77b4690d, type: 3}
+  - {fileID: 4710209226752990186, guid: 739b07d2d413d65468610f7a77b4690d, type: 3}
+  fenceCornerSprite: {fileID: 4205594659894862645, guid: 739b07d2d413d65468610f7a77b4690d, type: 3}
+  fenceCornerTL: {fileID: 0}
+  fenceCornerTR: {fileID: 0}
+  fenceCornerBL: {fileID: 0}
+  fenceCornerBR: {fileID: 0}
+  fenceCornerTopDrop: 0.45
+  fenceSideSprites:
+  - {fileID: -5304890483074079439, guid: 739b07d2d413d65468610f7a77b4690d, type: 3}
+  - {fileID: 8223437312242038404, guid: 739b07d2d413d65468610f7a77b4690d, type: 3}
+  fenceLanternSprite: {fileID: 0}
+  gateArchSprite: {fileID: 0}
+  gateClosedSprite: {fileID: 0}
+  gateOpenLeftSprite: {fileID: 0}
+  gateOpenRightSprite: {fileID: 0}
+  gateOpenFrames:
+  - {fileID: 8793348754041190512, guid: 739b07d2d413d65468610f7a77b4690d, type: 3}
+  - {fileID: -7169538825591205869, guid: 739b07d2d413d65468610f7a77b4690d, type: 3}
+  gateCloseFrames:
+  - {fileID: -6079659925760592211, guid: 739b07d2d413d65468610f7a77b4690d, type: 3}
+  - {fileID: 3363802295164274394, guid: 739b07d2d413d65468610f7a77b4690d, type: 3}
+  gateFps: 12
+  fenceScale: 1.1
+  fenceInset: 0.5
+  fencePostSpacing: 1.9
+  fenceGateScale: 1.6
+  fenceSortingLayer: Shadow
+  fenceSortingOrder: 1
+  campSteerMargin: 0.8
+  campEjectMargin: 0.6
+  campSlidePadding: 0.05
+  flowMargin: 14
+  flowCellSize: 0.5
+  flowInflate: {x: 0.8, y: 0.45}
+  flowBigInflate: {x: 1.6, y: 1.1}
+  flowInterval: 0.3
+  loiterZoneTilePrefix: TX Tileset Grass
+  loiterZoneTileSearch: 6
+  loiterZoneWidth: 3
+  loiterThresholds:
+  - 20
+  - 10
+  - 5
+  loiterStartGrace: 30
+  penaltyStartGauge: 10
+  penaltyGainPerSec: 1
+  penaltyDecayPerSec: 0.5
+  penaltyMaxGauge: 30
+  penaltySpawnMargin: {x: 0.8, y: 1.8}
+  penaltyTeleportInterval: 2.5
+  penaltyTeleportCount: 3
+  penaltyTeleportOffscreen: 1.2
+  penaltyTeleportSpread: 1.2
+  penaltyEyeFrames:
+  - {fileID: -741629059, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: -244653737, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: -2040309521, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: -801470294, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: 414308445, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: -373561340, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: -1054446228, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: 24052971, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: -429525014, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: 1102065486, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: 1870485688, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: 209228805, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: -1650169465, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: 1941843571, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: -1008249616, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: 907920846, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: -840497550, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: 1046227749, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: -58652373, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: 1733433202, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: -1089478267, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: -103900138, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: -1084295057, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: 884656568, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: 160859931, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: -1335069344, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: 1690626988, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: 2092438141, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: 1833238115, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: -2018470972, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: -274386266, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  - {fileID: -59010398, guid: 12cf1f2c76393114a901f9f819a0b3ca, type: 3}
+  penaltyEyeLoopStart: 8
+  penaltyEyeLoopEnd: 19
+  penaltyEyeFps: 14
+  penaltyEyeSize: 0.9
+  penaltyEyeBob: 0.1
+  penaltyEyeBobSpeed: 6.28
+  penaltyEyeSortingLayer: Weapon
+  penaltyEyeOffsetY: 0.15
+  penaltySound: {fileID: 8300000, guid: d07da7a1e41ad45c79bcaa11ca8109ba, type: 3}
+  penaltyOvertimeInterval: 10
+  penaltyHealthPerStack: 0.2
+  penaltyMaxStack: 5
+  penaltyStackTint: {r: 1, g: 0.22, b: 0.22, a: 1}
+  penaltyRecoverTime: 4
+  penaltyEyeStackScale: 1.5
+  penaltyEyeStackColor: {r: 1, g: 0.35, b: 0.3, a: 1}
+  mapLeafSets:
+  - name: "\uBC9A\uAF43\uC78E (\uBD84\uD64D)"
+    frames:
+    - {fileID: 8842514861359412280, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: 6103810849197860622, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: 7674918311415852851, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: 5475270654777870840, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: 4780268584103075220, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: -892723338049442008, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: 744302575743358107, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: -5182513832886728665, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+  - name: "\uBC9A\uAF43\uC78E (\uD770\uC0C9)"
+    frames:
+    - {fileID: 7726364756775001526, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: 2159016035965341789, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: -5500666402170143951, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: 529649390867108240, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: 3965875329656804758, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: -1186441597939901420, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: 7627437024851985752, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: 5464314681704045538, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+  - name: "\uCD08\uB85D \uB098\uBB47\uC78E"
+    frames:
+    - {fileID: -554568775591600893, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: -6352514974847146304, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: -6549704752028275943, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: -928501722718310165, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: -8448733932847281371, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: -6163579049910806781, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: 6582204464363218116, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: 567727498356812561, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+  - name: "\uB178\uB780 \uC78E (\uB2E8\uD48D)"
+    frames:
+    - {fileID: 998638452777906691, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: 649723767265980611, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: -6375582095063844132, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: -2997496228117378840, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: -8617243419786437073, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: 2864862546695465304, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: 1758055622473315367, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: -5398123596289569599, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+  - name: "\uAF43\uC78E (\uAF43\uC1A1\uC774)"
+    frames:
+    - {fileID: -4666642340712892193, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: -4239764760356646176, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: -1188964597160692430, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: -7083392519337473236, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: -8707898349202863445, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: 461623101239487593, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: -5247340311210158750, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+    - {fileID: -6512967846104678978, guid: a613f00bf7f969244b6c7f0043e9b8de, type: 3}
+  mapLeafCount: 11
+  mapLeafSize: {x: 0.364, y: 0.546}
+  mapLeafWind: {x: 0.55, y: -0.45}
+  mapLeafSway: 0.35
+  mapLeafFps: 7
+  mapLeafAlpha: 1
+  mapLeafResumeSpread: 4
+  mapLeafSortingLayer: Weapon
+  mapLeafSortingOrder: 200
+  shopperOffset: {x: 2.4, y: -1.1}
+  shopperHeightRatio: 1.1
+  shopperPlayerHeight: 1.1
+  shopperIdleFrames:
+  - {fileID: -5688912720405254207, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: -7799101964023004378, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: 694718996967783174, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: -6448257651008228350, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: -6597410453437591484, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: -1052068405843992883, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  shopperGreetFrames:
+  - {fileID: -5417361262018774311, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: -311735967203058333, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: -4124984862019686974, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: -674365950541088263, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: 4350023469290898496, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: 527817173357205998, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  shopperEnterFrames:
+  - {fileID: 4740287211447204321, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: 2391225197731365317, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: -7330249686777102162, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: -4448973565070365802, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: 1311569837502454112, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: -5594419499170659940, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: 6863152706793475468, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  shopperLeaveFrames:
+  - {fileID: 2902986601374054881, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: -929147378852515363, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: -8819408641410752698, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: 4508504355533181748, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: -183843544567581492, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: 6640349141429093179, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: 7095086508027153656, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  - {fileID: 2742549348284637174, guid: f6b44790ec9294045a7c3f8849dc5073, type: 3}
+  shopperFps: 8
+  shopperGreetRadius: 2.6
+  shopperGreetLoops: 2
+  shopperRunDistance: 2.5
+  shopperShadowSize: {x: 0.75, y: 0.22}
+  shopperShadowOffsetY: 0.04
+  shopperMarkerHeight: 0.25
+  woodStickSprite: {fileID: 21300000, guid: 7dd4195f1034fc54b947c213649524e7, type: 3}
+  woodStickScale: 1
+  woodStickAngle: 0
+  woodStickHitSize: {x: 1.6, y: 11.2}
+  woodStickHitOffset: {x: -0.2, y: -0.44}
+  chestSprite: {fileID: 88327862, guid: 8dc629185bf56f9418938a2fd27851eb, type: 3}
+  campfireFrames:
+  - {fileID: -12937558, guid: 80eb83986953e4e498b15afce9b77a6d, type: 3}
+  - {fileID: -1718646639, guid: 80eb83986953e4e498b15afce9b77a6d, type: 3}
+  - {fileID: 1600757063, guid: 80eb83986953e4e498b15afce9b77a6d, type: 3}
+  - {fileID: 1076213878, guid: 80eb83986953e4e498b15afce9b77a6d, type: 3}
+  - {fileID: 926499145, guid: 80eb83986953e4e498b15afce9b77a6d, type: 3}
+  - {fileID: -2145253151, guid: 80eb83986953e4e498b15afce9b77a6d, type: 3}
+  - {fileID: -1087150835, guid: 80eb83986953e4e498b15afce9b77a6d, type: 3}
+  - {fileID: 492677342, guid: 80eb83986953e4e498b15afce9b77a6d, type: 3}
+  - {fileID: -426581525, guid: 80eb83986953e4e498b15afce9b77a6d, type: 3}
+  campfireFps: 10
+  campOffset: {x: 0, y: 3}
+  tentScale: 2.2
+  chestScale: 1.6
+  groundShadowColor: {r: 0, g: 0, b: 0, a: 0.35}
+  rewardBoxShadowSize: {x: 1.3, y: 0.36}
+  rewardBoxShadowOffsetY: 0.45
+  honeyBugShadowSize: {x: 0.8, y: 0.26}
+  honeyBugShadowOffsetY: -0.35
+  decoyShadowSize: {x: 1.1, y: 0.32}
+  decoyShadowOffsetY: 0.12
+  campfireScale: 1.2
+  interactRadius: 1.5
+  shopMarkerOffset: {x: 0.024, y: 0.02}
+  interactKey: 102
+  shopOpenSound: {fileID: 0}
+  shopBuySound: {fileID: 8300000, guid: 69697f0450350420ba7e429fa140ba7d, type: 3}
+  shopClickSound: {fileID: 8300000, guid: e45e8fb5a09194c37836f7af3b31834b, type: 3}
+  knockbackPerLevel:
+  - 0.15
+  - 0.3
+  - 0.45
+  - 0.6
+  - 0.75
+  weaponMasteryPerLevel:
+  - 0.2
+  - 0.4
+  - 0.6
+  - 0.8
+  - 1
+  piercePerLevel: 010000000200000003000000
+  lastStandPerLevel:
+  - 0.2
+  - 0.3
+  - 0.4
+  lastStandThreshold: 0.3
+  knockbackIcon: {fileID: -1554815154, guid: 92dd8634f1c1f77469f5517258bbc75c, type: 3}
+  knockbackIconSource: {fileID: 21300000, guid: fb7b962fde8426c4892a57132520367e, type: 3}
+  knockbackIconRect:
+    serializedVersion: 2
+    x: 231
+    y: 238
+    width: 1029
+    height: 663
+  masteryIcon: {fileID: -1809227360, guid: 92dd8634f1c1f77469f5517258bbc75c, type: 3}
+  pierceIcon: {fileID: 1286309122, guid: 2535030baf54b254a8c1fa4fa521ca87, type: 3}
+  lastStandIcon: {fileID: 835414981, guid: 6fdaf7e6dcbfd1642b6cfcb05e6dd061, type: 3}
+  coinPouchAmount: 30
+  coinPouchIcon: {fileID: 1893429750465163494, guid: c32af7556fbfa65419912a8812f61f6e, type: 3}
+  coinPouchSound: {fileID: 8300000, guid: 69697f0450350420ba7e429fa140ba7d, type: 3}
+  useItemKey: 113
+  placeSound: {fileID: 8300000, guid: 0ffb9602471e746c4a188f4ff2b2c39c, type: 3}
+  uiPickSound: {fileID: 0}
+  skillActivateSound: {fileID: 0}
+  emptySlotAlpha: 0.25
+  bombDelay: 3
+  bombRadius: 2.5
+  bombDamage: 600
+  bombIcon: {fileID: 1527808146, guid: 2535030baf54b254a8c1fa4fa521ca87, type: 3}
+  bombSprite: {fileID: 1897018479, guid: 2535030baf54b254a8c1fa4fa521ca87, type: 3}
+  bombScale: 0.8
+  bombSound: {fileID: 8300000, guid: 4f6dc5849ac1c4e97869a0a67e84f25c, type: 3}
+  bombFlashColor: {r: 1, g: 0.55, b: 0.15, a: 0.7}
+  toadDelay: 3
+  toadRadius: 2.5
+  toadMobStun: 4
+  toadBossStun: 2.5
+  toadIcon: {fileID: 427436744, guid: 2535030baf54b254a8c1fa4fa521ca87, type: 3}
+  toadSprite: {fileID: 1426768971, guid: 2535030baf54b254a8c1fa4fa521ca87, type: 3}
+  toadScale: 0.8
+  toadSound: {fileID: 8300000, guid: 7821d11a42eae4b839cc23092fd00c9f, type: 3}
+  toadFlashColor: {r: 0.4, g: 0.85, b: 1, a: 0.7}
+  stunnedTint: {r: 0.6, g: 0.8, b: 1, a: 1}
+  foodDuration: 20
+  foodDamage: 0.3
+  foodMoveSpeed: 0.15
+  foodIcon: {fileID: 831620145, guid: 2535030baf54b254a8c1fa4fa521ca87, type: 3}
+  foodSound: {fileID: 8300000, guid: 39d592abb1ae943778436337fe27c5d6, type: 3}
+  showStatPanel: 1
+  statPanelAlpha: 0.4
+  statPanelOffset: {x: -10, y: -208}
+  statPanelWidth: 300
+  statFontSize: 19
+  statPanelScale: 0.8
+  statIconSize: 24
+  statIconGap: 6
+  statRowGap: 3
+  statBuffColor: {r: 0.1, g: 0.45, b: 0.1, a: 1}
+  statRiskColor: {r: 0.75, g: 0.1, b: 0.08, a: 1}
+  storageSlotOffset: {x: 70, y: 430}
+  storageSlotSize: 100
+  alignSlotToSkillButton: 1
+  effectSheet1: {fileID: 21300000, guid: 703d18efd7332154d92aa33d4ce90909, type: 3}
+  effectSheet2: {fileID: 21300000, guid: 126b3badeb4292e4395cda84156f797c, type: 3}
+  effectSheet3: {fileID: 21300000, guid: 752401418c8934e49945bf6333ce9a11, type: 3}
+  effectSheet4: {fileID: 21300000, guid: ff8925cac2cafdf4db6b3fd8126d6ac0, type: 3}
+  effectSheet5: {fileID: 21300000, guid: a086b47994969aa4a845363ed5c5ef2d, type: 3}
+  effectSlash: {fileID: 21300000, guid: 86921c7c842d5eb4a8cf9059e96c6c8e, type: 3}
+  fxVfx1: {fileID: 21300000, guid: 8517dc07034c5db458a0479c38c0845f, type: 3}
+  fxVfx2: {fileID: 21300000, guid: 6e97aa75c4651614287d30de337f9b2a, type: 3}
+  fxVfx3: {fileID: 21300000, guid: 9b25da0e8338dc14385c586a234488ce, type: 3}
+  fxVfx4: {fileID: 21300000, guid: fe3dbc7c11d15984fb44306534865de7, type: 3}
+  heavySkillSheet: {fileID: 21300000, guid: c797a64c385ecda47bf97de7b64ca682, type: 3}
+  fxVfx5: {fileID: 21300000, guid: 5554f747616cc9646b46aa74a85f82bc, type: 3}
+  fxObject1: {fileID: 21300000, guid: 67f2ccc9a9c50d74b84d834b39235b2f, type: 3}
+  fxParticle1: {fileID: 21300000, guid: 12d258af06eefa049b4b717d0fcdc6b2, type: 3}
+  fxParticle2: {fileID: 21300000, guid: 10c35dc7271a83945a9d2db914742e43, type: 3}
+  fxSub2: {fileID: 21300000, guid: 8ea88edbb54378942b0ddd49efbd4f61, type: 3}
+  fxSub3: {fileID: 21300000, guid: 9ec8adb911b064b4aacd581feb2b190a, type: 3}
+  morningCardPaper: {fileID: -1649185716, guid: 03b3bd267cc5a4e4cab7dd031ee14abc, type: 3}
+  morningBarGreen: {fileID: -2064216855, guid: 03b3bd267cc5a4e4cab7dd031ee14abc, type: 3}
+  morningBarYellow: {fileID: -668097323, guid: 03b3bd267cc5a4e4cab7dd031ee14abc, type: 3}
+  morningBarRed: {fileID: 1867470007, guid: 03b3bd267cc5a4e4cab7dd031ee14abc, type: 3}
+  morningBoxLight: {fileID: 84424345, guid: 03b3bd267cc5a4e4cab7dd031ee14abc, type: 3}
+  morningBoxGreen: {fileID: -1748419201, guid: 03b3bd267cc5a4e4cab7dd031ee14abc, type: 3}
+  morningBoxRed: {fileID: 391286982, guid: 03b3bd267cc5a4e4cab7dd031ee14abc, type: 3}
+  morningSlot: {fileID: 2075481543, guid: 03b3bd267cc5a4e4cab7dd031ee14abc, type: 3}
+  morningRibbon: {fileID: 1715176497, guid: 03b3bd267cc5a4e4cab7dd031ee14abc, type: 3}
+  skillButtonFrame: {fileID: -1343642289, guid: bd921eb373b4c5049bf1b441654e23e7, type: 3}
+  ultimateButtonFrame: {fileID: 989096361, guid: bd921eb373b4c5049bf1b441654e23e7, type: 3}
+  dodgeButtonFrame: {fileID: 417858802, guid: bd921eb373b4c5049bf1b441654e23e7, type: 3}
+  threatIndicatorFrame: {fileID: -2052435911, guid: bd921eb373b4c5049bf1b441654e23e7, type: 3}
+  coinPouchRange: {x: 20, y: 40}
+  eliteTint: {r: 1, g: 0.72, b: 0.68, a: 1}
+  eliteAuraColor: {r: 1, g: 0.45, b: 0.3, a: 0.95}
+  fxHazeCut: 90
+  fxBlackCut: 24
+  effectFps: 16
+  effectEdgeFeather: 6
+  explosionFrames:
+  - serializedVersion: 2
+    x: 20
+    y: 869
+    width: 68
+    height: 60
+  - serializedVersion: 2
+    x: 116
+    y: 847
+    width: 118
+    height: 104
+  - serializedVersion: 2
+    x: 263
+    y: 819
+    width: 172
+    height: 160
+  - serializedVersion: 2
+    x: 452
+    y: 813
+    width: 222
+    height: 188
+  - serializedVersion: 2
+    x: 688
+    y: 820
+    width: 246
+    height: 196
+  - serializedVersion: 2
+    x: 946
+    y: 825
+    width: 192
+    height: 164
+  - serializedVersion: 2
+    x: 1144
+    y: 825
+    width: 180
+    height: 138
+  - serializedVersion: 2
+    x: 1338
+    y: 829
+    width: 180
+    height: 134
+  dustFrames:
+  - serializedVersion: 2
+    x: 13
+    y: 330
+    width: 262
+    height: 130
+  - serializedVersion: 2
+    x: 296
+    y: 330
+    width: 240
+    height: 110
+  - serializedVersion: 2
+    x: 526
+    y: 310
+    width: 212
+    height: 118
+  zapFrames:
+  - serializedVersion: 2
+    x: 352
+    y: 297
+    width: 132
+    height: 142
+  - serializedVersion: 2
+    x: 1040
+    y: 463
+    width: 182
+    height: 122
+  stunSparkFrame:
+    serializedVersion: 2
+    x: 1029
+    y: 53
+    width: 62
+    height: 82
+  coinSparkFrame:
+    serializedVersion: 2
+    x: 8
+    y: 165
+    width: 142
+    height: 148
+  healFrames:
+  - serializedVersion: 2
+    x: 1101
+    y: 36
+    width: 108
+    height: 122
+  - serializedVersion: 2
+    x: 980
+    y: 33
+    width: 98
+    height: 94
+  shieldDomeFrame:
+    serializedVersion: 2
+    x: 1217
+    y: 22
+    width: 178
+    height: 136
+  hitSparkFrame:
+    serializedVersion: 2
+    x: 202
+    y: 299
+    width: 138
+    height: 136
+  hitSparkSize: 0.45
+  hitSparksPerSecond: 40
+  bossWarningFrame:
+    serializedVersion: 2
+    x: 619
+    y: 49
+    width: 126
+    height: 90
+  bossFireFrame:
+    serializedVersion: 2
+    x: 114
+    y: 808
+    width: 140
+    height: 146
+  bossSlashFrames:
+  - serializedVersion: 2
+    x: 10
+    y: 598
+    width: 200
+    height: 164
+  - serializedVersion: 2
+    x: 199
+    y: 598
+    width: 216
+    height: 180
+  - serializedVersion: 2
+    x: 404
+    y: 614
+    width: 200
+    height: 164
+  groundBurstFrames:
+  - serializedVersion: 2
+    x: 15
+    y: 640
+    width: 118
+    height: 144
+  - serializedVersion: 2
+    x: 553
+    y: 636
+    width: 230
+    height: 154
+  landingRingFrame:
+    serializedVersion: 2
+    x: 809
+    y: 630
+    width: 290
+    height: 154
+  dodgeDustSize: 1.3
+  dodgeSound: {fileID: 8300000, guid: 6ba53cdd4b6df41789f95e65da62da69, type: 3}
+  nightBgmCutoff: 3500
+  growthIcon: {fileID: 24012700, guid: 55db89b978772694eb700a709ce23487, type: 3}
+  challengeIcon: {fileID: -1060804080, guid: 55db89b978772694eb700a709ce23487, type: 3}
+  hellIcon: {fileID: 949155578, guid: 55db89b978772694eb700a709ce23487, type: 3}
+  growthColor: {r: 0.3, g: 0.7, b: 0.4, a: 1}
+  challengeColor: {r: 0.95, g: 0.6, b: 0.2, a: 1}
+  hellColor: {r: 0.8, g: 0.15, b: 0.2, a: 1}
+  allowMorningReroll: 1
+  questKillGoal: 150
