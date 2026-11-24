@@ -9,7 +9,7 @@
 
 - 트레일러 (34초): https://www.youtube.com/watch?v=vYxkJndoLKQ
 - 시스템 소개 영상: https://www.youtube.com/watch?v=tCmqqBfB8t0
-- 포트폴리오 (기획 · AI 협업 기록): (노션 링크)
+- 포트폴리오 (기획 · AI 협업 기록): https://young-brownie-a15.notion.site/AI-4212e8eff41680ed95fdd6e1bc1ae7a1
 
 ## 이번 버전에서 바뀐 것
 
